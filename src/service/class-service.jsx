@@ -8,10 +8,10 @@ class Class{
         let url     = '',
             data    = {};
         if(listParam.listType === 'list'){
-            url                         = '/manage/product/list.do';
+            url                         = '/manage/student/';
             data.pageNum                = listParam.pageNum;
         }else if(listParam.listType === 'search'){
-            url = '/manage/product/search.do';
+            url = '/manage/student/list';
             data.pageNum                = listParam.pageNum;
             data[listParam.searchType]  = listParam.keyword;
         }
@@ -21,7 +21,7 @@ class Class{
             data    : data
         });
     }
-    // get product details
+    // get class details
     getClassDetails (classId){
         return _mm.request({
             type    : 'post',
@@ -32,19 +32,6 @@ class Class{
         });
     }
     
-    /*
-    *  category
-    */
-
-    getCategoryList(parentCategoryId){
-        return _mm.request({
-            type    : 'post',
-            url     : '/manage/category/get_category.do',
-            data    : {
-                categoryId : parentCategoryId || 0
-            }
-        });
-    }
     
 }
 

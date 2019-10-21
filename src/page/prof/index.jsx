@@ -8,45 +8,46 @@ const _mm           = new MUtil();
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 
-class Home extends React.Component{
+class Class extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            mathCount       : 40,
-            readingCount    : 43,
-            scienceCount      : 28
+            subject         : 'MATH',
+            pCount       : 6,
+            apCount    : 8,
+            npCount      : 10
         }
     }
 
     render(){
         return (
             <div id="page-wrapper">
-                <PageTitle title="Main page" />
+                <PageTitle title={this.state.subject} />
                 <div className="row">
                     <div className="col-md-4">
-                        <Link to="/class/1" className="color-box brown">
-                            <p className="count">{this.state.mathCount}</p>
+                        <Link to="/class/1/p/list" className="color-box brown">
+                            <p className="count">{this.state.pCount}</p>
                             <p className="desc">
                                 <i className="fa fa-user-o"></i>
-                                <span>Math</span>
+                                <span>Proficient</span>
                             </p>
                         </Link>
                     </div>
                     <div className="col-md-4">
-                        <Link to="/class/2" className="color-box green">
-                            <p className="count">{this.state.readingCount}</p>
+                        <Link to="/class/1/ap/list" className="color-box green">
+                            <p className="count">{this.state.apCount}</p>
                             <p className="desc">
                                 <i className="fa fa-list"></i>
-                                <span>Reading</span>
+                                <span>Almost Proficient</span>
                             </p>
                         </Link>
                     </div>
                     <div className="col-md-4">
-                        <Link to="/class/3" className="color-box blue">
-                            <p className="count">{this.state.scienceCount}</p>
+                        <Link to="/class/1/np/list" className="color-box blue">
+                            <p className="count">{this.state.npCount}</p>
                             <p className="desc">
                                 <i className="fa fa-check-square-o"></i>
-                                <span>Science</span>
+                                <span>Non-Proficient</span>
                             </p>
                         </Link>
                     </div>
@@ -57,4 +58,4 @@ class Home extends React.Component{
     }
 }
 
-export default Home;
+export default Class;

@@ -12,9 +12,9 @@ class Class extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            mathCount       : '-',
-            readingCount    : '-',
-            scienceCount      : '-'
+            mathCount       : 40,
+            readingCount    : 43,
+            scienceCount      : 28
         }
     }
 
