@@ -11,55 +11,43 @@ class NavSide extends React.Component{
                 <div className="sidebar-collapse">
                     <ul className="nav">
                         <li>
-                            <NavLink exact activeClassName="active-menu" to="/">
+                            <NavLink exact activeClassName="active-menu" to="/s">
                                 <i className="fa fa-dashboard"></i>
                                 <span>Main</span>
                             </NavLink>
                         </li>
                         <li className="active">
-                            <Link to="/class">
+                            <Link to="/s/classlist">
                                 <i className="fa fa-check-square-o"></i>
                                 <span>Classes</span>
                                 <span className="fa arrow"></span>
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink to="/class/1" activeClassName="active-menu">Math</NavLink>
+                                    <NavLink to="/s/classlist/1" activeClassName="active-menu">Math</NavLink>
                                 </li>
                             </ul>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink to="/class/2" activeClassName="active-menu">Reading</NavLink>
+                                    <NavLink to="/s/classlist/2" activeClassName="active-menu">Reading</NavLink>
                                 </li>
                             </ul>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink to="/class/3" activeClassName="active-menu">Science</NavLink>
-                                </li>
-                            </ul>
-                        </li>
-                        <li className="active">
-                            <Link to="/user">
-                                <i className="fa fa-user-o"></i>
-                                <span>User</span>
-                                <span className="fa arrow"></span>
-                            </Link>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/user" activeClassName="active-menu">User Management</NavLink>
+                                    <NavLink to="/s/classlist/3" activeClassName="active-menu">Science</NavLink>
                                 </li>
                             </ul>
                         </li>
 
                         <li className="active">
-                            <Link to="/media">
+                            <Link to="/s">
                                 <i className="fa fa-user-o"></i>
-                                <span>Media</span>
+                                <span>Assignments</span>
                                 <span className="fa arrow"></span>
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink to="/media/video" activeClassName="active-menu">Video</NavLink>
+                                    <NavLink to="/s/1/1/media/video" activeClassName="active-menu">Media</NavLink>
                                 </li>
                             </ul>
                         </li>
