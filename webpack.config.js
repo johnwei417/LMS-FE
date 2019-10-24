@@ -2,6 +2,7 @@ const path              = require('path');
 const webpack           = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV); 
@@ -23,6 +24,19 @@ module.exports = {
     },
     module: {
         rules: [
+            //vue loader
+            {   
+                test: /\.vue$/, 
+                include: /src/,
+                use: {
+                    loader: 'vue-loader', 
+                    options: { 
+                        loaders: { 
+                            js: 'awesome-typescript-loader?silent=true' 
+                        }
+                    } 
+                }
+            },
             //react(jsx) syntax
             {
                 test: /\.jsx$/,
@@ -90,7 +104,8 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name : 'common',
             filename: 'js/base.js'
-        })
+        }),
+        new VueLoaderPlugin()
     ],
     devServer: {
         port: 8086,
