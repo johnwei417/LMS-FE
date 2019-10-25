@@ -1,4 +1,5 @@
 {
+  "main": "app.js",
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server",
     "build": "WEBPACK_ENV=online node_modules/.bin/webpack -p",
