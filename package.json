@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server",
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "start": "node dist/js/app.js",
     "build": "WEBPACK_ENV=online node_modules/.bin/webpack -p",
     "dist_win": "set WEBPACK_ENV=online&& node_modules/.bin/webpack -p"
   },
