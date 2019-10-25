@@ -7,6 +7,12 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV); 
 module.exports = {
+    optimization: {
+        splitChunks: {
+            name : 'common',
+            filename: 'js/base.js'
+        }
+    },
     entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -100,11 +106,6 @@ module.exports = {
         }),
         // seperate css file
         new ExtractTextPlugin("css/[name].css"),
-        // extract common chunck
-        new webpack.optimize.CommonsChunkPlugin({
-            name : 'common',
-            filename: 'js/base.js'
-        }),
         new VueLoaderPlugin()
     ],
     devServer: {
