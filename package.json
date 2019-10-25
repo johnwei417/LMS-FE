@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node app.js",
+    "start": "webpack-serve",
     "dev": "node_modules/.bin/webpack-dev-server",
     "build": "WEBPACK_ENV=online node_modules/.bin/webpack -p",
     "dist_win": "set WEBPACK_ENV=online&& node_modules/.bin/webpack -p"
@@ -36,6 +36,7 @@
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
-    "vuera": "^0.2.6"
+    "vuera": "^0.2.6",
+    "webpack-serve": "^3.2.0"
   }
 }
