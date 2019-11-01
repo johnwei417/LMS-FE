@@ -11,4 +11,4 @@
 * open chrome, type 'localhost:8086' 
 
 Documentation:
-/docs
+
