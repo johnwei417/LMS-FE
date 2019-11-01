@@ -47,7 +47,7 @@ class NavSide extends React.Component{
                             </Link>
                             <ul className="nav nav-second-level collapse in">
                                 <li>
-                                    <NavLink to="/s/1/1/media/video" activeClassName="active-menu">Media</NavLink>
+                                    <NavLink to="/s/media/video" activeClassName="active-menu">Media</NavLink>
                                 </li>
                             </ul>
                         </li>

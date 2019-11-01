@@ -18,6 +18,8 @@ import APList            from 'page/ap-list/index.jsx';
 import NPList            from 'page/np-list/index.jsx';
 import ErrorPage        from 'page/error/index.jsx';
 import Media            from 'page/media/index.jsx';
+import SMedia           from 'page/s-media/index.jsx';
+import ClassDetail      from 'page/s-class-detail/index.jsx';
 
 class App extends React.Component{
     render(){
@@ -33,7 +35,7 @@ class App extends React.Component{
                     <Route exact path="/class/1/ap/list" component={APList}/>
                     <Route exact path="/class/1/np/list" component={NPList}/>
                     <Redirect exact from="/user" to="/user/index"/>
-                    <Route component={ErrorPage}/>
+                    <Route component={ErrorPage} />
                 </Switch>
             </Layout>
         );
@@ -43,6 +45,8 @@ class App extends React.Component{
             <Switch>
                 <Route exact path="/s" component={SHome}/>
                 <Route exact path="/s/classlist" component={SClass}/>
+                <Route exact path="/s/classlist/1" component={ClassDetail} />
+                <Route exact path="/s/media/video" component={SMedia} /> 
             </Switch>
         </SLayout>
         );
@@ -51,9 +55,9 @@ class App extends React.Component{
             <Router>
                 <Switch>
                     <Route path="/login" component={Login}/>
+                    <Route path="/"  render={ props => LayoutRouter}/>
                     <Route path="/s"  render={ props => studentRouter}/>
-                    <Route path="/" render={ props => LayoutRouter}/>
-                    
+                    <Route path="/s/media/video" render={ props => LayoutRouter}/>
                     
                 </Switch>
             </Router>

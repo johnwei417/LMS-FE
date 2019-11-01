@@ -7741,16 +7741,6 @@ webpack-log@^2.0.0:
     ansi-colors "^3.0.0"
     uuid "^3.3.2"
 
-webpack-nano@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/webpack-nano/-/webpack-nano-0.8.1.tgz#e4a12e79c37c6f8446eab46230a5c20633d06c6f"
-  integrity sha512-NOTVpk9o1cNP8pbBF/MT9hw1PQvZGNSvFIQhwys0/7lkb//2y55uqXYmd2xeeK9GIDMmq9XRV1Ec/qGkQbEA+Q==
-  dependencies:
-    chalk "^2.4.1"
-    import-local "^2.0.0"
-    rechoir "^0.7.0"
-    yargs-parser "^13.0.0"
-
 webpack-plugin-ramdisk@^0.1.2:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/webpack-plugin-ramdisk/-/webpack-plugin-ramdisk-0.1.3.tgz#1142ce0d7cb1710c505b6852d364ee6c3f84d9ea"
@@ -7977,7 +7967,7 @@ yargs-parser@^11.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
-yargs-parser@^13.0.0, yargs-parser@^13.1.0:
+yargs-parser@^13.1.0:
   version "13.1.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-13.1.1.tgz#d26058532aa06d365fe091f6a1fc06b2f7e5eca0"
   integrity sha512-oVAVsHz6uFrg3XQheFII8ESO2ssAf9luWuAd6Wexsu4F3OtIW0o8IribPXYrD4WC24LWtPrJlGy87y5udK+dxQ==
