@@ -52,7 +52,7 @@ class NavSide extends React.Component{
                         </li>
 
                         <li className="active">
-                            <Link to="/media">
+                            <Link to="/media/video">
                                 <i className="fa fa-user-o"></i>
                                 <span>Media</span>
                                 <span className="fa arrow"></span>
