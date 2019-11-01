@@ -11,4 +11,7 @@
 * open chrome, type 'localhost:8086' 
 
 Documentation:
+docs/
 
+Source Code:
+src/
