@@ -9,3 +9,6 @@
 * type 'yarn install' to install all dependencies needed for deployment
 * type 'yarn run dev' to run development environment
 * open chrome, type 'localhost:8086' 
+
+Documentation:
+/docs
