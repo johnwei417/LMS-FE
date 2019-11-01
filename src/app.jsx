@@ -55,9 +55,9 @@ class App extends React.Component{
             <Router>
                 <Switch>
                     <Route path="/login" component={Login}/>
-                    <Route path="/"  render={ props => LayoutRouter}/>
                     <Route path="/s"  render={ props => studentRouter}/>
-                    <Route path="/s/media/video" render={ props => LayoutRouter}/>
+                    <Route path="/"  render={ props => LayoutRouter}/>
+                   
                     
                 </Switch>
             </Router>
