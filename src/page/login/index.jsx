@@ -1,4 +1,3 @@
-
 import React        from 'react';
 import MUtil        from 'util/mm.jsx'
 import User         from 'service/user-service.jsx'
