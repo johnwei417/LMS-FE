@@ -124,12 +124,6 @@ module.exports = {
         historyApiFallback: {
             index: '/dist/index.html'
         },
-        proxy : {
-            '/manage' : {
-                target: 'http://laravel-lsm.herokuapp.com/api/v1/',
-                //target: 'http://localhost:8088/',
-                changeOrigin : true
-            },
-        }
+
     }
 };
