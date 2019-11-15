@@ -8,20 +8,11 @@ class MUtil{
                 dataType    : param.dataType    || 'json',
                 data        : param.data        || null,
                 success     : res => {
-                    //data request success
-                    if(0 === res.status){
-                        typeof resolve === 'function' && resolve(res.data, res.msg);
-                    }
-                    //not login status, force login with status code: 10
-                    else if(10 === res.status){
-                        this.doLogin();
-                    }
-                    else{
-                        typeof reject === 'function' && reject(res.msg || res.data);
-                    }
+                    //data request success          
+                    resolve(res.account);       
                 },
                 error       : err => {
-                    typeof reject === 'function' && reject(err.statusText);
+                    typeof reject === 'function' && reject(err.errMsg);
                 }
             });
         });  
@@ -49,6 +40,7 @@ class MUtil{
     // localstorage
     setStorage(name, data){
         let dataType = typeof data;
+        console.log(dataType);
         // json object
         if(dataType === 'object'){
             window.localStorage.setItem(name, JSON.stringify(data));
