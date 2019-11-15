@@ -49,17 +49,30 @@ class ClassList extends React.Component{
             {
                 this.state.list.map((classrooms, index) => {
                     return (
-                        <div>
+
                             <div className="col-md-4">
-                            <Link to={`/${this.state.userID}/classroom/${classrooms.class_id}`} className="color-box green">
-                                <p className="subject">{classrooms.subject}</p>
-                                <p className="desc">
+                            <Link to={`/classroom/${classrooms.class_id}`} className="color-box green">
+                               
+                                <p className="grade">
                                     <i className="fa fa-list"></i>
-                                    <span>{classrooms.grade}</span>
+                                    <span> <em>{classrooms.subject}</em> - {classrooms.grade} Grade</span>
+                                   
                                 </p>
+                                <p className="desc">
+                                    <i className="fa fa-building"></i>
+                                    <span>{classrooms.room} - Room: {classrooms.school}</span>
+                                   
+                                </p>
+
+                                <p className="desc">
+                                    <i className="fa fa-calendar"></i>
+                                    <span>{classrooms.starts_at} - {classrooms.ends_at}</span>
+                                   
+                                </p>
+                            
                             </Link>
                             </div>
-                        </div>
+                  
                           
                     );
                 })
