@@ -1,60 +1,73 @@
 import React        from 'react';
 import { Link }     from 'react-router-dom';
+import Class         from 'service/class-service.jsx';
 
 import MUtil        from 'util/mm.jsx'
+
 const _mm           = new MUtil();
+const _class         = new Class();
 
 
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 
-class Class extends React.Component{
+
+class ClassList extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            mathCount       : 40,
-            readingCount    : 43,
-            scienceCount      : 28
-        }
+            list            : [],
+            userID:         _mm.getStorage('userInfo').id,
+            api_token:      _mm.getStorage('userInfo').api_token,
+            role:           _mm.getStorage('userInfo').role
+
+        };
+    }
+    componentDidMount(){
+        this.loadClassList();
+    }
+
+    loadClassList(){
+        let UserInfo = {};
+        UserInfo.api_token = this.state.api_token;
+        UserInfo.userID = this.state.userID;
+       
+        _class.getClassList(UserInfo).then(res => {
+            this.setState({list : res.classes.classrooms});
+        }, errMsg =>{
+            this.setState({ 
+                list : []
+            })
+            _mm.errorTips(errMsg);
+        });
     }
 
     render(){
         return (
             <div id="page-wrapper">
                 <PageTitle title="Courses" />
-                <div className="row">
-                    <div className="col-md-4">
-                        <Link to="/class/1" className="color-box brown">
-                            <p className="count">{this.state.mathCount}</p>
-                            <p className="desc">
-                                <i className="fa fa-user-o"></i>
-                                <span>Math</span>
-                            </p>
-                        </Link>
-                    </div>
-                    <div className="col-md-4">
-                        <Link to="/class/2" className="color-box green">
-                            <p className="count">{this.state.readingCount}</p>
-                            <p className="desc">
-                                <i className="fa fa-list"></i>
-                                <span>Reading</span>
-                            </p>
-                        </Link>
-                    </div>
-                    <div className="col-md-4">
-                        <Link to="/class/3" className="color-box blue">
-                            <p className="count">{this.state.scienceCount}</p>
-                            <p className="desc">
-                                <i className="fa fa-check-square-o"></i>
-                                <span>Science</span>
-                            </p>
-                        </Link>
-                    </div>
-                    
-                </div>
+            {
+                this.state.list.map((classrooms, index) => {
+                    return (
+                        <div>
+                            <div className="col-md-4">
+                            <Link to={`/${this.state.userID}/classroom/${classrooms.class_id}`} className="color-box green">
+                                <p className="subject">{classrooms.subject}</p>
+                                <p className="desc">
+                                    <i className="fa fa-list"></i>
+                                    <span>{classrooms.grade}</span>
+                                </p>
+                            </Link>
+                            </div>
+                        </div>
+                          
+                    );
+                })
+            }
             </div>
+
         );
     }
 }
 
-export default Class;
+export default ClassList;

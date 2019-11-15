@@ -46,7 +46,7 @@ class Login extends React.Component{
         // pass validation
         if(checkResult.status){
             _user.login(JSON.stringify(loginInfo)).then((res) => {
-                _mm.setStorage('userInfo', res);
+                _mm.setStorage('userInfo', res.account);
                 this.props.history.push(this.state.redirect);
             }, (errMsg) => {
                 _mm.errorTips(errMsg);

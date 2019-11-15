@@ -1,15 +1,19 @@
+
 class MUtil{
     request(param){
         return new Promise((resolve, reject) => {
             $.ajax({
-               
+                
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer '+ param.api_token);
+                } || null,
                 type        : param.type        || 'get',
                 url         : param.url         || '',
                 dataType    : param.dataType    || 'json',
                 data        : param.data        || null,
                 success     : res => {
                     //data request success          
-                    resolve(res.account);       
+                    resolve(res);
                 },
                 error       : err => {
                     typeof reject === 'function' && reject(err.errMsg);
@@ -19,7 +23,7 @@ class MUtil{
     }
     //jump to login
     doLogin(){
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        window.location.href = '/login';
     }
     //get URL parameter
     getUrlParam(name){

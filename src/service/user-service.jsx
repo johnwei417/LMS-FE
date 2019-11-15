@@ -38,12 +38,15 @@ class User{
         }
     }
     // logout
+    //not used right now, no such a api exist
     logout(){
         return _mm.request({
             type    : 'post',
             url     : 'manage/account/logout'
         });
     }
+
+    // not used right now, no such a api exist
     getUserList(pageNum){
         return _mm.request({
             type    : 'post',

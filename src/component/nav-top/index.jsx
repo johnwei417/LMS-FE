@@ -10,7 +10,7 @@ class NavTop extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: _mm.getStorage('userInfo').username || ''
+            username: _mm.getStorage('userInfo').name || ''
         }
     }
     // logout

@@ -124,6 +124,6 @@ module.exports = {
         historyApiFallback: {
             index: '/dist/index.html'
         },
-
+       
     }
 };
