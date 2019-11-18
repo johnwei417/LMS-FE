@@ -51,7 +51,7 @@ class ClassList extends React.Component{
                     return (
 
                             <div className="col-md-4">
-                            <Link to={`/classroom/${classrooms.class_id}`} className="color-box green">
+                            <Link to={`/classroom/${classrooms.class_id}`} className="color-box blue">
                                
                                 <p className="grade">
                                     <i className="fa fa-list"></i>
