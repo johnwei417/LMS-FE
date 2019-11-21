@@ -24,7 +24,15 @@ class ClassDetail extends React.Component{
     }
 
     componentDidMount(){
+        this.checkLogin();
         this.loadClassDetail();
+    }
+
+
+    checkLogin(){
+        if(localStorage.getItem("userInfo") === null){
+        window.location.href = '/login';
+        }
     }
 
     loadClassDetail(){

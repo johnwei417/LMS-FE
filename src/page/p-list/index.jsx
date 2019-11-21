@@ -27,6 +27,7 @@ class UserList extends React.Component{
         };
     }
     componentDidMount(){
+        this.checkLogin();
         this.getTitle();
         this.loadClassList();
     
@@ -49,6 +50,12 @@ class UserList extends React.Component{
             })
             _mm.errorTips(errMsg);
         });
+    }
+
+    checkLogin(){
+        if(localStorage.getItem("userInfo") === null){
+        window.location.href = '/login';
+        }
     }
 
     getTitle(){
