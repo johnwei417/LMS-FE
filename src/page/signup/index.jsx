@@ -1,24 +1,26 @@
 import React        from 'react';
 import MUtil        from 'util/mm.jsx'
 import User         from 'service/user-service.jsx'
-import { Link }     from 'react-router-dom';
 
 const _mm   = new MUtil();
 const _user = new User();
 
 import './index.scss';
 
-class Login extends React.Component{
+class Register extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             email: '',
             password: '',
+            name: '',
+            username: '',
+            role: '',
             redirect: _mm.getUrlParam('redirect') || '/'
         }
     }
     componentWillMount(){
-        document.title = 'Login';
+        document.title = 'Register';
     }
     // when username changed
     onInputChange(e){
@@ -37,8 +39,11 @@ class Login extends React.Component{
     onSubmit(){ 
         let loginInfo = {
          "account" : {
+                "name": this.state.name,
+                "username": this.state.username,
                 "email" : this.state.email,
-                "password" : this.state.password
+                "password" : this.state.password,
+                "role" : this.state.role
             }
         }
     ,
@@ -46,9 +51,8 @@ class Login extends React.Component{
          
         // pass validation
         if(checkResult.status){
-            _user.login(JSON.stringify(loginInfo)).then((res) => {
-                _mm.setStorage('userInfo', res.account);
-                this.props.history.push(this.state.redirect);
+            _user.register(JSON.stringify(loginInfo)).then((res) => {
+                window.location.href = '/login';
             }, (errMsg) => {
                 _mm.errorTips(errMsg);
             });
@@ -68,6 +72,23 @@ class Login extends React.Component{
                     <div className="panel-heading">Welcome to Learning System</div>
                     <div className="panel-body">
                         <div>
+                        <div className="form-group">
+                                <input type="text" 
+                                    name="name"
+                                    className="form-control" 
+                                    placeholder="Please type your name" 
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/>
+                            </div>
+                            <div className="form-group">
+                                <input type="text" 
+                                    name="username"
+                                    className="form-control" 
+                                    placeholder="Please type your username" 
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/>
+                            </div>
+
                             <div className="form-group">
                                 <input type="text"
                                     name="email"
@@ -84,14 +105,28 @@ class Login extends React.Component{
                                     onKeyUp={e => this.onInputKeyUp(e)}
                                     onChange={e => this.onInputChange(e)}/>
                             </div>
-                            <button className="btn btn-lg btn-primary btn-block"
-                                onClick={e => {this.onSubmit(e)}}>Login</button>
-                        
-                            
-                            <p>Don't have an account? <a href="/register">Register here</a></p>
-                    
-                            
 
+                            <div className="form-group">
+                                <input type="radio" 
+                                    name="role"
+                                    value="1"
+                                    className="form-control" 
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/> Teacher
+                            </div>
+
+                            <div className="form-group">
+                                <input type="radio" 
+                                    name="role"
+                                    value="0"
+                                    className="form-control" 
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/> Student
+                            </div>
+
+                            <button className="btn btn-lg btn-primary btn-block"
+                                onClick={e => {this.onSubmit(e)}}>Register Now!</button>
+                            <p>Already have an account? <a href="/login">Login here</a></p>
                         </div>
                     </div>
                 </div>
@@ -103,4 +138,4 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+export default Register;

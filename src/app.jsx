@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-ro
 
 import Layout           from 'component/layout/index.jsx';
 import SLayout           from 'component/s-layout/index.jsx';
-// page
-// page
 import Home             from 'page/home/index.jsx';
 import SHome            from 'page/student-home/index.jsx'
 import Class            from 'page/class/index.jsx';
@@ -17,6 +15,7 @@ import PList            from 'page/p-list/index.jsx';
 import ErrorPage        from 'page/error/index.jsx';
 import Media            from 'page/media/index.jsx';
 import SMedia           from 'page/s-media/index.jsx';
+import Register         from 'page/signup/index.jsx';
 
 
 class App extends React.Component{
@@ -50,6 +49,7 @@ class App extends React.Component{
             <Router>
                 <Switch>
                     <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Register}/>
                     <Route path="/s"  render={ props => studentRouter}/>
                     <Route path="/"  render={ props => LayoutRouter}/>
                    

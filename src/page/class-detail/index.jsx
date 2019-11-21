@@ -44,7 +44,8 @@ class ClassDetail extends React.Component{
     render(){
         return (
             <div id="page-wrapper">
-                <PageTitle title={this.state.subject} />
+                <PageTitle title="Students Performance" />
+
                 <div className="row">
                     <div className="col-md-4">
                         <Link to={`/classroom/${this.state.classID}/p`}  className="color-box brown">

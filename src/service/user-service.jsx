@@ -13,6 +13,14 @@ class User{
             data: loginInfo
         });
     }
+
+    register(userInfo){
+        return _mm.request({
+            type: 'post',
+            url: 'https://laravel-lsm.herokuapp.com/api/v1/account/signup',
+            data: userInfo
+        });
+    }
     
     //check if login data is valid
     checkLoginInfo(loginInfo){
