@@ -60,6 +60,8 @@ class Login extends React.Component{
     }
     render(){
         return (
+            <body className="login-body">
+            
             <div className="col-md-4 col-md-offset-4">
                 <div className="panel panel-default login-panel">
                     <div className="panel-heading">Welcome to Learning System</div>
@@ -87,6 +89,8 @@ class Login extends React.Component{
                     </div>
                 </div>
             </div>
+           
+            </body>
                     
         );
     }

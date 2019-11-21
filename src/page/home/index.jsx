@@ -21,6 +21,7 @@ class Home extends React.Component{
 
     render(){
         return (
+           
             <div id="page-wrapper">
                 <PageTitle title="Main page" />
                 <div className="row">
@@ -54,6 +55,7 @@ class Home extends React.Component{
                     
                 </div>
             </div>
+        
         );
     }
 }
