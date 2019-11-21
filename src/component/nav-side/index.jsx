@@ -1,10 +1,44 @@
 import React                from 'react';
 import { Link, NavLink }    from 'react-router-dom';
 
+import Class         from 'service/class-service.jsx';
+
+import MUtil        from 'util/mm.jsx'
+
+const _mm           = new MUtil();
+const _class         = new Class();
+
 class NavSide extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            list            : [],
+            userID:         _mm.getStorage('userInfo').id,
+            api_token:      _mm.getStorage('userInfo').api_token,
+            role:           _mm.getStorage('userInfo').role
+
+        };
     }
+
+    componentDidMount(){
+        this.loadClassList();
+    }
+
+    loadClassList(){
+        let UserInfo = {};
+        UserInfo.api_token = this.state.api_token;
+        UserInfo.userID = this.state.userID;
+       
+        _class.getClassList(UserInfo).then(res => {
+            this.setState({list : res.classes.classrooms});
+        }, errMsg =>{
+            this.setState({ 
+                list : []
+            })
+            _mm.errorTips(errMsg);
+        });
+    }
+
     render(){
         return (
             <div className="navbar-default navbar-side">
@@ -22,34 +56,22 @@ class NavSide extends React.Component{
                                 <span>Classes</span>
                                 <span className="fa arrow"></span>
                             </Link>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/class/1" activeClassName="active-menu">Math</NavLink>
-                                </li>
-                            </ul>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/class/2" activeClassName="active-menu">Reading</NavLink>
-                                </li>
-                            </ul>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/class/3" activeClassName="active-menu">Science</NavLink>
-                                </li>
-                            </ul>
+                            {
+                                this.state.list.map((classrooms, index) => {
+                                    return (
+                                      
+                                        <ul className="nav nav-second-level collapse in">
+                                        <li>
+                                          <NavLink to={`/classroom/${classrooms.class_id}`} activeClassName="active-menu">{classrooms.subject}</NavLink>
+                                        </li>
+                                    </ul>
+
+                                        );
+                                    })
+                            }
+                          
                         </li>
-                        <li className="active">
-                            <Link to="/user">
-                                <i className="fa fa-user-o"></i>
-                                <span>User</span>
-                                <span className="fa arrow"></span>
-                            </Link>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/user" activeClassName="active-menu">User Management</NavLink>
-                                </li>
-                            </ul>
-                        </li>
+                    
 
                         <li className="active">
                             <Link to="/media/video">
