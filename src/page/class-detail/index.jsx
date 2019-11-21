@@ -19,7 +19,9 @@ class ClassDetail extends React.Component{
             role:                _mm.getStorage('userInfo').role,
             p_count:             0,
             ap_count:            0,
-            np_count:            0
+            np_count:            0,
+            proficientLevel:     '',
+            scores:              []
         }
     }
 
@@ -45,7 +47,7 @@ class ClassDetail extends React.Component{
 
         let countInfo  ={};
         countInfo.p_count = this.state.p_count
-        
+    if(this.state.role == '1'){
         _class.getClassDetails(classInfo).then((res)=>{
             _mm.setStorage('classInfo', res.classroom);
             this.setState({
@@ -56,6 +58,37 @@ class ClassDetail extends React.Component{
         }, (errMsg) => {
             _mm.errorTips(errMsg);
         });
+     }else{
+        _class.getClassDetails(classInfo).then((res)=>{
+            _mm.setStorage('classInfo', res.classroom);
+            //check proficiency level from local stoage
+            if(_mm.getStorage('classInfo').scores.proeficent.count != 0){
+                this.setState({
+                    proficientLevel: 'Proficient',
+                    scores : _mm.getStorage('classInfo').scores.proeficent.users.scores
+                })
+            }
+
+            if(_mm.getStorage('classInfo').scores.almostProeficent.count != 0){
+                this.setState({
+                    proficientLevel: 'Almost Proficient',
+                    scores : _mm.getStorage('classInfo').scores.almostProeficent.users.scores
+                })
+            }
+
+            if(_mm.getStorage('classInfo').scores.notProeficent.count != 0){
+                this.setState({
+                    proficientLevel: 'Not Proficient',
+                    scores : _mm.getStorage('classInfo').scores.notProeficent.users.scores
+                })
+            }
+
+
+        }, (errMsg) => {
+            _mm.errorTips(errMsg);
+        });
+        
+    }
 
     }
 
@@ -64,7 +97,7 @@ class ClassDetail extends React.Component{
         const checkRole = this.state.role;
         let renderer;
         if(this.state.role == '1'){
-            renderer =   <div className="row">
+     renderer =   <div className="row">
             <div className="col-md-4">
                 <Link to={`/classroom/${this.state.classID}/p`}  className="color-box brown">
                     <p className="count">{this.state.p_count}</p>
@@ -97,8 +130,12 @@ class ClassDetail extends React.Component{
         ;
 
         }else{
-            renderer = '';
+        renderer = <p>{this.state.proficientLevel}</p>
+     
+        
+        ;
         }
+        
         return (
             
             <div id="page-wrapper">
