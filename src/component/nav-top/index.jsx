@@ -16,6 +16,7 @@ class NavTop extends React.Component{
     // logout
     onLogout(){
             _mm.removeStorage('userInfo');
+            _mm.removeStorage('classInfo');
             window.location.href = '/login';
     }
     render(){

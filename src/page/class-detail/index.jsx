@@ -17,15 +17,17 @@ class ClassDetail extends React.Component{
             classID:             this.props.match.params.classID,
             api_token:           _mm.getStorage('userInfo').api_token,
             role:                _mm.getStorage('userInfo').role,
-            p_count:             _mm.getStorage('classInfo').scores.proficient.count || 0,
-            ap_count:            _mm.getStorage('classInfo').scores.almostProficient.count || 0,
-            np_count:            _mm.getStorage('classInfo').scores.notProficient.count || 0
+            p_count:             0,
+            ap_count:            0,
+            np_count:            0
         }
     }
 
     componentDidMount(){
-        this.checkLogin();
+       
         this.loadClassDetail();
+        this.checkLogin();
+       
     }
 
 
@@ -40,15 +42,24 @@ class ClassDetail extends React.Component{
         classInfo.api_token = this.state.api_token;
         classInfo.userID = this.state.userID;
         classInfo.classID = this.state.classID;
+
+        let countInfo  ={};
+        countInfo.p_count = this.state.p_count
         
         _class.getClassDetails(classInfo).then((res)=>{
             _mm.setStorage('classInfo', res.classroom);
+            this.setState({
+                p_count: _mm.getStorage('classInfo').scores.proficient.count,
+                ap_count:            _mm.getStorage('classInfo').scores.almostProficient.count,
+                np_count:            _mm.getStorage('classInfo').scores.notProficient.count
+            })
         }, (errMsg) => {
             _mm.errorTips(errMsg);
         });
 
     }
 
+   
     render(){
         return (
             <div id="page-wrapper">

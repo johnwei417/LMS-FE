@@ -51,11 +51,14 @@ class Home extends React.Component{
     }
 
     render(){
+        const checkRole = this.state.role;
+    
         return (
             <div id="page-wrapper">
                 <PageTitle title="Home" />
-            {
+           { 
                 this.state.list.map((classrooms, index) => {
+                    
                     return (
 
                             <div className="col-md-4">
@@ -83,6 +86,7 @@ class Home extends React.Component{
                   
                           
                     );
+                 
                 })
             }
             </div>
