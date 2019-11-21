@@ -33,6 +33,8 @@ class ClassList extends React.Component{
         UserInfo.userID = this.state.userID;
        
         _class.getClassList(UserInfo).then(res => {
+            console.log(res.classes)
+            console.log(res.classes.classrooms[0])
             this.setState({list : res.classes.classrooms});
         }, errMsg =>{
             this.setState({ 

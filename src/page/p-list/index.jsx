@@ -22,7 +22,7 @@ class UserList extends React.Component{
             userID:         _mm.getStorage('userInfo').id,
             api_token:      _mm.getStorage('userInfo').api_token,
             role:           _mm.getStorage('userInfo').role,
-            title:          null
+            title:          ''
     
         };
     }
@@ -78,7 +78,6 @@ class UserList extends React.Component{
             {
                 this.state.list.map((classrooms, index) => {
                     return (
-
                             <div className="col-md-4">
                             <Link to={`/classroom/${classrooms.id}/${this.state.pLevel}/${classrooms.id}`} className="color-box blue">
                                
