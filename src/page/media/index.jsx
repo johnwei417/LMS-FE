@@ -17,7 +17,7 @@ class Media extends React.Component{
         const Component = VueInReact(Module)
         return(
         <div id="page-wrapper">
-        <PageTitle title="Module 5.1.1" />
+        <PageTitle title="Math Module" />
         <Component></Component>
         </div>
         )
