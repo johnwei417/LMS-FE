@@ -2,7 +2,7 @@
     display: block;
     height: 160px;
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     opacity: .9;
     transition: all .3s;
     &:hover{
@@ -14,15 +14,14 @@
     &:focus{
         text-decoration: none;
     }
-    .count{
-        font-size: 50px;
-        height: 80px;
-        line-height: 80px;
+    .grade{
+        font-size: 30px;
     }
+
     .desc{
-        font-size: 18px;
+        font-size: 10px;
         .fa{
-            margin-right: 5px;
+            margin-right: 1px;
         }
     }
 }

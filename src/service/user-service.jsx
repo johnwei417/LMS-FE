@@ -1,4 +1,5 @@
 import MUtil        from 'util/mm.jsx'
+import axios from 'axios'
 
 const _mm   = new MUtil();
 
@@ -8,15 +9,23 @@ class User{
     login(loginInfo){
         return _mm.request({
             type: 'post',
-            url: '/manage/account/login',
+            url: 'https://laravel-lsm.herokuapp.com/api/v1/account/login',
             data: loginInfo
+        });
+    }
+
+    register(userInfo){
+        return _mm.request({
+            type: 'post',
+            url: 'https://laravel-lsm.herokuapp.com/api/v1/account/signup',
+            data: userInfo
         });
     }
     
     //check if login data is valid
     checkLoginInfo(loginInfo){
-        let email = $.trim(loginInfo.email),
-            password = $.trim(loginInfo.password);
+        let email = $.trim(loginInfo.account.email),
+            password = $.trim(loginInfo.account.password);
         // validate username
         if(typeof email !== 'string' || email.length === 0){
             return {
@@ -37,12 +46,15 @@ class User{
         }
     }
     // logout
+    //not used right now, no such a api exist
     logout(){
         return _mm.request({
             type    : 'post',
             url     : 'manage/account/logout'
         });
     }
+
+    // not used right now, no such a api exist
     getUserList(pageNum){
         return _mm.request({
             type    : 'post',

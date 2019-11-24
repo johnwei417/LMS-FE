@@ -10,23 +10,22 @@ class NavTop extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            username: _mm.getStorage('userInfo').username || ''
+            username: _mm.getStorage('userInfo').name || '',
+            role:     _mm.getStorage('userInfo').role
+
         }
     }
     // logout
     onLogout(){
-        _user.logout().then(res => {
             _mm.removeStorage('userInfo');
+            _mm.removeStorage('classInfo');
             window.location.href = '/login';
-        }, errMsg => {
-            _mm.errorTips(errMsg);
-        });
     }
     render(){
         return (
             <div className="navbar navbar-default top-navbar">
                 <div className="navbar-header">
-                    <Link className="navbar-brand" to="/"><b>Staff</b> </Link>
+        <Link className="navbar-brand" to="/"><b>{this.state.role == "1" ? 'Teacher' : 'Student'}</b> </Link>
                 </div>
 
                 <ul className="nav navbar-top-links navbar-right">

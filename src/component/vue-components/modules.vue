@@ -2,8 +2,8 @@
   <div class="container">
     <!-- Video -->
     <div class="row" v-if="showVideo">
-        <div style="max-width:500px;" class="centered">
-            <video width="500" controls @ended="toAssesment()" :autoplay="autoplay" :key="part">
+        <div style="max-width:1000px;" class="centered">
+            <video width="1000" controls @ended="toAssesment()" :autoplay="autoplay" :key="part">
                 <source :src="videoSrc" type="video/mp4" >
             </video>
             <button v-if="showNext" @click="nextVideo()">NEXT</button>

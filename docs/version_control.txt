@@ -1,0 +1,9 @@
+This project repository is maintained in a git repository.
+http://www.git-scm.com/
+
+As git is decentralized, a server is required to make it collaborative. 
+For this purpose we have chosen GitHub https://github.com/
+
+The repository is currently hosted at https://github.com/FocussedFlyer3/thestandardsproject
+
+Git does not implement locking out portions of the repository, thus it is the responsibility of the developers to communicate on the task each member is working on.

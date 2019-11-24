@@ -1,34 +1,29 @@
+
 class MUtil{
     request(param){
         return new Promise((resolve, reject) => {
             $.ajax({
+                
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer '+ param.api_token);
+                } || null,
                 type        : param.type        || 'get',
                 url         : param.url         || '',
                 dataType    : param.dataType    || 'json',
-                contentType:                       'application/json',
                 data        : param.data        || null,
                 success     : res => {
-                    //data request success
-                    if(0 === res.status){
-                        typeof resolve === 'function' && resolve(res.data, res.msg);
-                    }
-                    //not login status, force login with status code: 10
-                    else if(10 === res.status){
-                        this.doLogin();
-                    }
-                    else{
-                        typeof reject === 'function' && reject(res.msg || res.data);
-                    }
+                    //data request success          
+                    resolve(res);
                 },
                 error       : err => {
-                    typeof reject === 'function' && reject(err.statusText);
+                    typeof reject === 'function' && reject(err.errMsg);
                 }
             });
         });  
     }
     //jump to login
     doLogin(){
-        window.location.href = '/login?redirect=' + encodeURIComponent(window.location.pathname);
+        window.location.href = '/login';
     }
     //get URL parameter
     getUrlParam(name){
@@ -49,6 +44,7 @@ class MUtil{
     // localstorage
     setStorage(name, data){
         let dataType = typeof data;
+        console.log(dataType);
         // json object
         if(dataType === 'object'){
             window.localStorage.setItem(name, JSON.stringify(data));

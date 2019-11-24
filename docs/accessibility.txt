@@ -1,0 +1,6 @@
+
+Accessibility (React)
+
+Follow the following standards and rules for whole coding process:
+
+https://reactjs.org/docs/accessibility.html#wai-aria

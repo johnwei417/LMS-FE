@@ -2,10 +2,15 @@ const path              = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
 
 let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
 console.log(WEBPACK_ENV); 
 module.exports = {
+    entry: [
+		'app.js',
+		'webpack-plugin-serve/client'
+	],
     optimization: {
         splitChunks: {
             name : 'common',
@@ -16,7 +21,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: WEBPACK_ENV === 'dev' 
-            ? '/dist/' : '//s.jianliwu.com/admin-v2-fe/dist/',
+            ? '/dist/' : '',
         filename: 'js/app.js'
     },
     resolve: {
@@ -105,19 +110,20 @@ module.exports = {
         }),
         // seperate css file
         new ExtractTextPlugin("css/[name].css"),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new Serve({
+            static: path.resolve(__dirname, 'dist'),
+            log: {
+                level: 'info'
+            }
+        })
     ],
+    watch: true,
     devServer: {
         port: 8086,
         historyApiFallback: {
             index: '/dist/index.html'
         },
-        proxy : {
-            '/manage' : {
-                target: 'http://laravel-lsm.herokuapp.com/api/v1/',
-                //target: 'http://localhost:8088/',
-                changeOrigin : true
-            },
-        }
+       
     }
 };

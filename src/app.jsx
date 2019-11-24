@@ -4,20 +4,19 @@ import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-ro
 
 import Layout           from 'component/layout/index.jsx';
 import SLayout           from 'component/s-layout/index.jsx';
-// page
-// page
 import Home             from 'page/home/index.jsx';
 import SHome            from 'page/student-home/index.jsx'
 import Class            from 'page/class/index.jsx';
 import SClass           from 'page/s-class/index.jsx'
 import Login            from 'page/login/index.jsx';
 import UserList         from 'page/user/index.jsx';
-import Prof             from 'page/prof/index.jsx';
+import ClassDetail      from 'page/class-detail/index.jsx';
 import PList            from 'page/p-list/index.jsx';
-import APList            from 'page/ap-list/index.jsx';
-import NPList            from 'page/np-list/index.jsx';
 import ErrorPage        from 'page/error/index.jsx';
 import Media            from 'page/media/index.jsx';
+import SMedia           from 'page/s-media/index.jsx';
+import Register         from 'page/signup/index.jsx';
+
 
 class App extends React.Component{
     render(){
@@ -26,14 +25,12 @@ class App extends React.Component{
                 <Switch>
                     <Route exact path="/" component={Home}/>
                     <Route exact path="/class" component={Class}/>
-                    <Route exact path="/class/:id" component={Prof}/>
+                    <Route exact path="/classroom/:classID" component={ClassDetail}/>
                     <Route path="/user/index" component={UserList}/>
                     <Route exact path="/media/video" component={Media}/>
-                    <Route exact path="/class/1/p/list" component={PList}/>
-                    <Route exact path="/class/1/ap/list" component={APList}/>
-                    <Route exact path="/class/1/np/list" component={NPList}/>
+                    <Route exact path="/classroom/:classID/:pLevel" component={PList}/>
                     <Redirect exact from="/user" to="/user/index"/>
-                    <Route component={ErrorPage}/>
+                    <Route component={ErrorPage} />
                 </Switch>
             </Layout>
         );
@@ -43,6 +40,7 @@ class App extends React.Component{
             <Switch>
                 <Route exact path="/s" component={SHome}/>
                 <Route exact path="/s/classlist" component={SClass}/>
+                <Route exact path="/s/media/video" component={SMedia} /> 
             </Switch>
         </SLayout>
         );
@@ -51,9 +49,10 @@ class App extends React.Component{
             <Router>
                 <Switch>
                     <Route path="/login" component={Login}/>
+                    <Route path="/register" component={Register}/>
                     <Route path="/s"  render={ props => studentRouter}/>
-                    <Route path="/" render={ props => LayoutRouter}/>
-                    
+                    <Route path="/"  render={ props => LayoutRouter}/>
+                   
                     
                 </Switch>
             </Router>
