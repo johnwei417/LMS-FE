@@ -2,7 +2,7 @@ import React        from 'react';
 import { Link }     from 'react-router-dom';
 //import ReactPlayer from 'react-player';
 import MUtil        from 'util/mm.jsx';
-import { VueInReact } from 'vuera'
+import { VueInReact } from 'vuera';
 
 const _mm           = new MUtil();
 

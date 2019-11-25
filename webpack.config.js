@@ -34,12 +34,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // json loader
-            {
-                test: /\.json$/,
-                include: /src/,
-                loader: 'json-loader'
-            },
             //vue loader
             {   
                 test: /\.vue$/, 
