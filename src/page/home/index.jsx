@@ -46,7 +46,7 @@ class Home extends React.Component{
             this.setState({ 
                 list : []
             })
-            _mm.errorTips(errMsg);
+          
         });
     }
 

@@ -38,9 +38,7 @@ class MUtil{
         alert(successMsg || 'Success!');
     }
     // error tips
-    errorTips(errMsg){
-        alert(errMsg || 'Failed!');
-    }
+
     // localstorage
     setStorage(name, data){
         let dataType = typeof data;

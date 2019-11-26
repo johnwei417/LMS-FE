@@ -50,12 +50,12 @@ class Login extends React.Component{
                 _mm.setStorage('userInfo', res.account);
                 this.props.history.push(this.state.redirect);
             }, (errMsg) => {
-                _mm.errorTips(errMsg);
+             
             });
         }
         // valid failed
         else{
-            _mm.errorTips(checkResult.msg);
+          
         }
             
     }
