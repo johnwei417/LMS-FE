@@ -1,6 +1,4 @@
 import React        from 'react';
-import { Link }     from 'react-router-dom';
-//import ReactPlayer from 'react-player';
 import MUtil        from 'util/mm.jsx';
 import { VueInReact } from 'vuera';
 
@@ -9,7 +7,7 @@ const _mm           = new MUtil();
 
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
-import Module from 'component/vue-components/modules/video/modules.vue';
+import Module from 'component/vue-components/modules/game/module.vue';
 
 class Media extends React.Component{
 
@@ -17,7 +15,7 @@ class Media extends React.Component{
         const Component = VueInReact(Module)
         return(
         <div id="page-wrapper">
-        <PageTitle title="Math Module" />
+        <PageTitle title="Game Module" />
         <Component></Component>
         </div>
         )

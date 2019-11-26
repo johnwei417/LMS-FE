@@ -16,6 +16,7 @@ import ErrorPage        from 'page/error/index.jsx';
 import Media            from 'page/media/index.jsx';
 import SMedia           from 'page/s-media/index.jsx';
 import Register         from 'page/signup/index.jsx';
+import Game             from 'page/game/index.jsx'
 
 class App extends React.Component{
     render(){
@@ -27,7 +28,7 @@ class App extends React.Component{
                     <Route exact path="/classroom/:classID" component={ClassDetail}/>
                     <Route path="/user/index" component={UserList}/>
                     <Route exact path="/media/video" component={Media}/>
-                    <Route exact path="/media/game" component={Game}/>
+                    <Route exact path="/game" component={Game}/>
                     <Route exact path="/classroom/:classID/:pLevel" component={PList}/>
                     <Redirect exact from="/user" to="/user/index"/>
                     <Route component={ErrorPage} />

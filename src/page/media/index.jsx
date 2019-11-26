@@ -9,7 +9,7 @@ const _mm           = new MUtil();
 
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
-import Module from 'component/vue-components/modules.vue';
+import Module from 'component/vue-components/modules/video/modules.vue';
 
 class Media extends React.Component{
 
@@ -17,7 +17,7 @@ class Media extends React.Component{
         const Component = VueInReact(Module)
         return(
         <div id="page-wrapper">
-        <PageTitle title="Math Module" />
+        <PageTitle title="Video Module" />
         <Component></Component>
         </div>
         )

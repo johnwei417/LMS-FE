@@ -29,6 +29,10 @@ window.onload = function() {
 	var gameConfig = {
 		width: (gameOptions.panSize * (gameOptions.pans / 2)) + (gameOptions.horizontalPanSpace * ((gameOptions.pans / 2) + 1)),		//800
 		height: (gameOptions.panSize * (gameOptions.pans / 2)) + (gameOptions.verticalPanSpace * ((gameOptions.pans / 2) + 1)),			//640
+		parent: phaserID,
+		dom: {
+			createContainer: true
+		},
 		backgroundColor: 0x454342,
 		debug: true,
 		physics: {
@@ -55,8 +59,8 @@ class bootGame extends Phaser.Scene {
 		super("BootGame");
 	}
 	preload() {
-		this.load.image("playButton", "assets/sprites/playgame.png");
-		this.load.image("expertButton", "assets/sprites/expert.png");
+		this.load.image("playButton", "./assets/sprites/playgame.png");
+		this.load.image("expertButton", "./assets/sprites/expert.png");
 		this.load.image("howButton", "assets/sprites/howtoplay.png");
 		this.load.image("background", "assets/sprites/background.png");
 
