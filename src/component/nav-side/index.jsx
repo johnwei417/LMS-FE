@@ -73,18 +73,7 @@ class NavSide extends React.Component{
                         </li>
                     
 
-                        <li className="active">
-                            <Link to="/media/video">
-                                <i className="fa fa-user-o"></i>
-                                <span>Media</span>
-                                <span className="fa arrow"></span>
-                            </Link>
-                            <ul className="nav nav-second-level collapse in">
-                                <li>
-                                    <NavLink to="/media/video" activeClassName="active-menu">Video</NavLink>
-                                </li>
-                            </ul>
-                        </li>
+                       
                     </ul>
 
                 </div>
