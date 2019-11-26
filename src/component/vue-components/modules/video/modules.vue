@@ -4,8 +4,9 @@
     <div class="row" v-if="showVideo">
         <div style="max-width:1000px;" class="centered">
             <video width="1000" controls @ended="checkState()" :autoplay="autoplay" :key="videoSrc">
-                <source :src="videoSrc" type="video/mp4" >
+                <!--<source src="https://drive.google.com/file/d/1NUQJcS7rMEciu6weSAEguJ4YiGy3786D/preview" type="video/mp4" >-->
             </video>
+        <iframe src="https://drive.google.com/file/d/1NUQJcS7rMEciu6weSAEguJ4YiGy3786D/preview" width="1000" height="520"></iframe>
             <!--<button v-if="showNext" @click="nextVideo">NEXT</button>-->
         </div>
     </div>
