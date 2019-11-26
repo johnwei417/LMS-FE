@@ -27,7 +27,7 @@ class App extends React.Component{
                     <Route exact path="/classroom/:classID" component={ClassDetail}/>
                     <Route path="/user/index" component={UserList}/>
                     <Route exact path="/media/video" component={Media}/>
-                    <Route exact path="/game" render={() => {window.location.href="src/page/game/index.html"}}/>
+                    <Route exact path="/media/game" component={Game}/>
                     <Route exact path="/classroom/:classID/:pLevel" component={PList}/>
                     <Redirect exact from="/user" to="/user/index"/>
                     <Route component={ErrorPage} />
@@ -52,8 +52,6 @@ class App extends React.Component{
                     <Route path="/register" component={Register}/>
                     <Route path="/s"  render={ props => studentRouter}/>
                     <Route path="/"  render={ props => LayoutRouter}/>
-                   
-                    
                 </Switch>
             </Router>
         )
