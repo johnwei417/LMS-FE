@@ -4,7 +4,7 @@
             "id": 1,
             "type": "video",
             "title": "Introduction",
-            "src": "/src/resources/Blackmer1.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer1.mp4?alt=media&token=6bcb165e-b834-4e03-b8b5-d1a2e71bc5fb"
         },
         {
             "id": 2,
@@ -16,17 +16,17 @@
             "id": 3,
             "type": "video",
             "title": "You got it right!",
-            "src": "/src/resources/Blackmer2.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer2.mp4?alt=media&token=020d3154-2218-49c0-b50e-bbfd3eaf4c8b"
         },
         {
             "id": 4,
             "title": "Looks like you need help!",
-            "src": "/src/resources/Blackmer3.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer3.mp4?alt=media&token=242884ad-33ea-40b3-b06f-90c93b9ba376"
         },
         {
             "id": 5,
             "title": "Continuation",
-            "src": "/src/resources/Blackmer4.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer4.mp4?alt=media&token=ef5be6cc-fae2-4a69-a77d-25afc5a597ec"
         },
         {
             "id": 6,
@@ -37,17 +37,17 @@
         {
             "id": 7,
             "title": "You got it right!",
-            "src": "/src/resources/Blackmer5.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer5.mp4?alt=media&token=b016d117-2a8f-4c12-a663-a2c372cda25c"
         },
         {
             "id": 8,
             "title": "Looks like you are having a little trouble!",
-            "src": "/src/resources/Blackmer6.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer6.mp4?alt=media&token=e53b2acb-3255-4855-808e-de121cb7dd83"
         },
         {
             "id": 9,
             "title": "End",
-            "src": "/src/resources/Blackmer7.mp4"
+            "src": "https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/Blackmer7.mp4?alt=media&token=51e9f985-b7ca-4eda-b42d-40eac00e491f"
         }
     ]
 }
