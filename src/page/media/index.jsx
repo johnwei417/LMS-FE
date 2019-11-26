@@ -2,7 +2,7 @@ import React        from 'react';
 import { Link }     from 'react-router-dom';
 //import ReactPlayer from 'react-player';
 import MUtil        from 'util/mm.jsx';
-import { VueInReact } from 'vuera'
+import { VueInReact } from 'vuera';
 
 const _mm           = new MUtil();
 
@@ -17,7 +17,7 @@ class Media extends React.Component{
         const Component = VueInReact(Module)
         return(
         <div id="page-wrapper">
-        <PageTitle title="Module 5.1.1" />
+        <PageTitle title="Math Module" />
         <Component></Component>
         </div>
         )

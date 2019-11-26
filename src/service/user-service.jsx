@@ -1,5 +1,4 @@
 import MUtil        from 'util/mm.jsx'
-import axios from 'axios'
 
 const _mm   = new MUtil();
 
