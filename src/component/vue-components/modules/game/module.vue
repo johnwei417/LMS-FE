@@ -1,5 +1,13 @@
 <template>
-  <div id="phaserID">
+  <div class="container-fluid" style="padding:0px;">
+    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 45px; margin-bottom: 33px;">
+        <h1 style="margin-top: 50px; margin-left: 25px;line-height: 0.8em;">
+            <strong style="font-size: 40px;">Game Module</strong><br/>
+            <small class="lead" style="color:black;">Pizza Slicer</small>
+        </h1>
+    </div>
+    <div id="phaserID">
+    </div>
   </div>
 </template>
 
@@ -25,5 +33,8 @@ import pizza from './src/pizza.js'
 .centered{
     margin-left:auto;
     margin-right:auto;
+}
+.bg-blue{
+    background-color: #5DBCD2;
 }
 </style>

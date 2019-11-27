@@ -13,9 +13,12 @@ class Media extends React.Component{
 
     render() {
         const Component = VueInReact(Module)
+        let styles = {
+          padding: '0px'
+        }
+
         return(
-        <div id="page-wrapper">
-        <PageTitle title="Game Module" />
+        <div id="page-wrapper" style={styles}>
         <Component></Component>
         </div>
         )

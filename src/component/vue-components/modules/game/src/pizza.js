@@ -906,7 +906,7 @@ Notes: This function automatically resizes the game whenever window size changes
 Last Updated: 10-21-19 by Nick
 */
 function resizeGame() {
-	var canvas = document.querySelector("canvas");
+  var canvas = document.querySelector("canvas");
   var windowWidth = window.innerWidth;
   var windowHeight = window.innerHeight;
   var windowRatio = windowWidth / windowHeight;
@@ -918,4 +918,6 @@ function resizeGame() {
       canvas.style.width = (windowHeight * gameRatio) + "px";
       canvas.style.height = windowHeight + "px";
   }
+  canvas.className = "container-fluid";
+  canvas.style.marginLeft = "100px";
 }
