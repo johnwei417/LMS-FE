@@ -1,32 +1,40 @@
 <template>
-  <div class="container">
-    <!-- Video -->
-    <div class="row" v-if="showVideo">
-        <div style="max-width:1000px;" class="centered">
-            <video width="1000" controls @ended="checkState()" :autoplay="autoplay" :key="videoSrc">
-                <source :src="videoSrc" type="video/mp4" >
-            </video>
-            <!--<button v-if="showNext" @click="nextVideo">NEXT</button>-->
-        </div>
+  <div class="container-fluid" style="padding:0px; margin:0px;">
+    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 45px; margin-bottom: 33px;">
+        <h1 style="margin-top: 50px; margin-left: 25px;line-height: 0.8em;">
+            <strong style="font-size: 40px;">Video Module</strong><br/>
+            <small class="lead" style="color:black;">Math is fun</small>
+        </h1>
     </div>
-    <!-- Quiz -->
-    <div class="row" v-if="showAssesment">
-        <div class="text-center">
-            <h3>{{title}}</h3>
-            <div v-for="(question, num) in body" :key="num">
-                <h4>{{question.question}}</h4>
-                <div v-for="(item, index) in question.selection" :key="index">
-                    <input type="radio" v-model="studentAnswers[num]" :value="item.display">{{item.display}}
-                </div>
+    <div class="col-md-12">
+        <!-- Video -->
+        <div class="row" v-if="showVideo">
+            <div style="max-width:1000px;" class="centered">
+                <video width="1000" controls @ended="checkState()" :autoplay="autoplay" :key="videoSrc">
+                    <source :src="videoSrc" type="video/mp4" >
+                </video>
+                <!--<button v-if="showNext" @click="nextVideo">NEXT</button>-->
             </div>
-            <button @click="checkAnswer()">Submit</button>
         </div>
-    </div>
-    <!-- End -->
-    <div class="row" v-if="showEnd">
-        <div class="text-center">
-            <h2>THE END</h2>
-            <h4>Total Score: 100%</h4>
+        <!-- Quiz -->
+        <div class="row" v-if="showAssesment">
+            <div class="text-center">
+                <h3>{{title}}</h3>
+                <div v-for="(question, num) in body" :key="num">
+                    <h4>{{question.question}}</h4>
+                    <div v-for="(item, index) in question.selection" :key="index">
+                        <input type="radio" v-model="studentAnswers[num]" :value="item.display">{{item.display}}
+                    </div>
+                </div>
+                <button style="padding-top: 10px;" @click="checkAnswer()">Submit</button>
+            </div>
+        </div>
+        <!-- End -->
+        <div class="row" v-if="showEnd">
+            <div class="text-center">
+                <h2>THE END</h2>
+                <h4>Total Score: 100%</h4>
+            </div>
         </div>
     </div>
   </div>
@@ -42,18 +50,17 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
             title: null,
             body: null,
             progressCount: 0,
-            showVideo: true,
+            showVideo: process.env.WEBPACK_ENV,
             showAssesment: false,
             autoplay: false,
             showNext: false,
-            showVideo2: false,
             showEnd: false,
             studentAnswers: [],
             video_quiz: VIDEO_QUIZ_COMPONENT.videos
         }
     },
     created () {
-        this.videoSrc = this.video_quiz[this.progressCount].src
+        this.videoSrc = process.env.WEBPACK_ENV ? '' : this.video_quiz[this.progressCount].src
         this.title = this.video_quiz[this.progressCount].title
     },
     methods: {
@@ -70,6 +77,7 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
                 }
             }
 
+            // if any one got wrong, play video and redo quiz
             if (correctStatus) {
                 this.progressCount += 1
             } else {
@@ -121,5 +129,8 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
 .centered{
     margin-left:auto;
     margin-right:auto;
+}
+.bg-blue{
+    background-color: #5DBCD2;
 }
 </style>

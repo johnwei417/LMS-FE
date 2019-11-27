@@ -12,12 +12,15 @@ import './index.scss'
 import Module from 'component/vue-components/modules/video/modules.vue';
 
 class Media extends React.Component{
-
+  
     render() {
         const Component = VueInReact(Module)
+        let styles = {
+          padding: '0px'
+        }
+
         return(
-        <div id="page-wrapper">
-        <PageTitle title="Video Module" />
+        <div id="page-wrapper" style={styles}>
         <Component></Component>
         </div>
         )
