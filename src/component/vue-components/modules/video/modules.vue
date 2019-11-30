@@ -33,7 +33,10 @@
         <div class="row" v-if="showEnd">
             <div class="text-center">
                 <h2>THE END</h2>
-                <h4>Total Score: 100%</h4>
+                <h4>Total Score: {{overallScore}}%</h4>
+            </div>
+            <div class="text-center">
+                <button @click="goHome">HOME</button>
             </div>
         </div>
     </div>
@@ -42,6 +45,8 @@
 
 <script>
 import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
+import DEV_VIDEO_QUIZ_COMPONENT from './dev_video_quiz_src.json'
+import axios from 'axios'
 
   export default {
     data () {
@@ -50,28 +55,48 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
             title: null,
             body: null,
             progressCount: 0,
-            showVideo: process.env.WEBPACK_ENV,
+            showVideo: true,
             showAssesment: false,
             autoplay: false,
             showNext: false,
             showEnd: false,
             studentAnswers: [],
-            video_quiz: VIDEO_QUIZ_COMPONENT.videos
+            recordedAnswers: [],
+            recordedCount: 0,
+            video_quiz: process.env.NODE_ENV == 'development' ? DEV_VIDEO_QUIZ_COMPONENT.videos : VIDEO_QUIZ_COMPONENT.videos,
+            quizScore: 0,
+            overallScore: 100
         }
     },
     created () {
-        this.videoSrc = process.env.WEBPACK_ENV ? '' : this.video_quiz[this.progressCount].src
+        console.log(process.env.NODE_ENV)
+        console.log(this.video_quiz)
+        this.videoSrc = this.video_quiz[this.progressCount].src
         this.title = this.video_quiz[this.progressCount].title
     },
     methods: {
+        goHome () {
+          window.location.href= '/'
+        },
         checkAnswer(){
-            console.log(this.studentAnswers)
-            console.log(this.body)
             // assume correct at first
             let correctStatus = true
 
-            // check every questions
+            // check every questions for wrong
             for(let i = 0; i < this.body.length; i++) {
+
+                // record user answers
+                if (this.recordedAnswers[this.recordedCount] !== null) {
+                    console.log('student answers: ' + this.studentAnswers)
+                    this.recordedAnswers[this.recordedCount] = this.studentAnswers[i]
+                    console.log('recorded ' + this.recordedAnswers[this.recordedCount])
+                } else {
+                    this.recordedAnswers.append(this.studentAnswers[i])
+                    console.log('recorded ' + this.recordedAnswers[this.recordedCount])
+                }
+                this.recordedCount++
+
+                // check user answer
                 if (this.studentAnswers[i] != this.body[i].answer) {
                     correctStatus = false
                 }
@@ -80,6 +105,7 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
             // if any one got wrong, play video and redo quiz
             if (correctStatus) {
                 this.progressCount += 1
+                this.quizScore++
             } else {
                 this.progressCount += 2
             }
@@ -93,14 +119,69 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
                 this.autoplay = false
                 this.showEnd = true
 
+                // get user info
+                let account = JSON.parse(window.localStorage.getItem('userInfo'))
+
+                // compute quiz score
+                this.quizScore = (this.quizScore / 3) * 10
+
+                // set json body to be post
+                let info = {
+                    "scoreInfo":{
+                        "score": this.overallScore,
+                        "class_id": "1",
+                        "records": {
+                            "quiz_score": this.quizScore,
+                            "student_answers": [
+                            {
+                                "question_id": 1,
+                                "answer": this.recordedAnswers[0],
+                                "correct_answer": "C",
+                            },
+                            {
+                                "question_id": 2,
+                                "answer": this.recordedAnswers[1],
+                                "correct_answer": "1/2"
+                            },
+                            {
+                                "question_id": 3,
+                                "answer": this.recordedAnswers[2],
+                                "correct_answer": "1/1"
+                            }
+                            ]
+                        }
+                    }
+                }
+                console.log(this.recordedAnswers)
+                console.log(info)
+                // post scores
+                axios.post(`https://laravel-lsm.herokuapp.com/api/v1/${account.id}/score/1`, JSON.stringify(info), {
+                    headers: {
+                        'Authorization': `Bearer ${account.api_token}`,
+                        'Content-type': 'application/json'
+                    }
+                }).then(response => {
+                    console.log(response.data.code)
+                })
+
             } else if (this.progressCount == 2 || this.progressCount == 6) {
                 // show video
                 this.progressCount += 2
                 this.nextVideo()
             } else {
                 if (this.progressCount == 3 || this.progressCount == 7) {
+
+                    // overwrite previous recorded answers
+                    if (this.progressCount == 3) {
+                        this.recordedCount--
+                    } else if (this.progressCount == 7) {
+                        this.recordedCount -= 2
+                    }
+
                     // repeat previous quiz again 
                     this.progressCount -= 2
+                    this.overallScore -= 5
+
                 } else {
                     // progress next 
                     this.progressCount++
@@ -131,6 +212,6 @@ import VIDEO_QUIZ_COMPONENT from './video_quiz_src.json'
     margin-right:auto;
 }
 .bg-blue{
-    background-color: #5DBCD2;
+    background-color: #02D0FF;
 }
 </style>

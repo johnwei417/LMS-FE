@@ -34,7 +34,11 @@ class Login extends React.Component{
         }
     }
     //user submit form
-    onSubmit(){ 
+    onSubmit(){
+        // button to loading state
+        let button = this.refs.loginButton
+        console.log(button)
+        
         let loginInfo = {
          "account" : {
                 "email" : this.state.email,
@@ -61,36 +65,43 @@ class Login extends React.Component{
     }
     render(){
         return (
-            <body className="login-body">
+            <body className="login-body container-fluid" style={{backgroundColor: "#02D0FF"}}>
             
-            <div className="col-md-4 col-md-offset-4">
-                <div className="panel panel-default login-panel">
-                    <div className="panel-heading">Welcome to Learning System</div>
+            <div className="col-md-4 col-md-offset-4" style={{marginTop: "150px"}}>
+                <div className="panel login-panel" style={{backgroundColor: "#02D0FF"}}>
+                    <div className="panel-heading"><h1 className="text-center" style={{color:"white", fontSize:"65px", fontWeight:"bolder"}}>Welcome!</h1></div>
                     <div className="panel-body">
                         <div>
+                        <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading</span>
+</div> 
                             <div className="form-group">
                                 <input type="text"
                                     name="email"
                                     className="form-control"
-                                    placeholder="Please type email" 
+                                    placeholder="Email" 
                                     onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
+                                    onChange={e => this.onInputChange(e)}
+                                    style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}
+                                    />
                             </div>
                             <div className="form-group">
                                 <input type="password" 
                                     name="password"
                                     className="form-control" 
-                                    placeholder="Please type password" 
+                                    placeholder="Password" 
                                     onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
+                                    onChange={e => this.onInputChange(e)}
+                                    style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}
+                                    />
                             </div>
-                            <button className="btn btn-lg btn-primary btn-block"
-                                onClick={e => {this.onSubmit(e)}}>Login</button>
-                        
+                            <button ref="loginButton" className="btn btn-lg btn-block" data-loading-text="loading.." style={{backgroundColor: "#00276C", padding: "1px", borderRadius:"25px"}}
+                                onClick={e => {this.onSubmit(e)}}>
+                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <span className="lead" style={{color:"white"}}>Login</span>
+                            </button>
                             
-                            <p>Don't have an account? <a href="/register">Register here</a></p>
-                    
-                            
+                            <p className="text-muted" style={{fontSize: "10px"}}>Don't have an account? <a href="/register">Register here</a></p>
 
                         </div>
                     </div>

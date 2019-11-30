@@ -35,6 +35,6 @@ import pizza from './src/pizza.js'
     margin-right:auto;
 }
 .bg-blue{
-    background-color: #5DBCD2;
+    background-color: #02D0FF;
 }
 </style>

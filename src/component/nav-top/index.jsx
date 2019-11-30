@@ -23,21 +23,23 @@ class NavTop extends React.Component{
     }
     render(){
         return (
-            <div className="navbar navbar-default top-navbar">
+            <div className="navbar navbar-default top-navbar" style={{backgroundColor:"#00276C", borderRadius:"0px"}}>
                 <div className="navbar-header">
-        <Link className="navbar-brand" to="/"><b>{this.state.role == "1" ? 'Teacher' : 'Student'}</b> </Link>
+                    <Link className="navbar-brand" style={{backgroundColor:"#00276C", borderRadius:"0px", fontSize:"24px", width:"350px"}} to="/"><b  className="text-capitalize" style={{color:"white"}}>{'Interventive Learning'}</b> </Link>
                 </div>
 
                 <ul className="nav navbar-top-links navbar-right">
                     <li className="dropdown">
                         <a className="dropdown-toggle" href="javascript:;">
-                            <i className="fa fa-user fa-fw"></i>
+                            <i className="fa fa-user fa-fw" style={{color: "white"}}></i>
+                            <span style={{color: "white"}}>
                             {
                                 this.state.username
                                 ? <span>Welcome, {this.state.username}</span>
                                 : <span>Welcome</span>
                             }
-                            <i className="fa fa-caret-down"></i>
+                            </span>
+                            <i className="fa fa-caret-down" style={{color: "white", marginLeft:"5px"}}></i>
                         </a>
                         <ul className="dropdown-menu dropdown-user">
                             <li>

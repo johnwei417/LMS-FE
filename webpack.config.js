@@ -4,10 +4,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const { WebpackPluginServe: Serve } = require('webpack-plugin-serve');
 
-let WEBPACK_ENV = process.env.WEBPACK_ENV || 'dev';
-console.log(WEBPACK_ENV); 
+console.log(process.env.NODE_ENV); 
 module.exports = {
-    mode: WEBPACK_ENV === 'dev' ? 'development' : 'production',
+    mode: process.env.NODE_ENV,
     entry: path.resolve(__dirname, 'src/app.jsx'),
     optimization: {
         splitChunks: {
@@ -17,7 +16,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: WEBPACK_ENV === 'dev' ? '/dist/' : '/'
+        publicPath: process.env.NODE_ENV === 'development' ? '/dist/' : '/'
     },
     resolve: {
         extensions: ['*', '.js', '.css', '.jsx', '.html'],
@@ -114,7 +113,7 @@ module.exports = {
             }
         })
     ],
-    watch: WEBPACK_ENV === 'dev' ? true : false,
+    watch: process.env.NODE_ENV === 'development' ? true : false,
     devServer: {
         port: 8086,
         compress: true,

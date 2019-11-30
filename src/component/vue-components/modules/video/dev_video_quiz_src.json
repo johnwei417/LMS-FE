@@ -1,0 +1,53 @@
+{
+    "videos":[
+        {
+            "id": 1,
+            "type": "video",
+            "title": "Introduction",
+            "src": "src/resources/Blackmer1.mp4"
+        },
+        {
+            "id": 2,
+            "type": "assessment",
+            "title": "First Assessment",
+            "body": "{\"quiz\":[{\"question\":\"<Question here>\",\"selection\":[{\"display\":\"Selection A\"},{\"display\":\"Selection B\"},{\"display\":\"Selection C\"},{\"display\":\"Selection D\"}],\"answer\":\"Selection C\"}]}"
+        },
+        {
+            "id": 3,
+            "type": "video",
+            "title": "You got it right!",
+            "src": "src/resources/Blackmer2.mp4"
+        },
+        {
+            "id": 4,
+            "title": "Looks like you need help!",
+            "src": "src/resources/Blackmer3.mp4"
+        },
+        {
+            "id": 5,
+            "title": "Continuation",
+            "src": "src/resources/Blackmer4.mp4"
+        },
+        {
+            "id": 6,
+            "type": "assessment",
+            "title": "Second Assessment",
+            "body": "{\"quiz\":[{\"question\":\"Which fraction represents half of a candy bar:\",\"selection\":[{\"display\":\"1\/1\"},{\"display\":\"1\/2\"},{\"display\":\"2\/1\"},{\"display\":\"2\/2\"}],\"answer\":\"1\/2\"},{\"question\":\"What is the fraction 5\/5 equal to?\",\"selection\":[{\"display\":\"1\/1\"},{\"display\":\"1\/2\"},{\"display\":\"2\/1\"},{\"display\":\"2\/2\"}],\"answer\":\"1\/1\"}]}"
+        },
+        {
+            "id": 7,
+            "title": "You got it right!",
+            "src": "src/resources/Blackmer5.mp4"
+        },
+        {
+            "id": 8,
+            "title": "Looks like you are having a little trouble!",
+            "src": "src/resources/Blackmer6.mp4"
+        },
+        {
+            "id": 9,
+            "title": "End",
+            "src": "src/resources/Blackmer7.mp4"
+        }
+    ]
+}
