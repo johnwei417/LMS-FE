@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid" style="padding:0px; margin:0px;">
-    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 45px; margin-bottom: 33px;">
-        <h1 style="margin-top: 50px; margin-left: 25px;line-height: 0.8em;">
+    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 20px; margin-bottom: 33px;">
+        <h1 style="padding-top: 20px; margin-left: 25px;line-height: 0.8em;">
             <strong style="font-size: 40px;">Video Module</strong><br/>
             <small class="lead" style="color:black;">Math is fun</small>
         </h1>
@@ -18,15 +18,16 @@
         </div>
         <!-- Quiz -->
         <div class="row" v-if="showAssesment">
-            <div class="text-center">
+            <div class="text-center" style="margin-left:auto; margin-right: auto;">
                 <h3>{{title}}</h3>
-                <div v-for="(question, num) in body" :key="num">
+                <div v-for="(question, num) in body" :key="num" class="text-left" style="margin-top: 10px;">
                     <h4>{{question.question}}</h4>
-                    <div v-for="(item, index) in question.selection" :key="index">
-                        <input type="radio" v-model="studentAnswers[num]" :value="item.display">{{item.display}}
+                    <div v-for="(item, index) in question.selection" :key="index" >
+                        <input type="radio" v-model="studentAnswers[num]" :value="item.display" style="margin-right: 5px;">
+                        {{item.display}}
                     </div>
                 </div>
-                <button style="padding-top: 10px;" @click="checkAnswer()">Submit</button>
+                <button style="margin-top: 25px;" @click="checkAnswer()">Submit</button>
             </div>
         </div>
         <!-- End -->

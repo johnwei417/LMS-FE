@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid" style="padding:0px;">
-    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 45px; margin-bottom: 33px;">
-        <h1 style="margin-top: 50px; margin-left: 25px;line-height: 0.8em;">
+    <div class="bg-blue col-md-12" style="width: 100%; padding-bottom: 20px; margin-bottom: 33px;">
+        <h1 style="padding-top: 20px; margin-left: 25px;line-height: 0.8em;">
             <strong style="font-size: 40px;">Game Module</strong><br/>
             <small class="lead" style="color:black;">Pizza Slicer</small>
         </h1>
