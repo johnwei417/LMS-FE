@@ -39,9 +39,17 @@ class Home extends React.Component{
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
-       
+        
+        // if classrooms exist, do not call ajax again
+        if (window.localStorage.getItem('classrooms')) { 
+            this.setState({list : JSON.parse(window.localStorage.getItem('classrooms')).classrooms})
+            return
+        }
+        console.log('continued')
         _class.getClassList(UserInfo).then(res => {
             this.setState({list : res.classes.classrooms});
+            _mm.setStorage('classrooms', res.classes);
+            console.log(window.localStorage.getItem('classrooms'))
         }, errMsg =>{
             this.setState({ 
                 list : []
@@ -61,27 +69,27 @@ class Home extends React.Component{
                     
                     return (
 
-                            <div className="col-md-4">
-                            <Link to={`/classroom/${classrooms.class_id}`} className="color-box blue">
-                               
-                                <p className="grade">
-                                    <i className="fa fa-list"></i>
-                                    <span> <em>{classrooms.subject}</em> - {classrooms.grade} Grade</span>
-                                   
-                                </p>
-                                <p className="desc">
-                                    <i className="fa fa-building"></i>
-                                    <span>{classrooms.room} - Room: {classrooms.school}</span>
-                                   
-                                </p>
+                            <div className="col-md-4" key={index}>
+                                <Link to={`/classroom/${classrooms.class_id}`} className="color-box blue">
+                                
+                                    <p className="grade">
+                                        <i className="fa fa-list"></i>
+                                        <span> <em>{classrooms.subject}</em> - {classrooms.grade} Grade</span>
+                                    
+                                    </p>
+                                    <p className="desc">
+                                        <i className="fa fa-building"></i>
+                                        <span>{classrooms.room} - Room: {classrooms.school}</span>
+                                    
+                                    </p>
 
-                                <p className="desc">
-                                    <i className="fa fa-calendar"></i>
-                                    <span>{classrooms.starts_at} - {classrooms.ends_at}</span>
-                                   
-                                </p>
-                            
-                            </Link>
+                                    <p className="desc">
+                                        <i className="fa fa-calendar"></i>
+                                        <span>{classrooms.starts_at} - {classrooms.ends_at}</span>
+                                    
+                                    </p>
+                                
+                                </Link>
                             </div>
                   
                           

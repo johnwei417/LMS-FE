@@ -28,6 +28,12 @@ class NavSide extends React.Component{
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
+
+        // if classrooms exist, do not call ajax again
+        if (window.localStorage.getItem('classrooms')) { 
+            this.setState({list : JSON.parse(window.localStorage.getItem('classrooms')).classrooms})
+            return
+        }
        
         _class.getClassList(UserInfo).then(res => {
             this.setState({list : res.classes.classrooms});
@@ -43,33 +49,34 @@ class NavSide extends React.Component{
         return (
             <div className="navbar-default navbar-side">
                 <div className="sidebar-collapse">
-                    <ul className="nav">
-                        <li>
-                            <NavLink exact activeClassName="active-menu" to="/">
-                                <i className="fa fa-dashboard"></i>
-                                <span>Main</span>
+                    <ul className="nav list-group list-group-flush">
+                        <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
+                            <NavLink exact to="/">
+                                <i style={{color:"white", fontWeight:"600"}} className="fa fa-home"></i>
+                                <span style={{color:"white", fontWeight:"600"}}>Home</span>
                             </NavLink>
                         </li>
-                        <li className="active">
+                        <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
                             <Link to="/class">
-                                <i className="fa fa-check-square-o"></i>
-                                <span>Classes</span>
+                                <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
+                                <span style={{color:"white", fontWeight:"600"}}>Classes</span>
                                 <span className="fa arrow"></span>
                             </Link>
+                            <ul className="nav list-group list-group-flush" style={{marginTop:"15px"}}>
                             {
                                 this.state.list.map((classrooms, index) => {
+                                    console.log(classrooms)
                                     return (
-                                      
-                                        <ul className="nav nav-second-level collapse in">
-                                        <li>
-                                          <NavLink to={`/classroom/${classrooms.class_id}`} activeClassName="active-menu">{classrooms.subject}</NavLink>
-                                        </li>
-                                    </ul>
+                                        <NavLink to={`/classroom/${classrooms.class_id}`} activeClassName="active-menu" key={index}>
+                                            <li className="list-group-item list-group-item-action" key={index} style={{backgroundColor:"#14497F"}}>
+                                                <span style={{color:"white", fontWeight:"600"}}>{classrooms.subject + ' - ' + classrooms.room}</span>
+                                            </li>
+                                        </NavLink>
 
                                         );
                                     })
                             }
-                          
+                            </ul>
                         </li>
                     
 
