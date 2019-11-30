@@ -47,49 +47,73 @@ class ClassDetail extends React.Component{
 
         let countInfo  ={};
         countInfo.p_count = this.state.p_count
-    if(this.state.role == '1'){
-        _class.getClassDetails(classInfo).then((res)=>{
-            _mm.setStorage('classInfo', res.classroom);
-            this.setState({
-                p_count: _mm.getStorage('classInfo').scores.proficient.count,
-                ap_count:            _mm.getStorage('classInfo').scores.almostProficient.count,
-                np_count:            _mm.getStorage('classInfo').scores.notProficient.count
-            })
-        }, (errMsg) => {
-            _mm.errorTips(errMsg);
-        });
-     }else{
-        _class.getClassDetails(classInfo).then((res)=>{
-            _mm.setStorage('classInfo', res.classroom);
-            //check proficiency level from local stoage
-            if(_mm.getStorage('classInfo').scores.proeficent.count != 0){
+        if(this.state.role == '1'){
+            if (window.localStorage.getItem('classInfo')) {
+                this.setState({
+                    p_count: _mm.getStorage('classInfo').scores.proficient.count,
+                    ap_count:            _mm.getStorage('classInfo').scores.almostProficient.count,
+                    np_count:            _mm.getStorage('classInfo').scores.notProficient.count
+                })
+                return
+            }
+
+            _class.getClassDetails(classInfo).then((res)=>{
+                _mm.setStorage('classInfo', res.classroom);
+                this.setState({
+                    p_count: _mm.getStorage('classInfo').scores.proficient.count,
+                    ap_count:            _mm.getStorage('classInfo').scores.almostProficient.count,
+                    np_count:            _mm.getStorage('classInfo').scores.notProficient.count
+                })
+            }, (errMsg) => {
+                _mm.errorTips(errMsg);
+            });
+        }else{
+            if (window.localStorage.getItem('classInfo')) {
                 this.setState({
                     proficientLevel: 'Proficient',
                     scores : _mm.getStorage('classInfo').scores.proeficent.users.scores
                 })
-            }
-
-            if(_mm.getStorage('classInfo').scores.almostProeficent.count != 0){
                 this.setState({
                     proficientLevel: 'Almost Proficient',
                     scores : _mm.getStorage('classInfo').scores.almostProeficent.users.scores
                 })
-            }
-
-            if(_mm.getStorage('classInfo').scores.notProeficent.count != 0){
                 this.setState({
                     proficientLevel: 'Not Proficient',
                     scores : _mm.getStorage('classInfo').scores.notProeficent.users.scores
                 })
+                return
             }
 
+            _class.getClassDetails(classInfo).then((res)=>{
+                _mm.setStorage('classInfo', res.classroom);
+                //check proficiency level from local stoage
+                if(_mm.getStorage('classInfo').scores.proeficent.count != 0){
+                    this.setState({
+                        proficientLevel: 'Proficient',
+                        scores : _mm.getStorage('classInfo').scores.proeficent.users.scores
+                    })
+                }
 
-        }, (errMsg) => {
-            _mm.errorTips(errMsg);
-        });
+                if(_mm.getStorage('classInfo').scores.almostProeficent.count != 0){
+                    this.setState({
+                        proficientLevel: 'Almost Proficient',
+                        scores : _mm.getStorage('classInfo').scores.almostProeficent.users.scores
+                    })
+                }
+
+                if(_mm.getStorage('classInfo').scores.notProeficent.count != 0){
+                    this.setState({
+                        proficientLevel: 'Not Proficient',
+                        scores : _mm.getStorage('classInfo').scores.notProeficent.users.scores
+                    })
+                }
+
+
+            }, (errMsg) => {
+                _mm.errorTips(errMsg);
+            });
         
-    }
-
+        }
     }
 
    
@@ -97,32 +121,41 @@ class ClassDetail extends React.Component{
         const checkRole = this.state.role;
         let renderer;
         if(this.state.role == '1'){
-     renderer =   <div className="row">
-            <div className="col-md-4">
-                <Link to={`/classroom/${this.state.classID}/p`}  className="color-box brown">
-                    <p className="count">{this.state.p_count}</p>
-                    <p className="desc">
-                        <i className="fa fa-user-o"></i>
-                        <span>Proficient</span>
-                    </p>
+     renderer =   <div className="row" style={{marginTop:"45px"}}>
+            <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
+                <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
+                </div>
+                <Link to={`/classroom/${this.state.classID}/p`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                         <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{this.state.p_count}</p>
+                         <p className="text-white">Students</p>
+                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                    </div>
                 </Link>
             </div>
-            <div className="col-md-4">
-                <Link to={`/classroom/${this.state.classID}/ap`} className="color-box green">
-                    <p className="count">{this.state.ap_count}</p>
-                    <p className="desc">
-                        <i className="fa fa-list"></i>
-                        <span>Almost Proficient</span>
-                    </p>
+            <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
+                <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Almost Proficient</span>
+                </div>
+                <Link to={`/classroom/${this.state.classID}/p`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                         <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{this.state.ap_count}</p>
+                         <p className="text-white">Students</p>
+                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                    </div>
                 </Link>
             </div>
-            <div className="col-md-4">
-                <Link to={`/classroom/${this.state.classID}/np`} className="color-box blue">
-                    <p className="count">{this.state.np_count}</p>
-                    <p className="desc">
-                        <i className="fa fa-check-square-o"></i>
-                        <span>Non-Proficient</span>
-                    </p>
+            <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
+                <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Non-Proficient</span>
+                </div>
+                <Link to={`/classroom/${this.state.classID}/p`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                         <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{this.state.np_count}</p>
+                         <p className="text-white">Students</p>
+                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                    </div>
                 </Link>
             </div>
             
@@ -140,7 +173,7 @@ class ClassDetail extends React.Component{
             
             <div id="page-wrapper">
                
-                <PageTitle title="Students Performance" />
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students Performance</h1>
                {renderer}
     
             </div>
