@@ -45,7 +45,7 @@ class Home extends React.Component{
             this.setState({list : JSON.parse(window.localStorage.getItem('classrooms')).classrooms})
             return
         }
-        console.log('continued')
+
         _class.getClassList(UserInfo).then(res => {
             this.setState({list : res.classes.classrooms});
             _mm.setStorage('classrooms', res.classes);
@@ -62,41 +62,28 @@ class Home extends React.Component{
         const checkRole = this.state.role;
     
         return (
-            <div id="page-wrapper">
-                <PageTitle title="Home" />
-           { 
-                this.state.list.map((classrooms, index) => {
-                    
-                    return (
-
-                            <div className="col-md-4" key={index}>
-                                <Link to={`/classroom/${classrooms.class_id}`} className="color-box blue">
-                                
-                                    <p className="grade">
-                                        <i className="fa fa-list"></i>
-                                        <span> <em>{classrooms.subject}</em> - {classrooms.grade} Grade</span>
-                                    
-                                    </p>
-                                    <p className="desc">
-                                        <i className="fa fa-building"></i>
-                                        <span>{classrooms.room} - Room: {classrooms.school}</span>
-                                    
-                                    </p>
-
-                                    <p className="desc">
-                                        <i className="fa fa-calendar"></i>
-                                        <span>{classrooms.starts_at} - {classrooms.ends_at}</span>
-                                    
-                                    </p>
-                                
-                                </Link>
-                            </div>
-                  
-                          
-                    );
-                 
-                })
-            }
+            <div id="page-wrapper" style={{marginTop:"0px"}}>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"25px"}}>Your Classes</h1>
+                <div className="row">
+                    { 
+                        this.state.list.map((classrooms, index) => {
+                            return (
+                                <div class="card col-md-3" key={index} style={{padding:"0px", marginLeft:"25px"}}>
+                                    <div class="card-header" style={{backgroundColor:"#019DF4"}}>
+                                        <span className="text-white" style={{fontWeight:"bold"}}>{classrooms.subject}</span>
+                                    </div>
+                                    <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
+                                        <div class="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                            <p class="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.users_count}</p>
+                                            <p className="text-white">Students</p>
+                                            <a href="#" class="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                                        </div>
+                                    </Link>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
             </div>
 
         );

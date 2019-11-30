@@ -47,7 +47,7 @@ class NavSide extends React.Component{
 
     render(){
         return (
-            <div className="navbar-default navbar-side">
+            <div className="navbar-default navbar-side" style={{backgroundColor:"#043874"}}>
                 <div className="sidebar-collapse">
                     <ul className="nav list-group list-group-flush">
                         <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
@@ -57,7 +57,7 @@ class NavSide extends React.Component{
                             </NavLink>
                         </li>
                         <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
-                            <Link to="/class">
+                            <Link to="/">
                                 <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
                                 <span style={{color:"white", fontWeight:"600"}}>Classes</span>
                                 <span className="fa arrow"></span>
@@ -65,7 +65,7 @@ class NavSide extends React.Component{
                             <ul className="nav list-group list-group-flush" style={{marginTop:"15px"}}>
                             {
                                 this.state.list.map((classrooms, index) => {
-                                    console.log(classrooms)
+
                                     return (
                                         <NavLink to={`/classroom/${classrooms.class_id}`} activeClassName="active-menu" key={index}>
                                             <li className="list-group-item list-group-item-action" key={index} style={{backgroundColor:"#14497F"}}>

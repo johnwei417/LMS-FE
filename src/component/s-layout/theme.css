@@ -74,7 +74,7 @@ p {
 
 #page-wrapper {
     position: relative;
-    top: 55px;
+    top: 10px;
 }
 
 .top-navbar .nav > li > a:hover, .top-navbar .nav > li > a:focus {
