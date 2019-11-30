@@ -2,6 +2,8 @@ import React        from 'react';
 import { Link }     from 'react-router-dom';
 import Class         from 'service/class-service.jsx';
 import MUtil        from 'util/mm.jsx'
+import TableList    from 'util/table-list/index.jsx';
+
 const _mm           = new MUtil();
 const _class         = new Class();
 
@@ -42,7 +44,7 @@ class UserList extends React.Component{
        
         _class.getPList(UserInfo).then(res => {
             this.setState({
-                list : res.modules
+                list : res.modules,
             });
         }, errMsg =>{
             this.setState({ 
@@ -71,28 +73,21 @@ class UserList extends React.Component{
     }
    
     render(){
+        let listBody = this.state.list.map((modules, index) => {
+            //this.setState({scores: modules.scores });
+            return (
+                <tr key={index}>
+                    <td>{modules.name}</td>
+                </tr>
+            );
+        });
        
         return (
             <div id="page-wrapper">
                 <PageTitle title={`${this.state.title}`} />
-            {
-                this.state.list.map((classrooms, index) => {
-                    return (
-                            <div className="col-md-4">
-                            <Link to={`/classroom/${classrooms.id}/${this.state.pLevel}/${classrooms.id}`} className="color-box blue">
-                               
-                                <p className="grade">
-                                    <i className="fa fa-list"></i>
-                                    <span> {classrooms.grade} Grade - <em>{classrooms.name}</em> </span>
-                                </p>
-                    
-                            </Link>
-                            </div>
-                  
-                          
-                    );
-                })
-            }
+                <TableList tableHeads={['Target']}>
+                    {listBody}
+                </TableList>
             </div>
         );
     }

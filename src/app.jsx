@@ -11,7 +11,7 @@ import SClass           from 'page/s-class/index.jsx'
 import Login            from 'page/login/index.jsx';
 import UserList         from 'page/user/index.jsx';
 import ClassDetail      from 'page/class-detail/index.jsx';
-import PList            from 'page/p-list/index.jsx';
+import Benchmark        from 'page/benchmark/index.jsx';
 import ErrorPage        from 'page/error/index.jsx';
 import Media            from 'page/media/index.jsx';
 import SMedia           from 'page/s-media/index.jsx';
@@ -30,7 +30,7 @@ class App extends React.Component{
                     <Route path="/user/index" component={UserList}/>
                     <Route exact path="/video" component={Media}/>
                     <Route exact path="/game" component={Game}/>
-                    <Route exact path="/classroom/:classID/:pLevel" component={PList}/>
+                    <Route exact path="/classroom/:classID/benchmark" component={Benchmark}/>
                     <Redirect exact from="/user" to="/user/index"/>
                     <Route component={ErrorPage} />
                 </Switch>

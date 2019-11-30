@@ -37,7 +37,7 @@ class Login extends React.Component{
     //user submit form
     onSubmit(){
         // button to loading state
-        this.refs.loading.show()
+        //this.refs.loading.show()
         
         let loginInfo = {
          "account" : {
@@ -49,18 +49,18 @@ class Login extends React.Component{
         checkResult = _user.checkLoginInfo(loginInfo);
          
         // pass validation
-        if(checkResult.status){
+        if(checkResult.status == true){
             _user.login(JSON.stringify(loginInfo)).then((res) => {
                 _mm.setStorage('userInfo', res.account);
                 this.props.history.push(this.state.redirect);
-                this.refs.loading.hide()
+                this.refs.loading.hide();
             }, (errMsg) => {
-             
+               _mm.errorTips(errMsg);
             });
         }
         // valid failed
         else{
-          
+          _mm.errorTips(checkResult.msg);
         }
             
     }

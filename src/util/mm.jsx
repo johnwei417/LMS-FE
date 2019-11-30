@@ -38,6 +38,9 @@ class MUtil{
         alert(successMsg || 'Success!');
     }
     // error tips
+    errorTips(errorMsg){
+        alert(errorMsg || 'Failed!');
+    }
 
     // localstorage
     setStorage(name, data){
