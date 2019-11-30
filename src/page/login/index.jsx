@@ -37,7 +37,7 @@ class Login extends React.Component{
     //user submit form
     onSubmit(){
         // button to loading state
-        //this.refs.loading.show()
+        this.refs.loading.show()
         
         let loginInfo = {
          "account" : {
@@ -56,6 +56,7 @@ class Login extends React.Component{
                 this.refs.loading.hide();
             }, (errMsg) => {
                _mm.errorTips(errMsg);
+               this.refs.loading.hide();
             });
         }
         // valid failed
@@ -67,8 +68,8 @@ class Login extends React.Component{
     render(){
         return (
             <body className="login-body container-fluid" style={{backgroundColor: "#02D0FF"}}>
-            <div className="col-md-4 col-md-offset-4" style={{marginTop: "150px"}}>
-                <div className="panel login-panel" style={{backgroundColor: "#02D0FF"}}>
+            <div className="col-md-4 col-md-offset-4" style={{marginLeft: "auto", marginRight:"auto", paddingTop:"200px"}}>
+                <div className="panel center" style={{backgroundColor: "#02D0FF"}}>
                     <div className="panel-heading"><h1 className="text-center" style={{color:"white", fontSize:"65px", fontWeight:"bolder"}}>Welcome!</h1></div>
                     <div className="panel-body">
                         <div>

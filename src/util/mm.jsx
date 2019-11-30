@@ -16,7 +16,7 @@ class MUtil{
                     resolve(res);
                 },
                 error       : err => {
-                    typeof reject === 'function' && reject(err.errMsg);
+                    typeof reject === 'function' && reject(err.responseJSON.error.message);
                 }
             });
         });  
