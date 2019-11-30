@@ -10,6 +10,7 @@ const _class         = new Class();
 
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
+import PreLoader from 'component/pre-loader/index.jsx';
 
 
 class Home extends React.Component{
@@ -20,7 +21,6 @@ class Home extends React.Component{
             userID:         _mm.getStorage('userInfo').id,
             api_token:      _mm.getStorage('userInfo').api_token,
             role:           _mm.getStorage('userInfo').role
-
         };
     }
     componentDidMount(){
@@ -36,20 +36,22 @@ class Home extends React.Component{
     }
 
     loadClassList(){
+        this.refs.loader.black();
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
         
         // if classrooms exist, do not call ajax again
         if (window.localStorage.getItem('classrooms')) { 
+            this.refs.loader.hide();
             this.setState({list : JSON.parse(window.localStorage.getItem('classrooms')).classrooms})
             return
         }
 
         _class.getClassList(UserInfo).then(res => {
+            this.refs.loader.hide();
             this.setState({list : res.classes.classrooms});
             _mm.setStorage('classrooms', res.classes);
-            console.log(window.localStorage.getItem('classrooms'))
         }, errMsg =>{
             this.setState({ 
                 list : []
@@ -60,33 +62,64 @@ class Home extends React.Component{
 
     render(){
         const checkRole = this.state.role;
-    
-        return (
-            <div id="page-wrapper" style={{marginTop:"0px"}}>
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"25px"}}>Your Classes</h1>
-                <div className="row">
-                    { 
-                        this.state.list.map((classrooms, index) => {
-                            return (
-                                <div class="card col-md-3" key={index} style={{padding:"0px", marginLeft:"25px"}}>
-                                    <div class="card-header" style={{backgroundColor:"#019DF4"}}>
-                                        <span className="text-white" style={{fontWeight:"bold"}}>{classrooms.subject}</span>
-                                    </div>
-                                    <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
-                                        <div class="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                            <p class="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.users_count}</p>
-                                            <p className="text-white">Students</p>
-                                            <a href="#" class="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+        if (checkRole == 1) {
+                return (
+                    <div id="page-wrapper" style={{marginTop:"0px"}}>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Your Classes</h1>
+                        <PreLoader display="none" ref="loader" size=""></PreLoader>
+                        <div className="row">
+                            { 
+                                this.state.list.map((classrooms, index) => {
+                                    return (
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                            <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>{classrooms.subject + ' - ' + classrooms.grade}</span>
+                                            </div>
+                                            <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
+                                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                                    <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.users_count}</p>
+                                                    <p className="text-white">Students</p>
+                                                    <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                                                </div>
+                                            </Link>
                                         </div>
-                                    </Link>
-                                </div>
-                            );
-                        })
-                    }
-                </div>
-            </div>
-
-        );
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+        
+                );
+        } else {
+                return (
+                    <div id="page-wrapper" style={{marginTop:"0px"}}>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Your Classes</h1>
+                        <PreLoader display="block" ref="loader" size=""></PreLoader>
+                        <div className="row">
+                            { 
+                                this.state.list.map((classrooms, index) => {
+                                    return (
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                                <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>{classrooms.subject + ' - ' + classrooms.grade}</span>
+                                            </div>
+                                            <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
+                                                <div class="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                                    <p className="display-2 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.room}</p>
+                                                    <p className="text-white"><i className="fa fa-clock-o" style={{marginRight:"5px"}}></i>{classrooms.starts_at + ' - ' + classrooms.ends_at}</p>
+                                                    <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
+        
+                );
+        }
+        
     }
 }
 

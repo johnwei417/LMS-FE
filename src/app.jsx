@@ -25,7 +25,6 @@ class App extends React.Component{
             <Layout> 
                 <Switch>
                     <Route exact path="/" component={Home}/>
-                    <Route exact path="/class" component={Class}/>
                     <Route exact path="/classroom/:classID" component={ClassDetail}/>
                     <Route path="/user/index" component={UserList}/>
                     <Route exact path="/video" component={Media}/>
