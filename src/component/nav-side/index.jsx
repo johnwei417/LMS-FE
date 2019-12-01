@@ -50,7 +50,7 @@ class NavSide extends React.Component{
         taskRender = (
             <NavLink to={`/tasks`} activeClassName="active-menu" >
             <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
-                <span style={{color:"white", fontWeight:"600"}}>Assigned Tasks to Students</span>
+                <span style={{color:"white", fontWeight:"600"}}>Tasks assigned to students</span>
             </li>
            </NavLink>
         );
@@ -58,13 +58,12 @@ class NavSide extends React.Component{
         taskRender = (
             <NavLink to={`/tasks`} activeClassName="active-menu" >
             <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
-                <span style={{color:"white", fontWeight:"600"}}> Assignments</span>
+                <span style={{color:"white", fontWeight:"600"}}>Assignments</span>
             </li>
            </NavLink>
         );
 
         }
-        
         
         
         return (
@@ -88,11 +87,11 @@ class NavSide extends React.Component{
                                 this.state.list.map((classrooms, index) => {
 
                                     return (
-                                        <NavLink to={`/classroom/${classrooms.class_id}`} activeClassName="active-menu" key={index}>
+                                        <a href={`/classroom/${classrooms.class_id}`} key={index}>
                                             <li className="list-group-item list-group-item-action" key={index} style={{backgroundColor:"#14497F"}}>
                                                 <span style={{color:"white", fontWeight:"600"}}>{classrooms.subject + ' - ' + classrooms.room}</span>
                                             </li>
-                                        </NavLink>
+                                        </a>
 
                                         );
                                     })
@@ -101,7 +100,7 @@ class NavSide extends React.Component{
                         </li>
 
                         <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
-                            <Link to="/">
+                            <Link to="/tasks">
                                 <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
                                 <span style={{color:"white", fontWeight:"600"}}>Tasks</span>
                                 <span className="fa arrow"></span>

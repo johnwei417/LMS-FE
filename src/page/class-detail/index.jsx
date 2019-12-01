@@ -119,10 +119,6 @@ class ClassDetail extends React.Component{
                 _mm.errorTips(errMsg);
 
             });
-           
-        
-
-        
         
         }
     }
