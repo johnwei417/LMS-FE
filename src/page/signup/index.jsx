@@ -35,6 +35,7 @@ class Register extends React.Component{
             this.onSubmit();
         }
     }
+    
     //user submit form
     onSubmit(){ 
         let loginInfo = {

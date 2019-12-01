@@ -27,7 +27,8 @@ class Benchmark extends React.Component{
             api_token:      _mm.getStorage('userInfo').api_token,
             role:           _mm.getStorage('userInfo').role,
             title:          '',
-            selected:       []
+            selected:       [],
+            taskID:          0
     
         };
     }
@@ -60,7 +61,7 @@ class Benchmark extends React.Component{
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
-        window.location.href = '/login';
+           window.location.href = '/login';
         }
     }
 
@@ -76,6 +77,20 @@ class Benchmark extends React.Component{
         }
     }
 
+    onInputChange(e){
+        let inputValue  = e.target.value,
+            inputName   = e.target.name;
+        this.setState({
+            [inputName] : inputValue
+        });
+    }
+
+    onInputKeyUp(e){
+        if(e.keyCode === 13){
+            this.onSubmit();
+        }
+    }
+
     onSubmit(){
         // button to loading state
         this.refs.loading.show()
@@ -86,9 +101,12 @@ class Benchmark extends React.Component{
                 "class_id" : this.state.classID,
                 "student_id" : [this.state.password]
             }
-        }
-        }
-    ,
+        },
+        api_token: this.state.api_token,
+        userID: this.state.userID,
+        taskID: this.state.taskID
+        };
+    
         checkResult = _user.checkLoginInfo(loginInfo);
          
         // pass validation

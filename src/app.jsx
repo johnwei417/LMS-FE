@@ -27,6 +27,7 @@ class App extends React.Component{
                     <Route exact path="/video" component={Media}/>
                     <Route exact path="/game" component={Game}/>
                     <Route exact path="/tasks" component={Task}/>
+                    <Route exact path="/records" component={Record}/>
                     <Route exact path="/classroom/:classID/:pLevel" component={Benchmark}/>
                     <Redirect exact from="/user" to="/user/index"/>
                     <Route component={ErrorPage} />
