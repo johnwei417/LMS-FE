@@ -13,18 +13,21 @@ import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 
 
-class UserList extends React.Component{
+class Benchmark extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             list            : [],
-            scores          :[],
+            details:        [],
+            count:          0,
+            scores:         [],
             classID:        this.props.match.params.classID,
             pLevel:         this.props.match.params.pLevel,
             userID:         _mm.getStorage('userInfo').id,
             api_token:      _mm.getStorage('userInfo').api_token,
             role:           _mm.getStorage('userInfo').role,
-            title:          ''
+            title:          '',
+            selected:       []
     
         };
     }
@@ -44,7 +47,8 @@ class UserList extends React.Component{
        
         _class.getPList(UserInfo).then(res => {
             this.setState({
-                list : res.modules,
+                list : res.details,
+                count: res.target_count
             });
         }, errMsg =>{
             this.setState({ 
@@ -71,26 +75,103 @@ class UserList extends React.Component{
             this.state.title = 'Not Proficient';
         }
     }
+
+    onSubmit(){
+        // button to loading state
+        this.refs.loading.show()
+        
+        let loginInfo = {
+        data: {
+         "task" : {
+                "class_id" : this.state.classID,
+                "student_id" : [this.state.password]
+            }
+        }
+        }
+    ,
+        checkResult = _user.checkLoginInfo(loginInfo);
+         
+        // pass validation
+        if(checkResult.status == true){
+            _user.login(JSON.stringify(loginInfo)).then((res) => {
+                _mm.setStorage('userInfo', res.account);
+                this.props.history.push(this.state.redirect);
+                this.refs.loading.hide();
+            }, (errMsg) => {
+               _mm.errorTips(errMsg);
+               this.refs.loading.hide();
+            });
+        }
+        // valid failed
+        else{
+          _mm.errorTips(checkResult.msg);
+        }
+            
+    }
+
    
     render(){
-        let listBody = this.state.list.map((modules, index) => {
-            //this.setState({scores: modules.scores });
-            return (
-                <tr key={index}>
-                    <td>{modules.name}</td>
-                </tr>
-            );
-        });
+
        
         return (
             <div id="page-wrapper">
                 <PageTitle title={`${this.state.title}`} />
-                <TableList tableHeads={['Target']}>
-                    {listBody}
-                </TableList>
+                <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                    Student Name
+                    </th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                        <tr>
+                        <th scope="row">
+                            
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck2" />
+                            <label className="form-check-label" htmlFor="tableMaterialCheck2">Check 2</label>
+                            </div>
+                        </th>
+                        <td className="p-3 mb-2 bg-warning text-dark">Cell 1</td>
+                        <td>Cell 2</td>
+                        <td>Cell 3</td>
+                        <td>Cell 4</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">
+                        
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck3" />
+                            <label className="form-check-label" htmlFor="tableMaterialCheck3">Check 3</label>
+                            </div>
+                        </th>
+                        <td>Cell 4</td>
+                        <td>Cell 5</td>
+                        <td>Cell 6</td>
+                        </tr>
+                        <tr>
+                        <th scope="row">
+                        
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck4" />
+                            <label className="form-check-label" htmlFor="tableMaterialCheck4">Check 4</label>
+                            </div>
+                        </th>
+                        <td>Cell 7</td>
+                        <td>Cell 8</td>
+                        <td>Cell 9</td>
+                        </tr>
+                    </tbody>
+                </table>
+              
             </div>
         );
     }
 }
-
-export default UserList;
+export default Benchmark;

@@ -53,10 +53,10 @@ class Login extends React.Component{
             _user.login(JSON.stringify(loginInfo)).then((res) => {
                 _mm.setStorage('userInfo', res.account);
                 this.props.history.push(this.state.redirect);
-                this.refs.loading.hide();
+              
             }, (errMsg) => {
                _mm.errorTips(errMsg);
-               this.refs.loading.hide();
+              
             });
         }
         // valid failed

@@ -25,4 +25,17 @@
             margin-right: 5px;
         }
     }
+    tbody 
+{
+    line-height: 0;
+}
+
+.table td, .table th {
+    vertical-align: middle !important;
+}
+
+td>.custom-control>.custom-control-input[type="checkbox"] 
+{
+    position: relative !important;
+}
 }

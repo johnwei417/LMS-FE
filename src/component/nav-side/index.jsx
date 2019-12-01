@@ -16,7 +16,6 @@ class NavSide extends React.Component{
             userID:         _mm.getStorage('userInfo').id,
             api_token:      _mm.getStorage('userInfo').api_token,
             role:           _mm.getStorage('userInfo').role
-
         };
     }
 
@@ -46,6 +45,28 @@ class NavSide extends React.Component{
     }
 
     render(){
+        var taskRender;
+        if(this.state.role == '1'){
+        taskRender = (
+            <NavLink to={`/tasks`} activeClassName="active-menu" >
+            <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
+                <span style={{color:"white", fontWeight:"600"}}>Assigned Tasks to Students</span>
+            </li>
+           </NavLink>
+        );
+        }else{
+        taskRender = (
+            <NavLink to={`/tasks`} activeClassName="active-menu" >
+            <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
+                <span style={{color:"white", fontWeight:"600"}}> Assignments</span>
+            </li>
+           </NavLink>
+        );
+
+        }
+        
+        
+        
         return (
             <div className="navbar-default navbar-side" style={{backgroundColor:"#043874"}}>
                 <div className="sidebar-collapse">
@@ -75,6 +96,19 @@ class NavSide extends React.Component{
 
                                         );
                                     })
+                            }
+                            </ul>
+                        </li>
+
+                        <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
+                            <Link to="/">
+                                <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
+                                <span style={{color:"white", fontWeight:"600"}}>Tasks</span>
+                                <span className="fa arrow"></span>
+                            </Link>
+                            <ul className="nav list-group list-group-flush" style={{marginTop:"15px"}}>
+                            {
+                             taskRender
                             }
                             </ul>
                         </li>
