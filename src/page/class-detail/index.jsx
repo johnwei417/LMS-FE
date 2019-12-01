@@ -184,7 +184,7 @@ class ClassDetail extends React.Component{
         {
             this.state.tasks.map((task, index)=>{
                 return (
-                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}> <a href= {task.url} >{task.name}</a></div>
+                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}><Link to= {task.url}>{task.name}</Link></div>
                 );
 
             })

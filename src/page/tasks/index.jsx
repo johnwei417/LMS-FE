@@ -98,7 +98,7 @@ class Task extends React.Component{
         {
             this.state.tasks.map((task, index)=>{
                 return (
-                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}> <a href= {task.url} >{task.name}</a></div>
+                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}> <Link to= {task.url} >{task.name}</Link></div>
                 );
 
             })
@@ -110,7 +110,7 @@ class Task extends React.Component{
         return (
             <div id="page-wrapper">
                
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students Performance</h1>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Tasks</h1>
                {renderer}
     
             </div>
