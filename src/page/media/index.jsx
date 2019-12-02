@@ -13,6 +13,17 @@ import Module from 'component/vue-components/modules/video/modules.vue';
 
 class Media extends React.Component{
   
+
+  componentDidMount(){
+    this. checkLogin();
+  }
+
+  checkLogin(){
+    if(localStorage.getItem("userInfo") === null){
+    window.location.href = '/login';
+    }
+}
+
     render() {
         const Component = VueInReact(Module)
         let styles = {

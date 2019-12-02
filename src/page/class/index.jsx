@@ -25,6 +25,13 @@ class ClassList extends React.Component{
     }
     componentDidMount(){
         this.loadClassList();
+        this.checkLogin();
+    }
+
+    checkLogin(){
+        if(localStorage.getItem("userInfo") === null){
+        window.location.href = '/login';
+        }
     }
 
     loadClassList(){
