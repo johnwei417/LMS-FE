@@ -44,13 +44,21 @@ class Class{
         })
     }
 
-    assignTask(param){
+    assignTask(param, param1){
         return _mm.request({
             api_token: param.api_token,
             type    : 'post',
             url     : 'https://laravel-lsm.herokuapp.com/api/v1/' + param.userID + '/assign/'+ param.taskID,
-            data    :  param.data
+            data    :  param1
         })
+    }
+    
+    getTaskList(param){
+        return _mm.request({
+            api_token: param.api_token,
+            type: 'get',
+            url: 'https://laravel-lsm.herokuapp.com/api/v1/tasks',
+        });
     }
    
     

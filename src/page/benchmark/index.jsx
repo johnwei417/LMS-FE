@@ -13,6 +13,7 @@ import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 
 
+
 class Benchmark extends React.Component{
     constructor(props){
         super(props);
@@ -28,16 +29,36 @@ class Benchmark extends React.Component{
             role:           _mm.getStorage('userInfo').role,
             title:          '',
             selected:       [],
-            taskID:          0
-    
+            taskID:          0,
+            taskList:       []
+           
         };
+       
     }
     componentDidMount(){
         this.checkLogin();
         this.getTitle();
         this.loadClassList();
+        this.loadTaskList();
     
     }
+    
+    loadTaskList(){
+        let Info = {};
+        Info.api_token = this.state.api_token;
+
+       
+        _class.getTaskList(Info).then(res => {
+            this.setState({
+                taskList : res.tasks,
+               
+            });
+        }, errMsg =>{
+            _mm.errorTips(errMsg);
+        });
+
+    }
+
 
     loadClassList(){
         let UserInfo = {};
@@ -80,9 +101,18 @@ class Benchmark extends React.Component{
     onInputChange(e){
         let inputValue  = e.target.value,
             inputName   = e.target.name;
-        this.setState({
+        if(inputName == "selected"){
+            this.setState({
+                selected : this.state.selected.concat(inputValue)
+            });
+            console.log(inputValue);
+        }else{ this.setState({
             [inputName] : inputValue
         });
+    }
+
+       
+        console.log(inputName);
     }
 
     onInputKeyUp(e){
@@ -92,48 +122,171 @@ class Benchmark extends React.Component{
     }
 
     onSubmit(){
-        // button to loading state
-        this.refs.loading.show()
-        
-        let loginInfo = {
-        data: {
-         "task" : {
-                "class_id" : this.state.classID,
-                "student_id" : [this.state.password]
-            }
-        },
+     let loginInfo = {
         api_token: this.state.api_token,
         userID: this.state.userID,
-        taskID: this.state.taskID
+        taskID: this.state.taskID + 1
         };
-    
-        checkResult = _user.checkLoginInfo(loginInfo);
-         
-        // pass validation
-        if(checkResult.status == true){
-            _user.login(JSON.stringify(loginInfo)).then((res) => {
-                _mm.setStorage('userInfo', res.account);
-                this.props.history.push(this.state.redirect);
-                this.refs.loading.hide();
-            }, (errMsg) => {
-               _mm.errorTips(errMsg);
-               this.refs.loading.hide();
-            });
+        console.log(this.state.selected);
+     let data = {
+            "task" : {
+                   "class_id" : this.state.classID,
+                   "students_id" : this.state.selected
+               }
         }
-        // valid failed
-        else{
-          _mm.errorTips(checkResult.msg);
-        }
-            
+        console.log(data);
+        _class.assignTask(loginInfo, JSON.stringify(data)).then((res)=>{
+             _mm.successTips(res.message);
+        
+        }, (errMsg) => {
+            _mm.errorTips(errMsg.message);
+        });
+
     }
+
+   
 
    
     render(){
 
+       const tasklist = this.state.taskList.map((task, index)=>{
+        return (
+          <option key={index} name="taskID" value={task.idr}  
+          onKeyUp={e => this.onInputKeyUp(e)}
+          onChange={e => this.onInputChange(e)}>{task.name}</option>
+        )});
+
+        let renderer;
+    if(this.state.classID == '1'){
+        renderer = ( <tbody>
+        <tr>
+        <td>Sally Rogers</td>
+        <td scope="row" className="p-3 mb-2 bg-success text-dark">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '4'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
+            </div>
+        </td>
+        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '4'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">70</label>
+            </div>
+        </td>
+        <td></td>
+        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '4'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">60.25</label>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+
+        <tr>
+        <td>Burt Hagard</td>
+        <td scope="row" className="p-3 mb-2 bg-warning text-dark">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '5'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">75.5</label>
+            </div>
+        </td>
+        <td></td>
+        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '5'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">50.65</label>
+            </div>
+        </td>
+
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
        
+        </tr>
+
+        <tr>
+        <td>Josiah Nigel</td>
+        <td scope="row" className="p-3 mb-2 bg-success text-dark">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '6'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">98</label>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+
+        <tr>
+        <td>Shahbaaz Singb</td>
+        <td></td>
+        <td scope="row" className="p-3 mb-2 bg-warning text-dark">
+            <div className="form-check">
+            <input type="checkbox" className="form-check-input" 
+                    name = "selected"
+                    value = '7'
+                    onKeyUp={e => this.onInputKeyUp(e)}
+                    onChange={e => this.onInputChange(e)}/>
+            <label className="form-check-label" htmlFor="tableMaterialCheck3">75.3</label>
+            </div>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </tbody>);
+        }else{
+            renderer = "";
+        }
+
         return (
             <div id="page-wrapper">
+               
                 <PageTitle title={`${this.state.title}`} />
+                <p>Select Module</p>
+                <select>
+                {
+                  tasklist
+                }
+                 
+                </select>
+                
+                <button className="btn btn-lg btn-primary btn-block"
+                onClick={e => {this.onSubmit(e)}}>Assign Module</button>
+
                 <table className="table table-bordered">
                 <thead>
                 <tr>
@@ -144,48 +297,12 @@ class Benchmark extends React.Component{
                     <th>B</th>
                     <th>C</th>
                     <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
                 </tr>
                 </thead>
-
-                <tbody>
-                        <tr>
-                        <th scope="row">
-                            
-                            <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck2" />
-                            <label className="form-check-label" htmlFor="tableMaterialCheck2">Check 2</label>
-                            </div>
-                        </th>
-                        <td className="p-3 mb-2 bg-warning text-dark">Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                        <td>Cell 4</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">
-                        
-                            <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck3" />
-                            <label className="form-check-label" htmlFor="tableMaterialCheck3">Check 3</label>
-                            </div>
-                        </th>
-                        <td>Cell 4</td>
-                        <td>Cell 5</td>
-                        <td>Cell 6</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">
-                        
-                            <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="tableMaterialCheck4" />
-                            <label className="form-check-label" htmlFor="tableMaterialCheck4">Check 4</label>
-                            </div>
-                        </th>
-                        <td>Cell 7</td>
-                        <td>Cell 8</td>
-                        <td>Cell 9</td>
-                        </tr>
-                    </tbody>
+                {renderer}
                 </table>
               
             </div>

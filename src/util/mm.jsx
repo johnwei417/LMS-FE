@@ -13,7 +13,7 @@ class MUtil{
                 data        : param.data        || null,
                 success     : res => {
                     //data request success          
-                    resolve(res);
+                        resolve(res);
                 },
                 error       : err => {
                     typeof reject === 'function' && reject(err.responseJSON.error.message);
