@@ -176,9 +176,11 @@ class ClassDetail extends React.Component{
             this.state.tasks.map((task, index)=>{
                 return (
                     <a href= {`${task.url}`} >
+                        {task.status == '2'? '':
                         <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
                             {task.name}
                         </div>
+                        }
                     </a>
                 );
 
@@ -209,11 +211,7 @@ class ClassDetail extends React.Component{
                     <td>Sally Rogers</td>
                     <td scope="row" className="p-3 mb-2 bg-success text-dark">
                         <div className="form-check">
-                        <input type="checkbox" className="form-check-input" 
-                                name = "selected"
-                                value = '4'
-                                onKeyUp={e => this.onInputKeyUp(e)}
-                                onChange={e => this.onInputChange(e)}/>
+                      
                         <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
                         </div>
                     </td>

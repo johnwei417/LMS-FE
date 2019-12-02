@@ -428,6 +428,7 @@ class Benchmark extends React.Component{
                 
                 <select value={this.state.taskID} 
                 onChange={this.handleChange}>
+                    <option>Pick one </option>
                 {
                   tasklist
                 }
