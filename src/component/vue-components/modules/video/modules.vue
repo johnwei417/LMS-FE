@@ -66,7 +66,8 @@ import axios from 'axios'
             recordedCount: 0,
             video_quiz: process.env.NODE_ENV == 'development' ? DEV_VIDEO_QUIZ_COMPONENT.videos : VIDEO_QUIZ_COMPONENT.videos,
             quizScore: 0,
-            overallScore: 100
+            overallScore: 100,
+            account: JSON.parse(window.localStorage.getItem('userInfo'))
         }
     },
     created () {
@@ -118,9 +119,6 @@ import axios from 'axios'
                 this.autoplay = false
                 this.showEnd = true
 
-                // get user info
-                let account = JSON.parse(window.localStorage.getItem('userInfo'))
-
                 // compute quiz score
                 this.quizScore = (this.quizScore / 3) * 10
 
@@ -151,11 +149,11 @@ import axios from 'axios'
                         }
                     }
                 }
-
+                
                 // post scores
-                axios.post(`https://laravel-lsm.herokuapp.com/api/v1/${account.id}/score/1`, JSON.stringify(info), {
+                axios.post(`https://laravel-lsm.herokuapp.com/api/v1/${this.account.id}/score/1`, JSON.stringify(info), {
                     headers: {
-                        'Authorization': `Bearer ${account.api_token}`,
+                        'Authorization': `Bearer ${this.account.api_token}`,
                         'Content-type': 'application/json'
                     }
                 }).then(response => {
@@ -163,6 +161,15 @@ import axios from 'axios'
                 })
 
             } else if (this.progressCount == 2 || this.progressCount == 6) {
+                // update status to in progress
+                axios.put(`https://laravel-lsm.herokuapp.com/api/v1/${this.account.id}/tasks/1`, '', {
+                    headers: {
+                        'Authorization': `Bearer ${this.account.api_token}`,
+                        'Content-type': 'application/json'
+                    }
+                }).then(response => {
+                    console.log(response.data.code)
+                })
                 // show video
                 this.progressCount += 2
                 this.nextVideo()
@@ -181,6 +188,7 @@ import axios from 'axios'
                     this.overallScore -= 5
 
                 } else {
+
                     // progress next 
                     this.progressCount++
                 }
