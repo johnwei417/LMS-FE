@@ -70,8 +70,6 @@ import axios from 'axios'
         }
     },
     created () {
-        console.log(process.env.NODE_ENV)
-        console.log(this.video_quiz)
         this.videoSrc = this.video_quiz[this.progressCount].src
         this.title = this.video_quiz[this.progressCount].title
     },
@@ -153,8 +151,7 @@ import axios from 'axios'
                         }
                     }
                 }
-                console.log(this.recordedAnswers)
-                console.log(info)
+
                 // post scores
                 axios.post(`https://laravel-lsm.herokuapp.com/api/v1/${account.id}/score/1`, JSON.stringify(info), {
                     headers: {
