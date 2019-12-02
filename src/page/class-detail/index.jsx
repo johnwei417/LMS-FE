@@ -184,7 +184,104 @@ class ClassDetail extends React.Component{
 
             })
         }
+       
+        
+         <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                    Student Name
+                    </th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                </tr>
+                </thead>
+                
+                <tbody>
+            {
+                this.state.userID == '4'? 
+                <tr>
+                    <td>Sally Rogers</td>
+                    <td scope="row" className="p-3 mb-2 bg-success text-dark">
+                        <div className="form-check">
+                        <input type="checkbox" className="form-check-input" 
+                                name = "selected"
+                                value = '4'
+                                onKeyUp={e => this.onInputKeyUp(e)}
+                                onChange={e => this.onInputChange(e)}/>
+                        <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
+                        </div>
+                    </td>
+                    <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+                        <div className="form-check">
+                        <input type="checkbox" className="form-check-input" 
+                                name = "selected"
+                                value = '4'
+                                onKeyUp={e => this.onInputKeyUp(e)}
+                                onChange={e => this.onInputChange(e)}/>
+                        <label className="form-check-label" htmlFor="tableMaterialCheck3">70</label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+                        <div className="form-check">
+                        <input type="checkbox" className="form-check-input" 
+                                name = "selected"
+                                value = '4'
+                                onKeyUp={e => this.onInputKeyUp(e)}
+                                onChange={e => this.onInputChange(e)}/>
+                        <label className="form-check-label" htmlFor="tableMaterialCheck3">60.25</label>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    </tr> : 
+
+                        <tr>
+                                <td>Burt Hagard</td>
+                                <td scope="row" className="p-3 mb-2 bg-warning text-dark">
+                                    <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" 
+                                            name = "selected"
+                                            value = '5'
+                                            onKeyUp={e => this.onInputKeyUp(e)}
+                                            onChange={e => this.onInputChange(e)}/>
+                                    <label className="form-check-label" htmlFor="tableMaterialCheck3">75.5</label>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+                                    <div className="form-check">
+                                    <input type="checkbox" className="form-check-input" 
+                                            name = "selected"
+                                            value = '5'
+                                            onKeyUp={e => this.onInputKeyUp(e)}
+                                            onChange={e => this.onInputChange(e)}/>
+                                    <label className="form-check-label" htmlFor="tableMaterialCheck3">50.65</label>
+                                    </div>
+                                </td>
+
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            
+                                </tr>
+
+
+                    
+       }
+                </tbody>
+                </table>
+    
         </div>
+        
         ;
 
         }
@@ -195,7 +292,7 @@ class ClassDetail extends React.Component{
                
                 <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students Performance</h1>
                {renderer}
-    
+              
             </div>
         );
             
