@@ -99,7 +99,7 @@ class Login extends React.Component{
                                     <span className="lead" style={{color:"white"}}>Login</span>
                             </button>
                             
-                            <p className="text-muted" style={{fontSize: "10px"}}>Don't have an account? <a href="/register">Register here</a></p>
+                            <p className="text-muted" style={{fontSize: "12px"}}>Don't have an account? <a href="/register">Register here</a></p>
 
                         </div>
                     </div>

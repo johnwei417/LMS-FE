@@ -66,70 +66,78 @@ class Register extends React.Component{
     }
     render(){
         return (
-            <body className="login-body">
-            
-            <div className="col-md-4 col-md-offset-4">
-                <div className="panel panel-default login-panel">
-                    <div className="panel-heading">Welcome to Learning System</div>
+            <body className="login-body container-fluid" style={{backgroundColor: "#02D0FF"}}>
+            <div className="col-md-4 col-md-offset-4" style={{marginLeft: "auto", marginRight:"auto", paddingTop:"100px"}}>
+                <div className="panel center" style={{backgroundColor: "#02D0FF"}}>
+                    <div className="panel-heading"><h1 className="text-center" style={{color:"white", fontSize:"65px", fontWeight:"bolder"}}>Sign Up!</h1></div>
                     <div className="panel-body">
                         <div>
-                        <div className="form-group">
-                                <input type="text" 
-                                    name="name"
-                                    className="form-control" 
-                                    placeholder="Please type your name" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
-                            </div>
                             <div className="form-group">
-                                <input type="text" 
-                                    name="username"
-                                    className="form-control" 
-                                    placeholder="Please type your username" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
-                            </div>
+                                    <input type="text" 
+                                        name="name"
+                                        className="form-control" 
+                                        placeholder="Name" 
+                                        onKeyUp={e => this.onInputKeyUp(e)}
+                                        onChange={e => this.onInputChange(e)}
+                                        style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}/>
+                                </div>
+                                <div className="form-group">
+                                    <input type="text" 
+                                        name="username"
+                                        className="form-control" 
+                                        placeholder="Username" 
+                                        onKeyUp={e => this.onInputKeyUp(e)}
+                                        onChange={e => this.onInputChange(e)}
+                                        style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}/>
+                                </div>
 
-                            <div className="form-group">
-                                <input type="text"
-                                    name="email"
-                                    className="form-control"
-                                    placeholder="Please type email" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
-                            </div>
-                            <div className="form-group">
-                                <input type="password" 
-                                    name="password"
-                                    className="form-control" 
-                                    placeholder="Please type password" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/>
-                            </div>
+                                <div className="form-group">
+                                    <input type="text"
+                                        name="email"
+                                        className="form-control"
+                                        placeholder="Email address" 
+                                        onKeyUp={e => this.onInputKeyUp(e)}
+                                        onChange={e => this.onInputChange(e)}
+                                        style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}/>
+                                </div>
+                                <div className="form-group">
+                                    <input type="password" 
+                                        name="password"
+                                        className="form-control" 
+                                        placeholder="Password" 
+                                        onKeyUp={e => this.onInputKeyUp(e)}
+                                        onChange={e => this.onInputChange(e)}
+                                        style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}/>
+                                </div>
 
-                            <div className="form-group">
-                                <input type="radio" 
-                                    name="role"
-                                    value="1"
-                                    className="form-control" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/> Teacher
-                            </div>
+                                <div className="form-group" style={{marginLeft:"180px"}}>
+                                    <div>
 
-                            <div className="form-group">
-                                <input type="radio" 
-                                    name="role"
-                                    value="0"
-                                    className="form-control" 
-                                    onKeyUp={e => this.onInputKeyUp(e)}
-                                    onChange={e => this.onInputChange(e)}/> Student
-                            </div>
+                                        <input type="radio" 
+                                            name="role"
+                                            value="1"
+                                            onKeyUp={e => this.onInputKeyUp(e)}
+                                            onChange={e => this.onInputChange(e)}
+                                            style={{maxWidth: "50px", float:"left", marginRight:"10px", marginTop:"3px"}}
+                                        />                                        
+                                        <p style={{color:"white"}}>Teacher</p>
 
-                            <button className="btn btn-lg btn-primary btn-block"
-                                onClick={e => {this.onSubmit(e)}}>Register Now!</button>
-                            <p>Already have an account? <a href="/login">Login here</a></p>
+                                        <input type="radio" 
+                                        name="role"
+                                        value="0"
+                                        onKeyUp={e => this.onInputKeyUp(e)}
+                                        onChange={e => this.onInputChange(e)}
+                                        style={{maxWidth: "50px", float:"left", marginRight:"10px", marginTop:"3px"}}/>
+                                        <p style={{color:"white"}}>Student</p>
+
+                                    </div>
+                                </div>
+
+                                <button className="btn btn-lg btn-primary btn-block" style={{backgroundColor: "#00276C", padding: "1px", borderRadius:"25px"}}
+                                    onClick={e => {this.onSubmit(e)}}><span className="lead" style={{color:"white"}}>Register Now!</span></button>
+                                <p className="text-muted" style={{fontSize: "12px"}}>Already have an account? <a href="/login">Login here</a></p>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
            
