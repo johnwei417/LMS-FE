@@ -33,15 +33,19 @@ class Benchmark extends React.Component{
             taskList:       []
            
         };
+        this.handleChange = this.handleChange.bind(this);
        
     }
     componentDidMount(){
         this.checkLogin();
-        this.loadClassList();
+        //this.loadClassList();
         this.loadTaskList();
     
     }
-    
+    handleChange(event) {
+        this.setState({taskID: event.target.value});
+    }
+
     loadTaskList(){
         let Info = {};
         Info.api_token = this.state.api_token;
@@ -124,7 +128,7 @@ class Benchmark extends React.Component{
      let loginInfo = {
         api_token: this.state.api_token,
         userID: this.state.userID,
-        taskID: this.state.taskID + 1
+        taskID: this.state.taskID
         };
         console.log(this.state.selected);
        let data = {
@@ -144,15 +148,14 @@ class Benchmark extends React.Component{
     }
 
    
-
    
     render(){
-
+        
        const tasklist = this.state.taskList.map((task, index)=>{
+        
         return (
-          <option key={index} name="taskID" value={task.idr}  
-          onKeyUp={e => this.onInputKeyUp(e)}
-          onChange={e => this.onInputChange(e)}>{task.name}</option>
+          <option key={index} name="taskID" value = {task.id}>{task.name}</option>
+          
         )});
 
     let renderer;
@@ -416,13 +419,15 @@ class Benchmark extends React.Component{
         }else{
             renderer = "";
         }
-
+        console.log(this.state.taskID);
         return (
             <div id="page-wrapper">
                
                 <PageTitle title={`${this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}`} />
                 <p>Select Module</p>
-                <select>
+                
+                <select value={this.state.taskID} 
+                onChange={this.handleChange}>
                 {
                   tasklist
                 }

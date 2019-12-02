@@ -6,6 +6,14 @@ import Recording from 'component/vue-components/recordings.vue';
 
 class Record extends React.Component{
 
+  componentDidMount(){
+    this. checkLogin();
+  }
+  checkLogin(){
+    if(localStorage.getItem("userInfo") === null){
+    window.location.href = '/login';
+    }
+}
     render(){
         const Component = VueInReact(Recording)
         let styles = {
