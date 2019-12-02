@@ -33,11 +33,13 @@ class ClassDetail extends React.Component{
     }
 
     componentDidMount(){
-
+        this.loadBanner();
         this.loadClassDetail();
         this.checkLogin();
-        this.loadBanner();
-       
+    }
+
+    componentWillmount(){
+        this.loadClassDetail();
     }
   
 
@@ -48,6 +50,7 @@ class ClassDetail extends React.Component{
     }
 
     loadBanner(){
+        if(this.state.role == '0'){
         let studentInfo = {};
         studentInfo.api_token = this.state.api_token;
         studentInfo.userID = this.state.userID;
@@ -60,27 +63,28 @@ class ClassDetail extends React.Component{
           });    
         }, (errMsg)=>{
             _mm.errorTips(errMsg);
-        })
+        });
+    }
        
     }
 
     loadClassDetail(){
-        let classInfo = {};
-        this.refs.count1.style.display="none"; 
-        this.refs.count2.style.display="none";
-        this.refs.count3.style.display="none"; 
-
-        this.refs.loader.show();
-        this.refs.loader1.show();
-        this.refs.loader2.show();
-        classInfo.api_token = this.state.api_token;
-        classInfo.userID = this.state.userID;
-        classInfo.classID = this.state.classID;
-        classInfo.pLevel = this.state.proficientLevel;
-
-        let countInfo  ={};
-        countInfo.p_count = this.state.p_count
         if(this.state.role == '1'){
+            let classInfo = {};
+            this.refs.count1.style.display="none"; 
+            this.refs.count2.style.display="none";
+            this.refs.count3.style.display="none"; 
+    
+            this.refs.loader.show();
+            this.refs.loader1.show();
+            this.refs.loader2.show();
+            classInfo.api_token = this.state.api_token;
+            classInfo.userID = this.state.userID;
+            classInfo.classID = this.state.classID;
+            classInfo.pLevel = this.state.proficientLevel;
+    
+            let countInfo  ={};
+            countInfo.p_count = this.state.p_count;
             if (window.localStorage.getItem('classInfo')) {
                 this.setState({
                     p_count:             _mm.getStorage('classInfo').scores.proficient.count,
@@ -105,52 +109,17 @@ class ClassDetail extends React.Component{
             }, (errMsg) => {
                 _mm.errorTips(errMsg);
             });
-        }else{
-            _class.getClassDetails(classInfo).then((res)=>{
-                _mm.setStorage('classInfo', res.classroom);
-                this.refs.count1.style.display="block"; 
-                this.refs.count2.style.display="block";
-                this.refs.count3.style.display="block";
-                this.refs.loader.hide();
-                this.refs.loader1.hide();
-                this.refs.loader2.hide();
-                //check proficiency level from local stoage;
-                if(_mm.getStorage('classInfo').scores.proficient.count != 0){
-                    this.setState({
-                        proficientLevel: 'p',
-                        scores : _mm.getStorage('classInfo').scores.proficient.users.scores
-                    })
-                }
-
-                if(_mm.getStorage('classInfo').scores.almostProficient.count != 0){
-                    this.setState({
-                        proficientLevel: 'ap',
-                        scores : _mm.getStorage('classInfo').scores.almostProficient.users.scores
-                    })
-                }
-
-                if(_mm.getStorage('classInfo').scores.notProficient.count != 0){
-                    this.setState({
-                        proficientLevel: 'np',
-                        scores : _mm.getStorage('classInfo').scores.notProficient.users.scores
-                    })
-                }
-            }, (errMsg) => {
-                _mm.errorTips(errMsg);
-
-            });
-        
         }
     }
 
     // render page
     render(){
         const checkRole = this.state.role;
+
         let renderer;
         
-        
         if(checkRole == '1'){
-        renderer =   <div className="row" style={{marginTop:"45px"}}>
+        renderer =   (<div className="row" style={{marginTop:"45px"}}>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
                 <div className="card-header" style={{backgroundColor:"#02B385"}}>
                     <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
@@ -192,14 +161,13 @@ class ClassDetail extends React.Component{
             </div>
             
         </div>
-        ;
+        );
        
 
         //student page
-        }else{
-        
-    
-            
+        }
+       else{     
+             
         renderer = 
         <div>
        
@@ -218,7 +186,9 @@ class ClassDetail extends React.Component{
         }
         </div>
         ;
+
         }
+    
         
         return (
             <div id="page-wrapper">
