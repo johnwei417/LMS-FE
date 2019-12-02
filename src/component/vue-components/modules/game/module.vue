@@ -22,7 +22,6 @@ import pizza from './src/pizza.js'
         }
     },
     created () {
-        
     },
     methods: {
     }

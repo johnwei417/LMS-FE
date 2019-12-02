@@ -3,9 +3,6 @@ import MUtil        from 'util/mm.jsx';
 import { VueInReact } from 'vuera';
 
 const _mm           = new MUtil();
-
-
-import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 import Module from 'component/vue-components/modules/game/module.vue';
 
