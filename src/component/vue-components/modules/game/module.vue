@@ -18,12 +18,27 @@ import pizza from './src/pizza.js'
   export default {
     data () {
         return {
-          current: false
+          current: false,
+          account: JSON.parse(window.localStorage.getItem('userInfo'))
         }
     },
     created () {
     },
+    mounted () {
+      this.updateStatus()
+    },
     methods: {
+      updateStatus () {
+        // update status to in progress
+        axios.put(`https://laravel-lsm.herokuapp.com/api/v1/${this.account.id}/tasks/2`, {
+          headers: {
+            'Authorization': `Bearer ${this.account.api_token}`,
+            'Content-type': 'application/json'
+          }
+        }).then(response => {
+          console.log(response.data.code)
+        })
+      }
     }
   }
 </script>
