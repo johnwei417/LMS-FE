@@ -26,3 +26,34 @@
         }
     }
 }
+.success {
+    background-color: #01CF85;
+    color: white;
+    a {
+        color: white;
+    }
+}
+
+.warning {
+    background-color: #FFD800;
+    color: white;
+    a {
+        color: white;
+    }
+}
+
+.alert {
+    background-color: #FE4C4C;
+    color: white;
+    a {
+        color: white;
+    }
+}
+
+.hidden {
+    display: 'none'
+}
+
+.show {
+    display: 'block'
+}

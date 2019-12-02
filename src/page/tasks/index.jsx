@@ -9,6 +9,7 @@ const _class         = new Class();
 import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
 import warning from 'tiny-warning';
+import PreLoader from 'component/pre-loader/index.jsx';
 
 class Task extends React.Component{
     constructor(props){
@@ -46,6 +47,7 @@ class Task extends React.Component{
     }
 
     loadBanner(){
+        this.refs.loader.black();
         let studentInfo = {};
         studentInfo.api_token = this.state.api_token;
         studentInfo.userID = this.state.userID;
@@ -53,6 +55,7 @@ class Task extends React.Component{
         //then store them into local storage
         _class.getTasks(studentInfo).then((res)=>{
             _mm.setStorage('bannerInfo', res.tasks.details);
+            this.refs.loader.hide();
             this.setState({
                 tasks: res.tasks.details
           });    
@@ -78,7 +81,11 @@ class Task extends React.Component{
             {
                 this.state.tasks.map((task, index)=>{
                     return (
-                    <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}> <a href= {`${task.status == '2'? '/records':''}`} >{task.user_details.name}</a></div>
+                        <a href= {`${task.status == '2'? `/records/${task.score_id}`:'#'}`} >
+                            <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                                {task.user_details.name}
+                            </div>
+                        </a>
                     );
     
                 })
@@ -98,7 +105,11 @@ class Task extends React.Component{
         {
             this.state.tasks.map((task, index)=>{
                 return (
-                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'bg-warning': 'bg-success'} text-white`}> <a href= {task.url} >{task.name}</a></div>
+                    <a href= {`${task.url}`} >
+                        <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                            {task.name}
+                        </div>
+                    </a>
                 );
 
             })
@@ -111,6 +122,7 @@ class Task extends React.Component{
             <div id="page-wrapper">
                
                 <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Tasks</h1>
+                <PreLoader display="none" ref="loader" size=""></PreLoader>
                {renderer}
     
             </div>
