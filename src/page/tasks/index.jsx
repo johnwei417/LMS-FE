@@ -74,16 +74,17 @@ class Task extends React.Component{
         
         
         if(checkRole == '1'){
+            let tasks = this.state.tasks
             renderer = 
             <div>
            
     
             {
-                this.state.tasks.map((task, index)=>{
+                tasks.sort((a, b) => {return (a.user_details.name >= b.user_details.name)}).map((task, index)=> {
                     return (
-                        <a href= {`${task.status == '2'? `/records/${task.score_id}`:'#'}`} >
-                            <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
-                                {task.user_details.name}
+                        <a href= {`${task.status == '2'? `/records/${task.score_id}`:'#'}`} key ={index}>
+                            <div className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                                {task.user_details.name + ' - ' + task.task_details.name}
                             </div>
                         </a>
                     );
