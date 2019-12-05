@@ -14,6 +14,7 @@
 <script>
 import phaser from './src/phaser.min.js'
 import pizza from './src/pizza.js'
+import axios from 'axios'
 
   export default {
     data () {
@@ -30,7 +31,7 @@ import pizza from './src/pizza.js'
     methods: {
       updateStatus () {
         // update status to in progress
-        axios.put(`https://laravel-lsm.herokuapp.com/api/v1/${this.account.id}/tasks/2`, {
+        axios.put(`https://laravel-lsm.herokuapp.com/api/v1/${this.account.id}/tasks/3`, "", {
           headers: {
             'Authorization': `Bearer ${this.account.api_token}`,
             'Content-type': 'application/json'

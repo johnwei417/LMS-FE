@@ -45,7 +45,7 @@ class ClassDetail extends React.Component{
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
-        window.location.href = '/login';
+            window.location.href = '/login';
         }
     }
 
@@ -66,6 +66,11 @@ class ClassDetail extends React.Component{
         });
     }
        
+    }
+    
+    toModule(e, link) {
+        e.preventDefault();
+        window.location.href = '/'+link;
     }
 
     loadClassDetail(){
@@ -175,7 +180,7 @@ class ClassDetail extends React.Component{
         {
             this.state.tasks.map((task, index)=>{
                 return (
-                    <a href= {`${task.url}`} >
+                    <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
                         {task.status == '2'? '':
                         <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
                             {task.name}
