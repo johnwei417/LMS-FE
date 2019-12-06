@@ -170,30 +170,24 @@ class ClassDetail extends React.Component{
        
 
         //student page
-        }
-       else{     
-             
-        renderer = 
-        <div>
-       
-
-        {
-            this.state.tasks.map((task, index)=>{
-                return (
-                    <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
-                        {task.status == '2'? '':
-                        <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
-                            {task.name}
-                        </div>
-                        }
-                    </a>
-                );
-
-            })
-        }
-       
+        } else {     
+             if ( this.state.userID  == '4') {
+                renderer = <div>
+                {
+                    this.state.tasks.map((task, index)=>{
+                        return (
+                            <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
+                                {task.status == '2'? '':
+                                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                                    {task.name}
+                                </div>
+                                }
+                            </a>
+                        );
         
-         <table className="table table-bordered">
+                    })
+                }
+                <table className="table table-bordered">
                 <thead>
                 <tr>
                     <th>
@@ -210,43 +204,75 @@ class ClassDetail extends React.Component{
                 </thead>
                 
                 <tbody>
-            {
-                this.state.userID == '4'? 
+                    <tr>
+                        <td>Sally Rogers</td>
+                        <td scope="row" className="p-3 mb-2 bg-success text-dark">
+                            <div className="form-check">
+                        
+                            <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
+                            </div>
+                        </td>
+                        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" 
+                                    name = "selected"
+                                    value = '4'
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/>
+                            <label className="form-check-label" htmlFor="tableMaterialCheck3">70</label>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
+                            <div className="form-check">
+                            <input type="checkbox" className="form-check-input" 
+                                    name = "selected"
+                                    value = '4'
+                                    onKeyUp={e => this.onInputKeyUp(e)}
+                                    onChange={e => this.onInputChange(e)}/>
+                            <label className="form-check-label" htmlFor="tableMaterialCheck3">60.25</label>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                </table>
+                </div>        
+             } else if (this.state.userID  == '5') {
+                renderer = <div>
+                {
+                    this.state.tasks.map((task, index)=>{
+                        return (
+                            <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
+                                {task.status == '2'? '':
+                                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                                    {task.name}
+                                </div>
+                                }
+                            </a>
+                        );
+        
+                    })
+                }
+                <table className="table table-bordered">
+                <thead>
                 <tr>
-                    <td>Sally Rogers</td>
-                    <td scope="row" className="p-3 mb-2 bg-success text-dark">
-                        <div className="form-check">
-                      
-                        <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
-                        </div>
-                    </td>
-                    <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
-                        <div className="form-check">
-                        <input type="checkbox" className="form-check-input" 
-                                name = "selected"
-                                value = '4'
-                                onKeyUp={e => this.onInputKeyUp(e)}
-                                onChange={e => this.onInputChange(e)}/>
-                        <label className="form-check-label" htmlFor="tableMaterialCheck3">70</label>
-                        </div>
-                    </td>
-                    <td></td>
-                    <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
-                        <div className="form-check">
-                        <input type="checkbox" className="form-check-input" 
-                                name = "selected"
-                                value = '4'
-                                onKeyUp={e => this.onInputKeyUp(e)}
-                                onChange={e => this.onInputChange(e)}/>
-                        <label className="form-check-label" htmlFor="tableMaterialCheck3">60.25</label>
-                        </div>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    </tr> : 
-
-                        <tr>
+                    <th>
+                    Student Name
+                    </th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                </tr>
+                </thead>
+                <tbody>
+                            <tr>
                                 <td>Burt Hagard</td>
                                 <td scope="row" className="p-3 mb-2 bg-warning text-dark">
                                     <div className="form-check">
@@ -275,21 +301,47 @@ class ClassDetail extends React.Component{
                                 <td></td>
                                 <td></td>
                             
-                                </tr>
-
-
-                    
-       }
+                            </tr>
                 </tbody>
                 </table>
-    
-        </div>
+                </div>
+             } else {
+                renderer = <div>
+                {
+                    this.state.tasks.map((task, index)=>{
+                        return (
+                            <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
+                                {task.status == '2'? '':
+                                <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
+                                    {task.name}
+                                </div>
+                                }
+                            </a>
+                        );
         
-        ;
+                    })
+                }
+                <table className="table table-bordered">
+                <thead>
+                <tr>
+                    <th>
+                    Student Name
+                    </th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>C</th>
+                    <th>D</th>
+                    <th>E</th>
+                    <th>F</th>
+                    <th>G</th>
+                </tr>
+                </thead>
+                </table>
+                </div>
+             }
 
         }
     
-        
         return (
             <div id="page-wrapper">
                
