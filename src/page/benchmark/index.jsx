@@ -200,7 +200,7 @@ class Benchmark extends React.Component{
         </td>
         <td></td>
         <td></td>
-        <td></td>
+       
         </tr>
 
         <tr>
@@ -230,7 +230,7 @@ class Benchmark extends React.Component{
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+       
        
         </tr>
 
@@ -251,7 +251,7 @@ class Benchmark extends React.Component{
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+        
         </tr>
 
         <tr>
@@ -271,7 +271,7 @@ class Benchmark extends React.Component{
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+       
         </tr>
         </tbody>);
         }
@@ -297,7 +297,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 </tr>
         
                 <tr>
@@ -317,7 +317,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 </tr>
         
                 <tr>
@@ -336,7 +336,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 <td></td>
                 </tr>
         
@@ -357,7 +357,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 </tr>
                 </tbody>);
 
@@ -367,7 +367,7 @@ class Benchmark extends React.Component{
             <tbody>
                 <tr>
                 <td>Alaya Hunter</td>
-                <td scope="row" className="p-3 mb-2 bg-danger text-white">
+                <td scope="row" className="p-3 mb-2 bg-danger text-white small-width">
                     <div className="form-check">
                     <input type="checkbox" className="form-check-input" 
                             name = "selected"
@@ -377,7 +377,7 @@ class Benchmark extends React.Component{
                     <label className="form-check-label" htmlFor="tableMaterialCheck3">10</label>
                     </div>
                 </td>
-                <td scope="row" className="p-3 mb-2 bg-danger text-white">
+                <td scope="row" className="p-3 mb-2 bg-danger text-white ">
                     <div className="form-check">
                     <input type="checkbox" className="form-check-input" 
                             name = "selected"
@@ -391,7 +391,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 </tr>
         
                 <tr>
@@ -411,7 +411,7 @@ class Benchmark extends React.Component{
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+               
                 </tr>
                 </tbody>);
 
@@ -444,13 +444,13 @@ class Benchmark extends React.Component{
                     <th>
                     Student Name
                     </th>
-                    <th>A</th>
-                    <th>B</th>
-                    <th>C</th>
-                    <th>D</th>
-                    <th>E</th>
-                    <th>F</th>
-                    <th>G</th>
+                    <th title="Write and interpret numerical expressions.">A</th>
+                    <th title="Analyze patterns and relationships.">B</th>
+                    <th title="Understand the place value system.">C</th>
+                    <th title="Perform operations with multi‐digit whole numbers and with decimals to hundredths.">D</th>
+                    <th title="Use equivalent fractions as a strategy to add and subtract fractions.">E</th>
+                    <th title="Apply and extend previous understandings of multiplication and division to multiply and divide fractions.">F</th>
+                   
                 </tr>
                 </thead>
                 {renderer}

@@ -190,16 +190,16 @@ class ClassDetail extends React.Component{
                 <table className="table table-bordered">
                 <thead>
                 <tr>
-                    <th>
+                <th>
                     Student Name
                     </th>
-                    <th>A</th>
-                    <th>B</th>
-                    <th>C</th>
-                    <th>D</th>
-                    <th>E</th>
-                    <th>F</th>
-                    <th>G</th>
+                    <th title="Write and interpret numerical expressions.">A</th>
+                    <th title="Analyze patterns and relationships.">B</th>
+                    <th title="Understand the place value system.">C</th>
+                    <th title="Perform operations with multi‐digit whole numbers and with decimals to hundredths.">D</th>
+                    <th title="Use equivalent fractions as a strategy to add and subtract fractions.">E</th>
+                    <th title="Apply and extend previous understandings of multiplication and division to multiply and divide fractions.">F</th>
+                   
                 </tr>
                 </thead>
                 
@@ -234,7 +234,7 @@ class ClassDetail extends React.Component{
                             </div>
                         </td>
                         <td></td>
-                        <td></td>
+                        
                         <td></td>
                     </tr>
                 </tbody>
@@ -257,18 +257,19 @@ class ClassDetail extends React.Component{
                     })
                 }
                 <table className="table table-bordered">
+
                 <thead>
                 <tr>
-                    <th>
+                <th>
                     Student Name
                     </th>
-                    <th>A</th>
-                    <th>B</th>
-                    <th>C</th>
-                    <th>D</th>
-                    <th>E</th>
-                    <th>F</th>
-                    <th>G</th>
+                    <th title="Write and interpret numerical expressions.">A</th>
+                    <th title="Analyze patterns and relationships.">B</th>
+                    <th title="Understand the place value system.">C</th>
+                    <th title="Perform operations with multi‐digit whole numbers and with decimals to hundredths.">D</th>
+                    <th title="Use equivalent fractions as a strategy to add and subtract fractions.">E</th>
+                    <th title="Apply and extend previous understandings of multiplication and division to multiply and divide fractions.">F</th>
+                   
                 </tr>
                 </thead>
                 <tbody>
@@ -298,7 +299,7 @@ class ClassDetail extends React.Component{
 
                                 <td></td>
                                 <td></td>
-                                <td></td>
+                               
                                 <td></td>
                             
                             </tr>
@@ -324,16 +325,16 @@ class ClassDetail extends React.Component{
                 <table className="table table-bordered">
                 <thead>
                 <tr>
-                    <th>
+                <th>
                     Student Name
                     </th>
-                    <th>A</th>
-                    <th>B</th>
-                    <th>C</th>
-                    <th>D</th>
-                    <th>E</th>
-                    <th>F</th>
-                    <th>G</th>
+                    <th title="Write and interpret numerical expressions.">A</th>
+                    <th title="Analyze patterns and relationships.">B</th>
+                    <th title="Understand the place value system.">C</th>
+                    <th title="Perform operations with multi‐digit whole numbers and with decimals to hundredths.">D</th>
+                    <th title="Use equivalent fractions as a strategy to add and subtract fractions.">E</th>
+                    <th title="Apply and extend previous understandings of multiplication and division to multiply and divide fractions.">F</th>
+                   
                 </tr>
                 </thead>
                 </table>

@@ -31,7 +31,12 @@
 }
 
 .table td, .table th {
+    table-layout:fixed;
     vertical-align: middle !important;
+}
+
+.small-width {
+    max-width: 10px;
 }
 
 td>.custom-control>.custom-control-input[type="checkbox"] 
