@@ -150,12 +150,7 @@ class Benchmark extends React.Component{
    
     render(){
         
-       const tasklist = this.state.taskList.map((task, index)=>{
-        
-        return (
-          <option key={index} name="taskID" value = {task.id}>{task.name}</option>
-          
-        )});
+    
 
         let listBody = this.state.list.map((target, index) => {
             return (
@@ -197,19 +192,6 @@ class Benchmark extends React.Component{
             <div id="page-wrapper">
                
                 <PageTitle title={`${this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}`} />
-                <p>Select Module</p>
-                
-                <select value={this.state.taskID} 
-                onChange={this.handleChange}>
-                    <option>Pick one </option>
-                {
-                  tasklist
-                }
-                 
-                </select>
-                
-                <button className="btn btn-lg btn-primary btn-block"
-                onClick={e => {this.onSubmit(e)}}>Assign Module</button>
 
                 <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
                     {listBody}

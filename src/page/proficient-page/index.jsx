@@ -11,7 +11,7 @@ import './index.scss'
 import warning from 'tiny-warning';
 import PreLoader from 'component/pre-loader/index.jsx';
 
-class ClassDetail extends React.Component{
+class ProficientPage extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -33,7 +33,7 @@ class ClassDetail extends React.Component{
     }
 
     componentDidMount(){
-        this.loadBanner();
+       
         this.loadClassDetail();
         this.checkLogin();
     }
@@ -49,24 +49,6 @@ class ClassDetail extends React.Component{
         }
     }
 
-    loadBanner(){
-        if(this.state.role == '0'){
-        let studentInfo = {};
-        studentInfo.api_token = this.state.api_token;
-        studentInfo.userID = this.state.userID;
-        //call api to get data from backend,
-        //then store them into local storage
-        _class.getTasks(studentInfo).then((res)=>{
-            _mm.setStorage('bannerInfo', res.tasks.details);
-            this.setState({
-                tasks: res.tasks.details
-          });    
-        }, (errMsg)=>{
-            _mm.errorTips(errMsg);
-        });
-    }
-       
-    }
     
     toModule(e, link) {
         e.preventDefault();
@@ -124,7 +106,8 @@ class ClassDetail extends React.Component{
         let renderer;
         
         if(checkRole == '1'){
-        renderer =   (<div className="row" style={{marginTop:"45px"}}>
+        renderer =   (
+        <div className="row" style={{marginTop:"45px"}}>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
                 <div className="card-header" style={{backgroundColor:"#02B385"}}>
                     <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
@@ -172,6 +155,7 @@ class ClassDetail extends React.Component{
         //student page
         } else{
             
+            
         }
     
     
@@ -188,4 +172,4 @@ class ClassDetail extends React.Component{
  }
 }
 
-export default ClassDetail;
+export default ProficientPage;

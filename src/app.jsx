@@ -34,7 +34,6 @@ class App extends React.Component{
                     <Route exact path="/tasks/:userID" component={TaskDetail}/>
                     <Route exact path="/records/:recordID" component={Record}/>
                     <Route exact path="/classroom/:classID/:pLevel" component={Benchmark}/>
-                    
                     <Route exact path="/classroom/:classID/:pLevel/:targetID" component={TargetDetail}/>
                     <Redirect exact from="/user" to="/user/index"/>
                     <Route component={ErrorPage} />
