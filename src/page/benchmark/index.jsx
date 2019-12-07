@@ -38,7 +38,7 @@ class Benchmark extends React.Component{
     }
     componentDidMount(){
         this.checkLogin();
-        //this.loadClassList();
+        this.loadClassList();
         this.loadTaskList();
     
     }
@@ -50,7 +50,6 @@ class Benchmark extends React.Component{
         let Info = {};
         Info.api_token = this.state.api_token;
 
-       
         _class.getTaskList(Info).then(res => {
             this.setState({
                 taskList : res.tasks,
@@ -72,8 +71,8 @@ class Benchmark extends React.Component{
        
         _class.getPList(UserInfo).then(res => {
             this.setState({
-                list : res.details,
-                count: res.target_count
+                list : res.targets.modules,
+                // /count: res.target_count
             });
         }, errMsg =>{
             this.setState({ 
@@ -158,262 +157,35 @@ class Benchmark extends React.Component{
           
         )});
 
+        let listBody = this.state.list.map((target, index) => {
+            return (
+                <tr key={index}>
+                    
+                    <td> <Link to={`/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`} className="color-box blue">   {target.name} </Link></td>
+                   
+                    <td>{target.description}</td>
+                    <td>{target.proficient}</td>
+                    <td>{target.almost_proficient}</td>
+                    <td>{target.non_proficient}</td>
+                </tr>
+            );
+        });
+
     let renderer;
     console.log(this.state.pLevel);
 
     if(this.state.classID == '1'){
 
         if( this.state.pLevel == 'p'){
-        renderer = ( <tbody>
-        <tr>
-        <td>Sally Rogers</td>
-        <td scope="row" className="p-3 mb-2 bg-success text-dark">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '4'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">80.25</label>
-            </div>
-        </td>
-        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '4'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">70</label>
-            </div>
-        </td>
-        <td></td>
-        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '4'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">60.25</label>
-            </div>
-        </td>
-        <td></td>
-        <td></td>
-       
-        </tr>
-
-        <tr>
-        <td>Burt Hagard</td>
-        <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '5'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">75.5</label>
-            </div>
-        </td>
-        <td></td>
-        <td scope="row" className="p-3 mb-2 bg-warning text-dark ">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '5'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">50.65</label>
-            </div>
-        </td>
-
-        <td></td>
-        <td></td>
-        <td></td>
-       
-       
-        </tr>
-
-        <tr>
-        <td>Josiah Nigel</td>
-        <td scope="row" className="p-3 mb-2 bg-success text-dark">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '6'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">98</label>
-            </div>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        
-        </tr>
-
-        <tr>
-        <td>Shahbaaz Singb</td>
-        <td></td>
-        <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-            <div className="form-check">
-            <input type="checkbox" className="form-check-input" 
-                    name = "selected"
-                    value = '7'
-                    onKeyUp={e => this.onInputKeyUp(e)}
-                    onChange={e => this.onInputChange(e)}/>
-            <label className="form-check-label" htmlFor="tableMaterialCheck3">75.3</label>
-            </div>
-        </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-       
-        </tr>
-        </tbody>);
+        renderer = "";
         }
 
 
         if(this.state.pLevel == 'ap'){
-            renderer = ( 
-            <tbody>
-                <tr>
-                <td>Harry Styles</td>
-                <td></td>
-                <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '8'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">50.25</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                </tr>
-        
-                <tr>
-                <td>Channing Tatum</td>
-                <td></td>
-                <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '9'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">65.75</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                </tr>
-        
-                <tr>
-                <td>Ian Lampert</td>
-                <td></td>
-                <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '11'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">40</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                <td></td>
-                </tr>
-        
-                <tr>
-                <td>Jenny Plexa.</td>
-                <td></td>
-                <td scope="row" className="p-3 mb-2 bg-warning text-dark">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '13'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">66.75</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                </tr>
-                </tbody>);
-
+            renderer = "";
         }
         if(this.state.pLevel == 'np'){
-            renderer = ( 
-            <tbody>
-                <tr>
-                <td>Alaya Hunter</td>
-                <td scope="row" className="p-3 mb-2 bg-danger text-white small-width">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '12'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">10</label>
-                    </div>
-                </td>
-                <td scope="row" className="p-3 mb-2 bg-danger text-white ">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '12'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">20.5</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                </tr>
-        
-                <tr>
-                <td>Ryan Reynolds</td>
-                <td scope="row" className="p-3 mb-2 bg-danger text-white">
-                    <div className="form-check">
-                    <input type="checkbox" className="form-check-input" 
-                            name = "selected"
-                            value = '10'
-                            onKeyUp={e => this.onInputKeyUp(e)}
-                            onChange={e => this.onInputChange(e)}/>
-                    <label className="form-check-label" htmlFor="tableMaterialCheck3">32.5</label>
-                    </div>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
-                </tr>
-                </tbody>);
+            renderer = "";
 
         }
         }else{
@@ -421,6 +193,7 @@ class Benchmark extends React.Component{
         }
         console.log(this.state.taskID);
         return (
+            
             <div id="page-wrapper">
                
                 <PageTitle title={`${this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}`} />
@@ -438,23 +211,9 @@ class Benchmark extends React.Component{
                 <button className="btn btn-lg btn-primary btn-block"
                 onClick={e => {this.onSubmit(e)}}>Assign Module</button>
 
-                <table className="table table-bordered">
-                <thead>
-                <tr>
-                    <th>
-                    Student Name
-                    </th>
-                    <th title="Write and interpret numerical expressions.">A</th>
-                    <th title="Analyze patterns and relationships.">B</th>
-                    <th title="Understand the place value system.">C</th>
-                    <th title="Perform operations with multi‐digit whole numbers and with decimals to hundredths.">D</th>
-                    <th title="Use equivalent fractions as a strategy to add and subtract fractions.">E</th>
-                    <th title="Apply and extend previous understandings of multiplication and division to multiply and divide fractions.">F</th>
-                   
-                </tr>
-                </thead>
-                {renderer}
-                </table>
+                <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
+                    {listBody}
+                </TableList>
               
             </div>
         );

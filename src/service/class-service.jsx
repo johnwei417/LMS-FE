@@ -35,14 +35,6 @@ class Class{
         })
     }
 
-    getTasks(param){
-        return _mm.request({
-            api_token: param.api_token,
-            type    : 'get',
-            url     : 'https://laravel-lsm.herokuapp.com/api/v1/' + param.userID + '/tasks',
-
-        })
-    }
 
     assignTask(param, param1){
         return _mm.request({
@@ -57,11 +49,27 @@ class Class{
         return _mm.request({
             api_token: param.api_token,
             type: 'get',
-            url: 'https://laravel-lsm.herokuapp.com/api/v1/tasks',
+            url: 'https://laravel-lsm.herokuapp.com/api/v1/tasks/'+param.targetID,
         });
     }
+
+    getStudentsInTaskPage(param){
+        return _mm.request({
+            api_token: param.api_token,
+            type    : 'get',
+            url     : 'https://laravel-lsm.herokuapp.com/api/v1/' + param.userID + '/tasks',
+
+        })
+    }
    
-    
+    getStudentInTarget(param){
+        return _mm.request({
+            api_token: param.api_token,
+            type    : 'get',
+            url     : 'https://laravel-lsm.herokuapp.com/api/v1/' + param.userID + '/classroom/' + param.classID +'/'+param.pLevel +'/'+param.targetID,
+
+        })
+    }
 }
 
 export default Class;

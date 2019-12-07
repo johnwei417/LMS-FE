@@ -1,44 +1,41 @@
 import React        from 'react';
 import { Link }     from 'react-router-dom';
 import Class         from 'service/class-service.jsx';
+
 import MUtil        from 'util/mm.jsx'
+
 const _mm           = new MUtil();
 const _class         = new Class();
 
 
 import PageTitle    from 'component/page-title/index.jsx';
-import './index.scss'
-import warning from 'tiny-warning';
+import './index.scss';
 import PreLoader from 'component/pre-loader/index.jsx';
 
-class Task extends React.Component{
+
+class TargetDetail extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            userID:              _mm.getStorage('userInfo').id,
-            username:            _mm.getStorage('userInfo').name,
-            classID:             this.props.match.params.classID,
-            api_token:           _mm.getStorage('userInfo').api_token,
-            role:                _mm.getStorage('userInfo').role,
-            p_count:             0,
-            ap_count:            0,
-            np_count:            0,
-            proficientLevel:     '',
-            moduleInfo:          [],
+            list            : [],
+            userID:         _mm.getStorage('userInfo').id,
+            api_token:      _mm.getStorage('userInfo').api_token,
+            targetID:       this.props.match.params.targetID,
+            pLevel:         this.props.match.params.pLevel,
+            classID:        this.props.match.params.classID,
+            role:           _mm.getStorage('userInfo').role,
+            selected:       [],
+            taskID:          0,
+            taskList:       []
 
-            //info student page need
-            //Task info (tasks assigned by teacher)
-            tasks:              []        
-        }
+        };
     }
-
     componentDidMount(){
-
+      
         this.checkLogin();
-        this.loadBanner();
+        this.loadTasks();
        
     }
-  
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
@@ -46,91 +43,67 @@ class Task extends React.Component{
         }
     }
 
-    loadBanner(){
-        this.refs.loader.black();
-        let studentInfo = {};
-        studentInfo.api_token = this.state.api_token;
-        studentInfo.userID = this.state.userID;
-        //call api to get data from backend,
-        //then store them into local storage
-        _class.getTasks(studentInfo).then((res)=>{
-            _mm.setStorage('bannerInfo', res.tasks.details);
-            this.refs.loader.hide();
-            this.setState({
-                tasks: res.tasks.details
-          });    
-        }, (errMsg)=>{
-            _mm.errorTips(errMsg);
-        })
-       
+
+    getTitle(){
+        if(this.state.pLevel = 'p'){
+            this.state.title = 'Proficient';
+        }
+        if(this.state.pLevel = 'ap'){
+            this.state.title = 'Almost Proficient';
+        }
+        if(this.state.pLevel = 'np'){
+            this.state.title = 'Not Proficient';
+        }
     }
 
-
-
-    // render page
-    render(){
-        const checkRole = this.state.role;
-        let renderer;
-        
-        
-        if(checkRole == '1'){
-            let tasks = this.state.tasks
-            renderer = 
-            <div>
-           
     
-            {
-                tasks.sort((a, b) => {return (a.user_details.name >= b.user_details.name)}).map((task, index)=> {
-                    return (
-                        <a href= {`${task.status == '2'? `/records/${task.score_id}`:'#'}`} key ={index}>
-                            <div className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
-                                {task.user_details.name + ' - ' + task.task_details.name}
-                            </div>
-                        </a>
-                    );
-    
-                })
-            }
-            </div>
-            ;
-
-        //student page
-        }else{
-        
-    
-            
-        renderer = 
-        <div>
+    loadTasks(){
+        let UserInfo = {};
+        UserInfo.api_token = this.state.api_token;
+        UserInfo.userID = this.state.userID;
        
 
-        {
-            this.state.tasks.map((task, index)=>{
-                return (
-                    <a href= {`${task.url}`} >
-                        <div key ={index} className= {`p-3 mb-2 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px"}}>
-                            {task.name}
-                        </div>
-                    </a>
-                );
-
+        _class.getStudentsInTaskPage(UserInfo).then(res => {
+            this.setState({list : res.tasks.students});
+        }, errMsg =>{
+            this.setState({ 
+                list : []
             })
-        }
-        </div>
-        ;
-        }
+            _mm.errorTips(errMsg);
+           
+        });
+    }
+
+    render(){
+       
+       
+                return (
+                    <div id="page-wrapper" style={{marginTop:"0px"}}>
+                        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students</h1>
+                        <PreLoader display="none" ref="loader" size=""></PreLoader>
+                        
+                        <div className="row">
+                            { 
+                                this.state.list.map((student, index) => {
+                                    return (
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                            </div>
+                                            <Link to={`/tasks/${student.user_id}`} className="text-muted" style={{textDecoration:"none"}}>
+                                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{student.user_details.name}</p> 
+                                                
+                                                </div>
+                                           </Link>
+                                        </div>
+                                    );
+                                })
+                            }
+                        </div>
+                    </div>
         
-        return (
-            <div id="page-wrapper">
-               
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Tasks</h1>
-                <PreLoader display="none" ref="loader" size=""></PreLoader>
-               {renderer}
-    
-            </div>
-        );
-            
-    
- }
+                );
+            }
 }
 
-export default Task;
+export default TargetDetail;
