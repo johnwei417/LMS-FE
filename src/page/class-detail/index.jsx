@@ -23,36 +23,55 @@ class ClassDetail extends React.Component{
             p_count:             0,
             ap_count:            0,
             np_count:            0,
-          
+
             proficientLevel:     '',
             moduleInfo:          [],
 
+            grade:               '',
+            subject:             'Math',
+
             //info student page need
             //Task info (tasks assigned by teacher)
-            
-            list:               [],     
+
+            list:               [],
         }
     }
 
     componentDidMount(){
+        this.loadClassDetail();
         this.checkLogin();
         this.loadTaskAssigned();
         this.checkProficiencyLevel();
-       
-       
+
+
     }
 
     componentWillmount(){
-        this.loadClassDetail();
+
     }
-  
+
+    loadClassDetail() {
+        let classInfo = {};
+        classInfo.api_token = this.state.api_token;
+        classInfo.userID = this.state.userID;
+        classInfo.classID = this.state.classID;
+        _class.getClassDetails(classInfo).then((res)=>{
+            this.setState({
+                grade: res.classroom.details.grade + ' Grade',
+                subject: res.classroom.details.subject
+            })
+        }, (errMsg) => {
+            _mm.errorTips(errMsg);
+        });
+    }
+
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
             window.location.href = '/login';
         }
     }
-    
+
     toModule(e, link) {
         e.preventDefault();
         window.location.href = '/'+link;
@@ -64,10 +83,10 @@ class ClassDetail extends React.Component{
             classInfo.api_token = this.state.api_token;
             classInfo.userID = this.state.userID;
             classInfo.classID = this.state.classID;
-            
+
 
             _class.getClassDetails(classInfo).then((res)=>{
-              
+
                 _mm.setStorage('classInfo', res.classroom);
                 this.setState({
                     p_count:             res.classroom.scores.proficient.count,
@@ -78,20 +97,20 @@ class ClassDetail extends React.Component{
                 if(this.state.p_count == 1){
                     this.setState({proficientLevel:  'p'})
                 }
-               
+
                 if(this.state.np_count == 1){
                  this.setState({proficientLevel:  'np'})
                  }
-         
+
                  if(this.state.ap_count == 1){
                  this.setState({proficientLevel:  'ap'})
                  }
-     
+
             }, (errMsg) => {
                 _mm.errorTips(errMsg);
             });
 
-           
+
         }
     }
 
@@ -99,15 +118,15 @@ class ClassDetail extends React.Component{
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
-      
+
         _class.getStudentsInTaskPage(UserInfo).then(res => {
             this.setState({list : res.tasks.details});
         }, errMsg =>{
-            this.setState({ 
+            this.setState({
                 list : []
             })
             _mm.errorTips(errMsg);
-           
+
         });
     }
 
@@ -116,7 +135,7 @@ class ClassDetail extends React.Component{
         const checkRole = this.state.role;
 
         let renderer;
-        
+
         if(checkRole == '1'){
         renderer =   (<div className="row" style={{marginTop:"45px"}}>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
@@ -126,9 +145,8 @@ class ClassDetail extends React.Component{
                 <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
                     <div className="card-body" style={{backgroundColor:"#01CF85"}}>
                          <PreLoader display="none" ref="loader" size=""></PreLoader>
-                         <p className="display-5 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count1">Proficiency</p>
-                        
-                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px"}}>More Details</a>
+
+                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px",  width:"100%"}}>More Details</a>
                     </div>
                 </Link>
             </div>
@@ -139,22 +157,21 @@ class ClassDetail extends React.Component{
                 <Link to={`/tasks`} className="text-muted" style={{textDecoration:"none"}}>
                     <div className="card-body" style={{backgroundColor:"#FFD800"}}>
                          <PreLoader display="none" ref="loader1" size=""></PreLoader>
-                         <p className="display-5 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count2">tasks</p>
-                        
-                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px"}}>More Details</a>
+
+                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
                     </div>
                 </Link>
             </div>
-           
-            
+
+
         </div>
         );
-       
+
 
         //student page
-        } else {     
+        } else {
 
-                renderer = 
+                renderer =
                 <div>
                 {
                     this.state.list.map((task, index)=>{
@@ -167,10 +184,10 @@ class ClassDetail extends React.Component{
                                 }
                             </a>
                         );
-        
+
                     })
                 }
-               
+
                <div className="row" style={{marginTop:"45px"}}>
                         <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
                             <div className="card-header" style={{backgroundColor:"#02B385"}}>
@@ -180,7 +197,7 @@ class ClassDetail extends React.Component{
                                 <div className="card-body" style={{backgroundColor:"#01CF85"}}>
                                     <PreLoader display="none" ref="loader" size=""></PreLoader>
                                     <p className="display-5 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count1">Proficiency</p>
-                                    
+
                                     <a href="#" className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px"}}>More Details</a>
                                 </div>
                             </Link>
@@ -193,29 +210,28 @@ class ClassDetail extends React.Component{
                                 <div className="card-body" style={{backgroundColor:"#FFD800"}}>
                                     <PreLoader display="none" ref="loader1" size=""></PreLoader>
                                     <p className="display-5 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count2">Tasks</p>
-                                    
+
                                     <a href="#" className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px"}}>More Details</a>
                                 </div>
                             </Link>
                         </div>
-                    
-                        
+
+
                     </div>
                 </div>
              }
 
-        
-    
+
+
         return (
             <div id="page-wrapper">
-               
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students Performance</h1>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.subject + ' - ' + this.state.grade}</h1>
                {renderer}
-              
+
             </div>
         );
-            
-    
+
+
  }
 }
 
