@@ -7,10 +7,8 @@ import TableList    from 'util/table-list/index.jsx';
 const _mm           = new MUtil();
 const _class         = new Class();
 
-
-
-import PageTitle    from 'component/page-title/index.jsx';
 import './index.scss'
+import PreLoader from 'component/pre-loader/index.jsx';
 
 
 
@@ -31,34 +29,19 @@ class Benchmark extends React.Component{
             selected:       [],
             taskID:          0,
             taskList:       []
-           
+
         };
         this.handleChange = this.handleChange.bind(this);
-       
+
     }
     componentDidMount(){
+        this.refs.loader.black();
         this.checkLogin();
         this.loadClassList();
-        this.loadTaskList();
-    
+
     }
     handleChange(event) {
         this.setState({taskID: event.target.value});
-    }
-
-    loadTaskList(){
-        let Info = {};
-        Info.api_token = this.state.api_token;
-
-        _class.getTaskList(Info).then(res => {
-            this.setState({
-                taskList : res.tasks,
-               
-            });
-        }, errMsg =>{
-            _mm.errorTips(errMsg);
-        });
-
     }
 
 
@@ -68,14 +51,15 @@ class Benchmark extends React.Component{
         UserInfo.userID = this.state.userID;
         UserInfo.classID = this.state.classID;
         UserInfo.pLevel = this.state.pLevel;
-       
+
         _class.getPList(UserInfo).then(res => {
             this.setState({
                 list : res.targets.modules,
                 // /count: res.target_count
             });
+            this.refs.loader.hide();
         }, errMsg =>{
-            this.setState({ 
+            this.setState({
                 list : []
             })
             _mm.errorTips(errMsg);
@@ -113,7 +97,7 @@ class Benchmark extends React.Component{
         });
     }
 
-       
+
         console.log(inputName);
     }
 
@@ -139,30 +123,32 @@ class Benchmark extends React.Component{
         console.log(data);
         _class.assignTask(loginInfo, JSON.stringify(data)).then((res)=>{
              _mm.successTips(res.message);
-        
+
         }, (errMsg) => {
             _mm.errorTips(errMsg.message);
         });
 
     }
 
-   
-   
+    goTo(e, link) {
+        e.preventDefault();
+        window.location.assign(link);
+    }
+
+
     render(){
-        
-    
+
+
      let listBody;
-    if(this.state.role== '1'){ 
+    if(this.state.role== '1'){
      listBody = this.state.list.map((target, index) => {
             return (
-                <tr key={index}>
-                    
-                    <td> <Link to={`/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`} className="color-box blue">   {target.name} </Link></td>
-                   
+                <tr key={index} onClick={e => {this.goTo(e, `/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`)}}>
+                    <td className="text-center">{target.name}</td>
                     <td>{target.description}</td>
-                    <td>{target.proficient}</td>
-                    <td>{target.almost_proficient}</td>
-                    <td>{target.non_proficient}</td>
+                    <td className="text-center">{target.proficient}</td>
+                    <td className="text-center">{target.almost_proficient}</td>
+                    <td className="text-center">{target.non_proficient}</td>
                 </tr>
             );
         });
@@ -171,51 +157,50 @@ class Benchmark extends React.Component{
         listBody = this.state.list.map((target, index) => {
             return (
                 <tr key={index}>
-                    
+
                     <td> {target.name} </td>
                     <td>{target.description}</td>
                 {
                 target.scores.map((score,index) => (
                 score.score == 0 ? "":
                    <td key={index}>{score.score}</td>
-                
+
                 ))
                 }
-                
-                    
+
+
                 </tr>
             );
         });
     }
 
-   
-        
+
+
     let renderer;
-   
+
     if(this.state.role == '1'){
-        renderer =   
+        renderer =
     <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
         {listBody}
     </TableList>;
     }else{
-        renderer =   
+        renderer =
     <TableList tableHeads={['Targets', 'Description', 'Scores']}>
         {listBody}
     </TableList>;
 
     }
 
-    
-        return (
-            
-            <div id="page-wrapper">
-               
-                <PageTitle title={`${this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}`} />
 
-                {renderer}
-              
+        return (
+            <div id="page-wrapper">
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}</h1>
+                <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
+                    <PreLoader display="none" ref="loader" size=""></PreLoader>
+                    {renderer}
+                </TableList>
             </div>
-            
+
         );
     }
 }

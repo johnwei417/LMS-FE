@@ -31,7 +31,7 @@ class Home extends React.Component{
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
-        window.location.href = '/login';
+            window.location.href = '/login';
         }
     }
 

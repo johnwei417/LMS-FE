@@ -26,7 +26,6 @@ class ClassDetail extends React.Component{
 
             proficientLevel:     '',
             moduleInfo:          [],
-
             grade:               '',
             subject:             'Math',
 
@@ -57,7 +56,7 @@ class ClassDetail extends React.Component{
         classInfo.classID = this.state.classID;
         _class.getClassDetails(classInfo).then((res)=>{
             this.setState({
-                grade: res.classroom.details.grade + ' Grade',
+                grade:  ' - ' + res.classroom.details.grade + ' Grade',
                 subject: res.classroom.details.subject
             })
         }, (errMsg) => {
@@ -225,9 +224,8 @@ class ClassDetail extends React.Component{
 
         return (
             <div id="page-wrapper">
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.subject + ' - ' + this.state.grade}</h1>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.subject + this.state.grade}</h1>
                {renderer}
-
             </div>
         );
 
