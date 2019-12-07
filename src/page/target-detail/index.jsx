@@ -171,9 +171,9 @@ class TargetDetail extends React.Component{
                             { 
                                 this.state.list.map((student, index) => {
                                     return (
-                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"10px"}}>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>
+                                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"26px"}}>
                                                         {student.users.name}
                                                         <input type="checkbox" 
                                                             name="selected"
@@ -182,7 +182,8 @@ class TargetDetail extends React.Component{
                                                             onKeyUp={e => this.onInputKeyUp(e)}
                                                             onChange={e => this.onInputChange(e)}
                                                             style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
-                                                    </p> 
+                                                    </p>
+                                                    <p>{student.score}</p> 
                                                 </div>
                                            
                                         </div>

@@ -181,11 +181,13 @@ class Benchmark extends React.Component{
     if(this.state.role == '1'){
         renderer =
     <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
+        <PreLoader display="none" ref="loader" size=""></PreLoader>
         {listBody}
     </TableList>;
-    }else{
+    } else {
         renderer =
     <TableList tableHeads={['Targets', 'Description', 'Scores']}>
+        <PreLoader display="none" ref="loader" size=""></PreLoader>
         {listBody}
     </TableList>;
 
@@ -195,10 +197,7 @@ class Benchmark extends React.Component{
         return (
             <div id="page-wrapper">
                 <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}</h1>
-                <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
-                    <PreLoader display="none" ref="loader" size=""></PreLoader>
-                    {renderer}
-                </TableList>
+                {renderer}
             </div>
 
         );
