@@ -27,10 +27,10 @@ class TargetDetail extends React.Component{
             selected:       [],
             taskID:          0,
             taskList:       []
-
         };
     }
     componentDidMount(){
+        this.refs.loader.black();
         this.loadStudentListInTarget();
         this.checkLogin();
     }
@@ -41,7 +41,7 @@ class TargetDetail extends React.Component{
         }
     }
 
-        
+
     toModule(e, link) {
         e.preventDefault();
         window.location.href = '/'+link;
@@ -66,15 +66,16 @@ class TargetDetail extends React.Component{
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
-      
+
         _class.getStudentsInTaskPage(UserInfo).then(res => {
             this.setState({list : res.tasks.details});
+            this.refs.loader.hide();
         }, errMsg =>{
-            this.setState({ 
+            this.setState({
                 list : []
             })
             _mm.errorTips(errMsg);
-           
+
         });
     }
 
@@ -82,74 +83,74 @@ class TargetDetail extends React.Component{
         let renderer;
 
        if(this.state.role == '1'){
-        renderer = 
+        renderer =
         <div>
         <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
-                      
+
         <PreLoader display="none" ref="loader" size=""></PreLoader>
-        
+
         <div className="row">
-            { 
+            {
                 this.state.list.map((modules, index) => {
                     return (
                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                             </div>
-                           
+
                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p> 
+                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p>
                                 </div>
-                           
+
                         </div>
                     );
                 })
             }
         </div>
         </div>;
-    
+
        }else{
 
-        renderer = 
+        renderer =
         <div>
         <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
-                      
+
         <PreLoader display="none" ref="loader" size=""></PreLoader>
-        
+
         <div className="row">
-        
-            { 
+
+            {
                 this.state.list.map((modules, index) => {
                     return (
-                       
+
                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                             </div>
-                           
+
                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
                                 <a onClick={(e) => this.toModule(e, modules.url)} href="javascript:void(0)">
-                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p> 
+                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p>
                                     </a>
                                 </div>
-                              
+
                         </div>
-                       
+
                     );
                 })
             }
-           
+
         </div>
         </div>;
        }
-           
-       
+
+
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
                        {renderer}
                     </div>
-        
+
                 );
             }
-        
+
 }
 
 export default TargetDetail;

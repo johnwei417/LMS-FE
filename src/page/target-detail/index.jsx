@@ -32,19 +32,23 @@ class TargetDetail extends React.Component{
         this.handleChange = this.handleChange.bind(this);
     }
     componentDidMount(){
-        this.loadStudentListInTarget();
         this.checkLogin();
-        this.loadTaskList();
+        this.loadStudentListInTarget();
     }
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
-        window.location.href = '/login';
+            window.location.href = '/login';
         }
     }
 
     handleChange(event) {
         this.setState({taskID: event.target.value});
+        if ( event.target.value > 0) {
+            this.refs.assignBtn.disabled = false;
+        } else {
+            this.refs.assignBtn.disabled = true;
+        }
     }
 
     loadTaskList(){
@@ -53,15 +57,12 @@ class TargetDetail extends React.Component{
         Info.targetID = this.state.targetID;
         _class.getTaskList(Info).then(res => {
             this.setState({
-                taskList : res.tasks,
-               
+                taskList : res.tasks
             });
         }, errMsg =>{
             _mm.errorTips(errMsg);
         });
-
     }
-
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
@@ -125,6 +126,7 @@ class TargetDetail extends React.Component{
     }
 
     loadStudentListInTarget(){
+        this.refs.loader.black();
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
@@ -133,7 +135,9 @@ class TargetDetail extends React.Component{
         UserInfo.targetID = this.state.targetID;
 
         _class.getStudentInTarget(UserInfo).then(res => {
+            this.loadTaskList();
             this.setState({list : res.student_scores});
+            this.refs.loader.hide();
         }, errMsg =>{
             this.setState({ 
                 list : []
@@ -148,45 +152,37 @@ class TargetDetail extends React.Component{
         
             return (
               <option key={index} name="taskID" value = {task.id}>{task.name}</option>
-              
             )});
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students</h1>
-                        <p>Select Module</p>
-                
-                            <select value={this.state.taskID} 
-                            onChange={this.handleChange}>
-                                <option>Pick one </option>
-                            {
-                            tasklist
-                            }
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students</h1>
+                        <p>
+                            <select value={this.state.taskID} onChange={this.handleChange}><option>Select Module Here</option>
+                                {
+                                tasklist
+                                }
                             </select> 
-                            <button className="btn btn-lg btn-primary btn-block"
-                            onClick={e => {this.onSubmit(e)}}>Assign Module</button>
-                        <PreLoader display="none" ref="loader" size=""></PreLoader>
-                        
+                            <button className="btn btn-primary" onClick={e => {this.onSubmit(e)}} style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} disabled ref="assignBtn">Assign Module</button>
+                        </p>
+
                         <div className="row">
+                            <PreLoader display="none" ref="loader" size=""></PreLoader>
                             { 
                                 this.state.list.map((student, index) => {
                                     return (
                                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
-                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                                            </div>
-                                           
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{student.users.name}</p> 
-                                                    <div className="form-group">
+                                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>
+                                                        {student.users.name}
                                                         <input type="checkbox" 
                                                             name="selected"
                                                             value={student.user_id}
-                                                            className="form-control" 
                                                             placeholder="checkbox" 
                                                             onKeyUp={e => this.onInputKeyUp(e)}
                                                             onChange={e => this.onInputChange(e)}
-                                                            style={{backgroundColor:"#4BDEFF", border:"none", color:"black"}}/>
-                                                    </div>
+                                                            style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
+                                                    </p> 
                                                 </div>
                                            
                                         </div>
