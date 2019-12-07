@@ -1,5 +1,5 @@
 import React            from 'react';
-
+import './index.scss';
 //general list
 class TableList extends React.Component{
     constructor(props){
@@ -19,9 +19,9 @@ class TableList extends React.Component{
         let tableHeader = this.props.tableHeads.map(
             (tableHead, index) => {
                 if(typeof tableHead === 'object'){
-                    return <th key={index} width={tableHead.width}>{tableHead.name}</th>
+                    return <th key={index} width={tableHead.width} style={tableHead.name == 'Proficient' ? {backgroundColor:"#02B385"} : (tableHead.name == 'Almost Proficient' ? {backgroundColor:"#EF9B0F"} : (tableHead.name == 'Non Proficient' ? {backgroundColor:"#BC0000"} : {})) }>{tableHead.name}</th>
                 }else if(typeof tableHead === 'string'){
-                    return <th key={index}>{tableHead}</th>
+                    return <th key={index} style={tableHead == 'Proficient' ? {backgroundColor:"#02B385"} : (tableHead == 'Almost Proficient' ? {backgroundColor:"#EF9B0F"} : (tableHead == 'Non Proficient' ? {backgroundColor:"#BC0000"} : {})) }>{tableHead}</th>
                 }
             }
         );
@@ -31,7 +31,8 @@ class TableList extends React.Component{
         let listInfo = (
             <tr>
                 <td colSpan={this.props.tableHeads.length} className="text-center">
-                    {this.state.isFirstLoading ? 'Loading...' : 'Cannot find corresponding content~'}</td>
+                    {this.state.isFirstLoading ? 'Loading...' : 'Cannot find corresponding content~'}
+                </td>
             </tr>
         );
         let tableBody = listBody.length > 0 ? listBody : listInfo;

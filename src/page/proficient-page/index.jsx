@@ -109,41 +109,41 @@ class ProficientPage extends React.Component{
         renderer =   (
         <div className="row" style={{marginTop:"45px"}}>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
-                <div className="card-header" style={{backgroundColor:"#02B385"}}>
-                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
-                </div>
                 <Link to={`/classroom/${this.state.classID}/p`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-header" style={{backgroundColor:"#02B385"}}>
+                        <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
+                    </div>
                     <div className="card-body" style={{backgroundColor:"#01CF85"}}>
                          <PreLoader display="none" ref="loader" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count1">{this.state.p_count}</p>
                          <p className="text-white">Students</p>
-                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px"}}>More Details</a>
+                         <a href={`/classroom/${this.state.classID}/p`} className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
             </div>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
-                <div className="card-header" style={{backgroundColor:"#EF9B0F"}}>
-                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Almost Proficient</span>
-                </div>
                 <Link to={`/classroom/${this.state.classID}/ap`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-header" style={{backgroundColor:"#EF9B0F"}}>
+                        <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Almost Proficient</span>
+                    </div>
                     <div className="card-body" style={{backgroundColor:"#FFD800"}}>
                          <PreLoader display="none" ref="loader1" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count2">{this.state.ap_count}</p>
                          <p className="text-white">Students</p>
-                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px"}}>More Details</a>
+                         <a href={`/classroom/${this.state.classID}/ap`} className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
             </div>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
-                <div className="card-header" style={{backgroundColor:"#BC0000"}}>
-                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Non-Proficient</span>
-                </div>
                 <Link to={`/classroom/${this.state.classID}/np`} className="text-muted" style={{textDecoration:"none"}}>
+                    <div className="card-header" style={{backgroundColor:"#BC0000"}}>
+                        <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Non-Proficient</span>
+                    </div>
                     <div className="card-body" style={{backgroundColor:"#FE4C4C"}}>
                          <PreLoader display="none" ref="loader2" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count3">{this.state.np_count}</p>
                          <p className="text-white">Students</p>
-                         <a href="#" className="btn btn-primary" style={{backgroundColor:"#BC0000", border:"none", borderRadius:"25px"}}>More Details</a>
+                         <a href={`/classroom/${this.state.classID}/np`} className="btn btn-primary" style={{backgroundColor:"#BC0000", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
             </div>

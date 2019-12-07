@@ -103,6 +103,7 @@ class TargetDetail extends React.Component{
                                 <div className="card-body" style={modules.status == 2 ? {backgroundColor:"#01CF85"} : (modules.status == 1 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )}>
                                     <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : ''}>
                                         <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                        <p>{}</p>
                                     </a>
                                 </div>
                         </div>

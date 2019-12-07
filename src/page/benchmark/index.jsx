@@ -146,9 +146,9 @@ class Benchmark extends React.Component{
                 <tr key={index} onClick={e => {this.goTo(e, `/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`)}}>
                     <td className="text-center">{target.name}</td>
                     <td>{target.description}</td>
-                    <td className="text-center">{target.proficient}</td>
-                    <td className="text-center">{target.almost_proficient}</td>
-                    <td className="text-center">{target.non_proficient}</td>
+                    <td className="text-center" style={target.proficient != 0 ? {backgroundColor:"#01CF85"} : {}}>{target.proficient}</td>
+                    <td className="text-center" style={target.almost_proficient != 0 ? {backgroundColor:"#FFD800"} : {}}>{target.almost_proficient}</td>
+                    <td className="text-center" style={target.non_proficient != 0 ? {backgroundColor:"#FE4C4C"} : {}}>{target.non_proficient}</td>
                 </tr>
             );
         });
