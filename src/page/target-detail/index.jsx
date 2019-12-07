@@ -45,7 +45,7 @@ class TargetDetail extends React.Component{
 
     handleChange(event) {
         this.setState({taskID: event.target.value});
-        if ( event.target.value > 0) {
+        if (event.target.value > 0 && this.state.selected.length > 0) {
             this.refs.assignBtn.disabled = false;
         } else {
             this.refs.assignBtn.disabled = true;
@@ -90,6 +90,10 @@ class TargetDetail extends React.Component{
             this.setState({
                 selected : this.state.selected.concat(inputValue)
             });
+
+            if (this.state.taskID > 0) {
+                this.refs.assignBtn.disabled = false;
+            }
         }else{ this.setState({
             [inputName] : inputValue
         });
@@ -116,13 +120,32 @@ class TargetDetail extends React.Component{
                    "students_id" : this.state.selected
                }
         }
-        
+
         _class.assignTask(loginInfo, JSON.stringify(data)).then((res)=>{
              _mm.successTips(res.message);
-        
+
+            // reset back
+            for(let i = 0; i < this.state.selected.length; i++) {
+                this.refs['student'+this.state.selected[i]].checked = false;
+            }
+            this.setState({
+                selected : [],
+                taskID: 0
+            });
+            this.refs.assignBtn.disabled = true;
         }, (errMsg) => {
             console.log(errMsg);
             _mm.errorTips(errMsg);
+
+            // reset back
+            for(let i = 0; i < this.state.selected.length; i++) {
+                this.refs['student'+this.state.selected[i]].checked = false;
+            }
+            this.setState({
+                selected : [],
+                taskID: 0
+            });
+            this.refs.assignBtn.disabled = true;
         });
 
     }
@@ -153,7 +176,7 @@ class TargetDetail extends React.Component{
         const tasklist = this.state.taskList.map((task, index)=>{
         
             return (
-              <option key={index} name="taskID" value = {task.id}>{task.name}</option>
+              <option key={index} name="taskID" value={task.id}>{task.name}</option>
             )});
        
                 return (
@@ -181,6 +204,7 @@ class TargetDetail extends React.Component{
                                                             name="selected"
                                                             value={student.user_id}
                                                             placeholder="checkbox" 
+                                                            ref={'student'+student.user_id}
                                                             onKeyUp={e => this.onInputKeyUp(e)}
                                                             onChange={e => this.onInputChange(e)}
                                                             style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
