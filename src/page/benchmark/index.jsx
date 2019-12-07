@@ -157,13 +157,12 @@ class Benchmark extends React.Component{
         listBody = this.state.list.map((target, index) => {
             return (
                 <tr key={index}>
-
-                    <td> {target.name} </td>
+                    <td className="text-center"> {target.name} </td>
                     <td>{target.description}</td>
                 {
                 target.scores.map((score,index) => (
-                score.score == 0 ? "":
-                   <td key={index}>{score.score}</td>
+
+                   <td key={index} className="text-center" style={score.score ? (score.score> 75 ? {backgroundColor:"#01CF85"} : (score.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>{score.score == 0 ? "-": score.score}</td>
 
                 ))
                 }

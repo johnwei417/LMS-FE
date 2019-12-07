@@ -126,7 +126,12 @@ class TargetDetail extends React.Component{
 
         renderer =
         <div>
-            <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
+            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Assigned Tasks</h1>
+            <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
+                <div className="box-green" title="Done"></div>
+                <div className="box-yellow" title="In progress"></div>
+                <div className="box-red" title="Have not started"></div>
+            </div>
             <PreLoader display="none" ref="loader" size=""></PreLoader>
 
         <div className="row">
@@ -136,12 +141,19 @@ class TargetDetail extends React.Component{
                     return (
 
                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
-                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                            </div>
-
-                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                            <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
                                 <a onClick={(e) => this.toModule(e, modules.url)}>
                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                </a>
+                            </div>
+                                <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
+                                    <a onClick={(e) => this.toModule(e, modules.url)}>
+                                        <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
+                                            <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
+                                        </div>
+                                        <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
+                                            <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p> 
+                                        </div>
                                     </a>
                                 </div>
 

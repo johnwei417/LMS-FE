@@ -80,7 +80,7 @@ class Home extends React.Component{
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
                                                     <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.users_count}</p>
                                                     <p className="text-white">Students</p>
-                                                    <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                                                    <a href={`/classroom/${classrooms.class_id}`}  className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
                                                 </div>
                                             </Link>
                                         </div>
@@ -108,7 +108,7 @@ class Home extends React.Component{
                                                 <div class="card-body" style={{backgroundColor:"#02D0FF"}}>
                                                     <p className="display-2 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.room}</p>
                                                     <p className="text-white"><i className="fa fa-clock-o" style={{marginRight:"5px"}}></i>{classrooms.starts_at + ' - ' + classrooms.ends_at}</p>
-                                                    <a href="#" className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
+                                                    <a href={`/classroom/${classrooms.class_id}`} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
                                                 </div>
                                             </Link>
                                         </div>
