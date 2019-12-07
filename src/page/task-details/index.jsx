@@ -41,12 +41,12 @@ class TargetDetail extends React.Component{
         }
     }
 
-
-    checkLogin(){
-        if(localStorage.getItem("userInfo") === null){
-           window.location.href = '/login';
-        }
+        
+    toModule(e, link) {
+        e.preventDefault();
+        window.location.href = '/'+link;
     }
+
 
     getTitle(){
         if(this.state.pLevel = 'p'){
@@ -61,7 +61,6 @@ class TargetDetail extends React.Component{
     }
 
 
-   
 
     loadStudentListInTarget(){
         let UserInfo = {};
@@ -80,40 +79,77 @@ class TargetDetail extends React.Component{
     }
 
     render(){
-        const tasklist = this.state.taskList.map((task, index)=>{
+        let renderer;
+
+       if(this.state.role == '1'){
+        renderer = 
+        <div>
+        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
+                      
+        <PreLoader display="none" ref="loader" size=""></PreLoader>
         
-            return (
-              <option key={index} name="taskID" value = {task.id}>{task.name}</option>
-              
-            )});
+        <div className="row">
+            { 
+                this.state.list.map((modules, index) => {
+                    return (
+                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                            </div>
+                           
+                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p> 
+                                </div>
+                           
+                        </div>
+                    );
+                })
+            }
+        </div>
+        </div>;
+    
+       }else{
+
+        renderer = 
+        <div>
+        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
+                      
+        <PreLoader display="none" ref="loader" size=""></PreLoader>
+        
+        <div className="row">
+        
+            { 
+                this.state.list.map((modules, index) => {
+                    return (
+                       
+                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                            </div>
+                           
+                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                <a onClick={(e) => this.toModule(e, modules.url)} href="javascript:void(0)">
+                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p> 
+                                    </a>
+                                </div>
+                              
+                        </div>
+                       
+                    );
+                })
+            }
+           
+        </div>
+        </div>;
+       }
+           
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
-                      
-                        <PreLoader display="none" ref="loader" size=""></PreLoader>
-                        
-                        <div className="row">
-                            { 
-                                this.state.list.map((modules, index) => {
-                                    return (
-                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
-                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                                            </div>
-                                           
-                                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p> 
-                                                </div>
-                                           
-                                        </div>
-                                    );
-                                })
-                            }
-                        </div>
+                       {renderer}
                     </div>
         
                 );
             }
+        
 }
 
 export default TargetDetail;

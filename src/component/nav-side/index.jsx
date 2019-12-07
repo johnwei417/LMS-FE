@@ -56,7 +56,7 @@ class NavSide extends React.Component{
         );
         }else{
         taskRender = (
-            <NavLink to={`/tasks`} activeClassName="active-menu" >
+            <NavLink to={`/tasks/${this.state.userID}`} activeClassName="active-menu" >
             <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
                 <span style={{color:"white", fontWeight:"600"}}>Assignments</span>
             </li>

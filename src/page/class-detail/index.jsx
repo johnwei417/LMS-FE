@@ -20,6 +20,9 @@ class ClassDetail extends React.Component{
             classID:             this.props.match.params.classID,
             api_token:           _mm.getStorage('userInfo').api_token,
             role:                _mm.getStorage('userInfo').role,
+            p_count:             0,
+            ap_count:            0,
+            np_count:            0,
           
             proficientLevel:     '',
             moduleInfo:          [],
@@ -34,6 +37,9 @@ class ClassDetail extends React.Component{
     componentDidMount(){
         this.checkLogin();
         this.loadTaskAssigned();
+        this.checkProficiencyLevel();
+       
+       
     }
 
     componentWillmount(){
@@ -52,6 +58,42 @@ class ClassDetail extends React.Component{
         window.location.href = '/'+link;
     }
 
+    checkProficiencyLevel(){
+        if(this.state.role == '0'){
+            let classInfo = {};
+            classInfo.api_token = this.state.api_token;
+            classInfo.userID = this.state.userID;
+            classInfo.classID = this.state.classID;
+            
+
+            _class.getClassDetails(classInfo).then((res)=>{
+              
+                _mm.setStorage('classInfo', res.classroom);
+                this.setState({
+                    p_count:             res.classroom.scores.proficient.count,
+                    ap_count:            res.classroom.scores.almostProficient.count,
+                    np_count:            res.classroom.scores.notProficient.count
+                })
+
+                if(this.state.p_count == 1){
+                    this.setState({proficientLevel:  'p'})
+                }
+               
+                if(this.state.np_count == 1){
+                 this.setState({proficientLevel:  'np'})
+                 }
+         
+                 if(this.state.ap_count == 1){
+                 this.setState({proficientLevel:  'ap'})
+                 }
+     
+            }, (errMsg) => {
+                _mm.errorTips(errMsg);
+            });
+
+           
+        }
+    }
 
     loadTaskAssigned(){
         let UserInfo = {};
@@ -134,7 +176,7 @@ class ClassDetail extends React.Component{
                             <div className="card-header" style={{backgroundColor:"#02B385"}}>
                                 <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficiency</span>
                             </div>
-                            <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
+                            <Link to={`/classroom/${this.state.classID}/${this.state.proficientLevel}`} className="text-muted" style={{textDecoration:"none"}}>
                                 <div className="card-body" style={{backgroundColor:"#01CF85"}}>
                                     <PreLoader display="none" ref="loader" size=""></PreLoader>
                                     <p className="display-5 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count1">Proficiency</p>

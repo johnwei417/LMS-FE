@@ -105,7 +105,7 @@ class ProficientPage extends React.Component{
 
         let renderer;
         
-        if(checkRole == '1'){
+       
         renderer =   (
         <div className="row" style={{marginTop:"45px"}}>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
@@ -153,11 +153,7 @@ class ProficientPage extends React.Component{
        
 
         //student page
-        } else{
-            
-            
-        }
-    
+       
     
         return (
             <div id="page-wrapper">

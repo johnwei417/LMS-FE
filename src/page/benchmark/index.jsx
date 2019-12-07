@@ -151,8 +151,9 @@ class Benchmark extends React.Component{
     render(){
         
     
-
-        let listBody = this.state.list.map((target, index) => {
+     let listBody;
+    if(this.state.role== '1'){ 
+     listBody = this.state.list.map((target, index) => {
             return (
                 <tr key={index}>
                     
@@ -165,39 +166,56 @@ class Benchmark extends React.Component{
                 </tr>
             );
         });
+    }else{
 
+        listBody = this.state.list.map((target, index) => {
+            return (
+                <tr key={index}>
+                    
+                    <td> {target.name} </td>
+                    <td>{target.description}</td>
+                {
+                target.scores.map((score,index) => (
+                score.score == 0 ? "":
+                   <td key={index}>{score.score}</td>
+                
+                ))
+                }
+                
+                    
+                </tr>
+            );
+        });
+    }
+
+   
+        
     let renderer;
-    console.log(this.state.pLevel);
+   
+    if(this.state.role == '1'){
+        renderer =   
+    <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
+        {listBody}
+    </TableList>;
+    }else{
+        renderer =   
+    <TableList tableHeads={['Targets', 'Description', 'Scores']}>
+        {listBody}
+    </TableList>;
 
-    if(this.state.classID == '1'){
+    }
 
-        if( this.state.pLevel == 'p'){
-        renderer = "";
-        }
-
-
-        if(this.state.pLevel == 'ap'){
-            renderer = "";
-        }
-        if(this.state.pLevel == 'np'){
-            renderer = "";
-
-        }
-        }else{
-            renderer = "";
-        }
-        console.log(this.state.taskID);
+    
         return (
             
             <div id="page-wrapper">
                
                 <PageTitle title={`${this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Not Proficient'}`} />
 
-                <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
-                    {listBody}
-                </TableList>
+                {renderer}
               
             </div>
+            
         );
     }
 }
