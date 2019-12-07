@@ -34,6 +34,7 @@ class TargetDetail extends React.Component{
     componentDidMount(){
         this.checkLogin();
         this.loadStudentListInTarget();
+        this.refs.assignBtn.disabled = true;
     }
 
     checkLogin(){
@@ -98,28 +99,31 @@ class TargetDetail extends React.Component{
 
     onInputKeyUp(e){
         if(e.keyCode === 13){
-            this.onSubmit();
+            this.onSubmit(e);
         }
     }
 
-    onSubmit(){
+    onSubmit(e){
+        e.preventDefault();
      let loginInfo = {
         api_token: this.state.api_token,
         userID: this.state.userID,
         taskID: this.state.taskID
         };
         console.log(this.state.selected);
+        console.log('task: ' + this.state.taskID + ' student: ' + this.state.selected);
        let data = {
             "task" : {
                    "class_id" : this.state.classID,
                    "students_id" : this.state.selected
                }
         }
-    
+        
         _class.assignTask(loginInfo, JSON.stringify(data)).then((res)=>{
              _mm.successTips(res.message);
         
         }, (errMsg) => {
+            console.log(errMsg);
             _mm.errorTips(errMsg.message);
         });
 
@@ -163,7 +167,7 @@ class TargetDetail extends React.Component{
                                 tasklist
                                 }
                             </select> 
-                            <button className="btn btn-primary" onClick={e => {this.onSubmit(e)}} style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} disabled ref="assignBtn">Assign Module</button>
+                            <button className="btn btn-primary" onClick={e => this.onSubmit(e)} style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} ref="assignBtn">Assign Module</button>
                         </p>
 
                         <div className="row">
