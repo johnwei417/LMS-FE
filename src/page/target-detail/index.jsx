@@ -90,7 +90,6 @@ class TargetDetail extends React.Component{
             this.setState({
                 selected : this.state.selected.concat(inputValue)
             });
-            console.log(inputValue);
         }else{ this.setState({
             [inputName] : inputValue
         });
@@ -110,7 +109,6 @@ class TargetDetail extends React.Component{
         userID: this.state.userID,
         taskID: this.state.taskID
         };
-        console.log(this.state.selected);
         console.log('task: ' + this.state.taskID + ' student: ' + this.state.selected);
        let data = {
             "task" : {
@@ -124,7 +122,7 @@ class TargetDetail extends React.Component{
         
         }, (errMsg) => {
             console.log(errMsg);
-            _mm.errorTips(errMsg.message);
+            _mm.errorTips(errMsg);
         });
 
     }

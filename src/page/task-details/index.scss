@@ -26,4 +26,30 @@
         }
     }
 }
-
+.box-green {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #02B385;
+    display: block;
+}
+.box-yellow {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #EF9B0F;
+    display: block;
+}
+.box-red {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #BC0000;
+    display: block;
+}
