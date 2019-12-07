@@ -171,9 +171,9 @@ class TargetDetail extends React.Component{
                             { 
                                 this.state.list.map((student, index) => {
                                     return (
-                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"10px"}}>
-                                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"26px"}}>
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"10px", marginBottom:"10px"}}>
+                                                <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                                    <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>
                                                         {student.users.name}
                                                         <input type="checkbox" 
                                                             name="selected"
@@ -182,9 +182,15 @@ class TargetDetail extends React.Component{
                                                             onKeyUp={e => this.onInputKeyUp(e)}
                                                             onChange={e => this.onInputChange(e)}
                                                             style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
-                                                    </p>
-                                                    <p>Standardized Score: {student.standardized_score ? student.standardized_score : ''}</p>
-                                                    <p>Current Estimate: {student.score}</p> 
+                                                    </span>
+                                                </div>
+                                                <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
+                                                    <div className="content-left col-md-6 display-inline" style={student.standardized_score ? (student.standardized_score > 75 ? {backgroundColor:"#02B385"} : (student.standardized_score > 40 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )) : {}} >
+                                                        <p className="text-center text-white text-25" >{student.standardized_score ? student.standardized_score : '-'}</p>
+                                                    </div>
+                                                    <div className="col-md-6 display-inline" style={student.score ? (student.score > 75 ? {backgroundColor:"#02B385"} : (student.score > 40 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )) : {}}>
+                                                        <p className="text-center text-white text-25" >{student.score == 0 ? '-' : student.score}</p> 
+                                                    </div>
                                                 </div>
                                            
                                         </div>
