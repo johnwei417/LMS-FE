@@ -44,9 +44,13 @@ class TargetDetail extends React.Component{
 
     toModule(e, link) {
         e.preventDefault();
-        window.location.href = '/'+link;
+        window.location.href = link;
     }
 
+    toRecord(e, link) {
+        e.preventDefault();
+        window.location.href = '/records/' + link
+    }
 
     getTitle(){
         if(this.state.pLevel = 'p'){
@@ -85,7 +89,7 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
-        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
+        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
 
         <PreLoader display="none" ref="loader" size=""></PreLoader>
 
@@ -93,14 +97,14 @@ class TargetDetail extends React.Component{
             {
                 this.state.list.map((modules, index) => {
                     return (
-                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
-                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
+                            <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
                             </div>
-
-                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p>
+                                <div className="card-body" style={modules.status == 2 ? {backgroundColor:"#01CF85"} : (modules.status == 1 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )}>
+                                    <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : ''}>
+                                        <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                    </a>
                                 </div>
-
                         </div>
                     );
                 })
@@ -122,13 +126,13 @@ class TargetDetail extends React.Component{
                 this.state.list.map((modules, index) => {
                     return (
 
-                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                             </div>
 
                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                <a onClick={(e) => this.toModule(e, modules.url)} href="javascript:void(0)">
-                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{modules.name}</p>
+                                <a onClick={(e) => this.toModule(e, modules.url)}>
+                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
                                     </a>
                                 </div>
 

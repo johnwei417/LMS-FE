@@ -183,7 +183,8 @@ class TargetDetail extends React.Component{
                                                             onChange={e => this.onInputChange(e)}
                                                             style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
                                                     </p>
-                                                    <p>{student.score}</p> 
+                                                    <p>Standardized Score: {student.standardized_score ? student.standardized_score : ''}</p>
+                                                    <p>Current Estimate: {student.score}</p> 
                                                 </div>
                                            
                                         </div>

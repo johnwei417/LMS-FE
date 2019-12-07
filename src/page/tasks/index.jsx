@@ -31,7 +31,7 @@ class TargetDetail extends React.Component{
         };
     }
     componentDidMount(){
-      
+        this.refs.loader.black();
         this.checkLogin();
         this.loadTasks();
        
@@ -65,6 +65,7 @@ class TargetDetail extends React.Component{
 
         _class.getStudentsInTaskPage(UserInfo).then(res => {
             this.setState({list : res.tasks.students});
+            this.refs.loader.hide();
         }, errMsg =>{
             this.setState({ 
                 list : []
@@ -75,26 +76,23 @@ class TargetDetail extends React.Component{
     }
 
     render(){
-       
-       
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-1" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students</h1>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Tasks</h1>
                         <PreLoader display="none" ref="loader" size=""></PreLoader>
                         
                         <div className="row">
                             { 
                                 this.state.list.map((student, index) => {
                                     return (
-                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px", marginBottom:"20px"}}>
                                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                             </div>
                                             <Link to={`/tasks/${student.user_id}`} className="text-muted" style={{textDecoration:"none"}}>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                                                    <p className="display-3 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{student.user_details.name}</p> 
-                                                
+                                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{student.user_details.name}</p> 
                                                 </div>
-                                           </Link>
+                                            </Link>
                                         </div>
                                     );
                                 })
