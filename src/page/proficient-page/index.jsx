@@ -108,7 +108,7 @@ class ProficientPage extends React.Component{
        
         renderer =   (
         <div className="row" style={{marginTop:"45px"}}>
-            <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
+            <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
                 <Link to={`/classroom/${this.state.classID}/p`} className="text-muted" style={{textDecoration:"none"}}>
                     <div className="card-header" style={{backgroundColor:"#02B385"}}>
                         <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficient</span>
