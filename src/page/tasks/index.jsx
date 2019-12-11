@@ -31,7 +31,6 @@ class TargetDetail extends React.Component{
         };
     }
     componentDidMount(){
-        this.refs.loader.black();
         this.checkLogin();
         this.loadTasks();
        
@@ -64,8 +63,7 @@ class TargetDetail extends React.Component{
        
 
         _class.getStudentsInTaskPage(UserInfo).then(res => {
-            this.setState({list : res.tasks.students});
-            this.refs.loader.hide();
+            this.setState({list : res.tasks.students})
         }, errMsg =>{
             this.setState({ 
                 list : []

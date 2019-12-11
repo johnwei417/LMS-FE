@@ -28,6 +28,9 @@ class TargetDetail extends React.Component{
             taskID:          0,
             taskList:       []
         };
+        this.today = new Date();
+        this.currentTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
+        this.mapping = new Map();
     }
     componentDidMount(){
         this.refs.loader.black();
@@ -37,10 +40,9 @@ class TargetDetail extends React.Component{
 
     checkLogin(){
         if(localStorage.getItem("userInfo") === null){
-        window.location.href = '/login';
+            window.location.href = '/login';
         }
     }
-
 
     toModule(e, link) {
         e.preventDefault();
@@ -69,7 +71,31 @@ class TargetDetail extends React.Component{
         _mm.errorTips("Student have not done module yet, check back later!");
     }
 
+    checkDue(dueDate, target) {
+        // check due date
+        if (Date.parse(dueDate) < Date.parse(this.today)) {
+            if (target != null) {
+                target.className = 'card col-md-3 task-due';
+            } 
+        } 
+    }
 
+    checkDueDate(dueDate) {
+        if (Date.parse(dueDate) < Date.parse(this.today)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    parseTime(due_date) {
+        let splitDateTime = due_date.split(' ');
+        console.log(splitDateTime);
+        let date = splitDateTime[0].split('-');
+        let currentDate = new Date(date[0], date[1] - 1, date[2]);
+
+        return (currentDate.getMonth() + 1) + ' / ' + currentDate.getDate() + ' / ' + currentDate.getFullYear()
+    }
 
     loadStudentListInTarget(){
         let UserInfo = {};
@@ -104,12 +130,13 @@ class TargetDetail extends React.Component{
 
         <div className="row">
             {
-                this.state.list.map((modules, index) => {
+                this.state.list.sort((a, b) => Date.parse(a.due_date) - Date.parse(b.due_date)).map((modules, index) => {
                     return (
-                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
-                            <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
-                                <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : ''}>
+                        <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px"}}>
+                            <div className="card-header" role="button" data-toggle="tooltip" data-placement="bottom" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
+                                <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                    <span class="badge badge-dark">{this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
