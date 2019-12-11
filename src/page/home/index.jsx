@@ -81,14 +81,14 @@ class Home extends React.Component{
                                     return (
                                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
                                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                                                <p className="text-white" style={{fontWeight:"bold", fontSize:"30px", marginBottom: "5px"}}>{classrooms.subject + ' - ' + classrooms.grade + ' Grade'}</p>
-                                                <span class="badge badge-dark">{classrooms.room}</span>
-                                                <span class="badge badge-dark" style={{marginLeft:"6px"}}>{this.formatTime(classrooms.starts_at, classrooms.ends_at)}</span>
+                                                <p className="text-white" style={{fontWeight:"bold", fontSize:"30px", marginBottom: "15px"}}>{classrooms.subject + ' - ' + classrooms.grade + ' Grade'}</p>
+                                                <span class="badge badge-dark">{'Classroom: ' + classrooms.room}</span>
+                                                <span class="badge badge-dark" style={{marginLeft:"6px"}}>{'Time: '+this.formatTime(classrooms.starts_at, classrooms.ends_at)}</span>
                                             </div>
                                             <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
                                                     <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}}>{classrooms.users_count}</p>
-                                                    <p className="text-white">Students</p>
+                                                    <p className="text-white" style={{fontSize: "25px"}}>Students</p>
                                                     <a href={`/classroom/${classrooms.class_id}`}  className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px"}}>More Details</a>
                                                 </div>
                                             </Link>
