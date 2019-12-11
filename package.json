@@ -39,6 +39,7 @@
     "prop-types": "15.6.0",
     "rc-pagination": "1.15.1",
     "react": "16.2.0",
+    "react-calendar": "^2.19.2",
     "react-dom": "16.2.0",
     "react-router-dom": "4.2.2",
     "reactstrap": "^8.1.1",

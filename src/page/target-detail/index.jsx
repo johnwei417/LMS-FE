@@ -1,7 +1,7 @@
 import React        from 'react';
 import { Link }     from 'react-router-dom';
 import Class         from 'service/class-service.jsx';
-
+import Calendar from 'react-calendar';
 import MUtil        from 'util/mm.jsx'
 
 const _mm           = new MUtil();
@@ -25,7 +25,8 @@ class TargetDetail extends React.Component{
             classID:        this.props.match.params.classID,
             role:           _mm.getStorage('userInfo').role,
             taskID:          0,
-            taskList:       []
+            taskList:       [],
+            date:           new Date()
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -45,7 +46,7 @@ class TargetDetail extends React.Component{
 
     handleChange(event) {
         this.setState({taskID: event.target.value});
-        console.log(this.selected)
+        console.log(this.state.date)
         if (event.target.value > 0 && this.selected.length > 0) {
             this.refs.assignBtn.disabled = false;
         } else {
@@ -119,10 +120,16 @@ class TargetDetail extends React.Component{
         taskID: this.state.taskID
         };
         console.log('task: ' + this.state.taskID + ' student: ' + this.selected);
+        
+        // set due date
+        let dueDate = new Date(this.state.date);
+        dueDate = dueDate.getFullYear() + '-' + (dueDate.getMonth()+1) + '-' + dueDate.getDate()
+
        let data = {
             "task" : {
                    "class_id" : this.state.classID,
-                   "students_id" : this.selected
+                   "students_id" : this.selected,
+                   "due_date": dueDate
                }
         }
 
@@ -138,6 +145,8 @@ class TargetDetail extends React.Component{
                 taskID: 0
             });
             this.refs.assignBtn.disabled = true;
+            $('#calendarModal').modal('hide');
+            $("[data-dismiss=modal]").trigger({ type: "click" })
         }, (errMsg) => {
             console.log(errMsg);
             _mm.errorTips(errMsg);
@@ -151,8 +160,16 @@ class TargetDetail extends React.Component{
                 taskID: 0
             });
             this.refs.assignBtn.disabled = true;
+            $('#calendarModal').modal('hide');
+            $("[data-dismiss=modal]").trigger({ type: "click" })
         });
 
+    }
+
+    dateChange (currentDate) {
+        console.log(currentDate);
+        this.setState({date : currentDate});
+        console.log(this.state.date);
     }
 
     loadStudentListInTarget(){
@@ -193,7 +210,32 @@ class TargetDetail extends React.Component{
                                 tasklist
                                 }
                             </select> 
-                            <button className="btn btn-primary" onClick={e => this.onSubmit(e)} style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} ref="assignBtn">Assign Module</button>
+                            <button className="btn btn-primary" style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} ref="assignBtn" data-toggle="modal" data-target="#calendarModal">Assign Module</button>
+                            <div ref="calendarModal" className="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="modalLabel">Select Due Date</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div style={{marginLeft:"auto", marginRight:"auto"}}>
+                                            <Calendar 
+                                                onChange={e => this.dateChange(e)}
+                                                value={this.state.date}
+                                                minDate={new Date()}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" class="btn btn-primary" onClick={e => this.onSubmit(e)}>Assign Modules</button>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+
                         </p>
 
                         <div className="row">
