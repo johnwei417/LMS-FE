@@ -113,7 +113,6 @@ class Benchmark extends React.Component{
         userID: this.state.userID,
         taskID: this.state.taskID
         };
-        console.log(this.state.selected);
        let data = {
             "task" : {
                    "class_id" : this.state.classID,
@@ -132,7 +131,10 @@ class Benchmark extends React.Component{
 
     goTo(e, link) {
         e.preventDefault();
-        window.location.assign(link);
+        if (e.target.tagName == 'TD') {
+           window.location.assign(link);
+        } 
+
     }
 
 
@@ -143,9 +145,31 @@ class Benchmark extends React.Component{
     if(this.state.role== '1'){
      listBody = this.state.list.map((target, index) => {
             return (
-                <tr key={index} onClick={e => {this.goTo(e, `/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`)}}>
+                <tr ref={node => this.node = node} key={index} onClick={e => {this.goTo(e, `/classroom/${this.state.classID}/${this.state.pLevel}/${target.id}`)}} id={index}>
                     <td className="text-center">{target.name}</td>
-                    <td>{target.description}</td>
+                    <td>
+                        {target.description} 
+                        <button type="button" class="btn btn-dark" style={{borderRadius:"25px", float:"right", fontSize:"13px", margin:"0px", paddingTop:"1px", paddingBottom:"1px", paddingRight:"15px", paddingLeft:"15px"}} data-toggle="modal" data-target={'#moreDetailsModal'+target.id}>
+                            More Details
+                        </button>
+                        <div class="modal fade" id={'moreDetailsModal'+target.id} tabindex="1" role="dialog" data-id={'span'+index} aria-labelledby="moreDetailsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="moreDetailsModalLabel">{'Target ' + target.name}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" id="close">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {'<More details about target here>'}
+                                    <br/>
+                                    {'<Examples about target here>'}
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                     <td className="text-center" style={target.proficient != 0 ? {backgroundColor:"#01CF85"} : {}}>{target.proficient}</td>
                     <td className="text-center" style={target.almost_proficient != 0 ? {backgroundColor:"#FFD800"} : {}}>{target.almost_proficient}</td>
                     <td className="text-center" style={target.non_proficient != 0 ? {backgroundColor:"#FE4C4C"} : {}}>{target.non_proficient}</td>
