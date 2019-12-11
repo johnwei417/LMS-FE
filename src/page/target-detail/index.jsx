@@ -24,12 +24,12 @@ class TargetDetail extends React.Component{
             pLevel:         this.props.match.params.pLevel,
             classID:        this.props.match.params.classID,
             role:           _mm.getStorage('userInfo').role,
-            selected:       [],
             taskID:          0,
             taskList:       []
 
         };
         this.handleChange = this.handleChange.bind(this);
+        this.selected = [];
     }
     componentDidMount(){
         this.checkLogin();
@@ -45,7 +45,8 @@ class TargetDetail extends React.Component{
 
     handleChange(event) {
         this.setState({taskID: event.target.value});
-        if (event.target.value > 0 && this.state.selected.length > 0) {
+        console.log(this.selected)
+        if (event.target.value > 0 && this.selected.length > 0) {
             this.refs.assignBtn.disabled = false;
         } else {
             this.refs.assignBtn.disabled = true;
@@ -86,18 +87,22 @@ class TargetDetail extends React.Component{
     onInputChange(e){
         let inputValue  = e.target.value,
             inputName   = e.target.name;
-        if(inputName == "selected"){
-            this.setState({
-                selected : this.state.selected.concat(inputValue)
-            });
 
-            if (this.state.taskID > 0) {
-                this.refs.assignBtn.disabled = false;
+        if(inputName == "selected"){
+            if (this.selected.indexOf(inputValue) > -1) {
+                let index = this.selected.indexOf(inputValue);
+                this.selected.splice(index,1);
+                if (this.selected.length == 0) {
+                    this.refs.assignBtn.disabled = true;
+                }
+            } else  {
+                this.selected = this.selected.concat(inputValue);
+                if (this.state.taskID > 0) {
+                    this.refs.assignBtn.disabled = false;
+                }
             }
-        }else{ this.setState({
-            [inputName] : inputValue
-        });
-    }
+
+        }
     }
 
     onInputKeyUp(e){
@@ -113,11 +118,11 @@ class TargetDetail extends React.Component{
         userID: this.state.userID,
         taskID: this.state.taskID
         };
-        console.log('task: ' + this.state.taskID + ' student: ' + this.state.selected);
+        console.log('task: ' + this.state.taskID + ' student: ' + this.selected);
        let data = {
             "task" : {
                    "class_id" : this.state.classID,
-                   "students_id" : this.state.selected
+                   "students_id" : this.selected
                }
         }
 
@@ -125,11 +130,11 @@ class TargetDetail extends React.Component{
              _mm.successTips(res.message);
 
             // reset back
-            for(let i = 0; i < this.state.selected.length; i++) {
-                this.refs['student'+this.state.selected[i]].checked = false;
+            for(let i = 0; i < this.selected.length; i++) {
+                this.refs['student'+this.selected[i]].checked = false;
             }
+            this.selected = [];
             this.setState({
-                selected : [],
                 taskID: 0
             });
             this.refs.assignBtn.disabled = true;
@@ -138,11 +143,11 @@ class TargetDetail extends React.Component{
             _mm.errorTips(errMsg);
 
             // reset back
-            for(let i = 0; i < this.state.selected.length; i++) {
-                this.refs['student'+this.state.selected[i]].checked = false;
+            for(let i = 0; i < this.selected.length; i++) {
+                this.refs['student'+this.selected[i]].checked = false;
             }
+            this.selected = [];
             this.setState({
-                selected : [],
                 taskID: 0
             });
             this.refs.assignBtn.disabled = true;
