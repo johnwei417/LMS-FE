@@ -89,7 +89,7 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
-        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Assigned Tasks</h1>
+        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
         <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
             <div className="box-green" title="Done"></div>
             <div className="box-yellow" title="In progress"></div>
@@ -128,7 +128,7 @@ class TargetDetail extends React.Component{
 
         renderer =
         <div>
-            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Assigned Tasks</h1>
+            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
             <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
                 <div className="box-green" title="Done"></div>
                 <div className="box-yellow" title="In progress"></div>

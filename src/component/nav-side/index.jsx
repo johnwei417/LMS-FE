@@ -49,22 +49,23 @@ class NavSide extends React.Component{
         if(this.state.role == '1'){
         taskRender = (
             <NavLink to={`/tasks`} activeClassName="active-menu" >
-            <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
-                <span style={{color:"white", fontWeight:"600"}}>Tasks assigned to students</span>
-            </li>
+                <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
+                    <span style={{color:"white", fontWeight:"600"}}>Tasks assigned to students</span>
+                </li>
            </NavLink>
         );
-        }else{
+        }
+        /*else{
         taskRender = (
             <NavLink to={`/tasks/${this.state.userID}`} activeClassName="active-menu" >
-            <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
-                <span style={{color:"white", fontWeight:"600"}}>Assignments</span>
-            </li>
+                <li className="list-group-item list-group-item-action" style={{backgroundColor:"#14497F"}}>
+                    <span style={{color:"white", fontWeight:"600"}}>Assignments</span>
+                </li>
            </NavLink>
         );
-
         }
-        
+        */
+
         
         return (
             <div className="navbar-default navbar-side" style={{backgroundColor:"#043874"}}>
