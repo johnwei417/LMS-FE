@@ -141,27 +141,27 @@ class ClassDetail extends React.Component{
 
         if(checkRole == '1'){
             renderer =   (<div className="row" style={{marginTop:"45px"}}>
-                <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
+                <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
                     <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
-                        <div className="card-header" style={{backgroundColor:"#02B385"}}>
+                        <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                             <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficiency</span>
                         </div>
-                        <div className="card-body" style={{backgroundColor:"#01CF85"}}>
+                        <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
                             <PreLoader display="none" ref="loader" size=""></PreLoader>
 
-                            <a href={`/classroom/${this.state.classID}/p-page`} className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px",  width:"100%"}}>More Details</a>
+                            <a href={`/classroom/${this.state.classID}/p-page`} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px",  width:"100%"}}>More Details</a>
                         </div>
                     </Link>
                 </div>
                 <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
                     <Link to={this.state.classID == 1 ? `/tasks` : {}} className="text-muted" style={{textDecoration:"none"}}>
-                        <div className="card-header" style={{backgroundColor:"#EF9B0F"}}>
+                        <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                             <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Tasks</span>
                         </div>
-                        <div className="card-body" style={{backgroundColor:"#FFD800"}}>
+                        <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
                             <PreLoader display="none" ref="loader1" size=""></PreLoader>
 
-                            <a href={this.state.classID == 1 ? `/tasks` : {}} className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
+                            <a href={this.state.classID == 1 ? `/tasks` : {}} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
                         </div>
                     </Link>
                 </div>
@@ -215,8 +215,6 @@ class ClassDetail extends React.Component{
                                 </div>
                             </Link>
                         </div>
-
-
                     </div>
                 </div>
              }
