@@ -26,7 +26,9 @@ class TargetDetail extends React.Component{
             role:           _mm.getStorage('userInfo').role,
             taskID:          0,
             taskList:       [],
-            date:           new Date()
+            date:           new Date(),
+            targetName:       null,
+            targetDetail:     null
 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -60,7 +62,10 @@ class TargetDetail extends React.Component{
         Info.targetID = this.state.targetID;
         _class.getTaskList(Info).then(res => {
             this.setState({
-                taskList : res.tasks
+                taskList : res.tasks,
+                targetName: res.target.name,
+                targetDetail: res.target.description
+
             });
         }, errMsg =>{
             _mm.errorTips(errMsg);
@@ -203,7 +208,8 @@ class TargetDetail extends React.Component{
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students</h1>
+                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"20px"}}>Target {this.state.targetName}</h1>
+                    <h1 className="display-5" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.targetDetail}</h1>
                         <p>
                             <select value={this.state.taskID} onChange={this.handleChange}><option>Select Module Here</option>
                                 {
