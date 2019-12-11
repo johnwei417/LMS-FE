@@ -64,6 +64,11 @@ class TargetDetail extends React.Component{
         }
     }
 
+    openModal (e) {
+        e.preventDefault();
+        _mm.errorTips("Student have not done module yet, check back later!");
+    }
+
 
 
     loadStudentListInTarget(){
@@ -108,7 +113,7 @@ class TargetDetail extends React.Component{
                                 </a>
                             </div>
                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
-                                    <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : ''}>
+                                    <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
                                         <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
                                         </div>
