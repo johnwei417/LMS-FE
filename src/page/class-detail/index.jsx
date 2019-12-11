@@ -180,7 +180,7 @@ class ClassDetail extends React.Component{
                                 {task.status == '2'? '':
                                 <div key ={index} className= {`p-2 mb-2 col-md-7 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px", marginLeft:"25px"}}>
                                     {task.name}
-                                    <span class="badge badge-pill badge-dark lead" style={{marginLeft:"10px", marginTop:"7px", fontWeight:"320"}}>{task.due_date}</span>
+                                    <span class="badge badge-pill badge-dark lead" style={{marginLeft:"10px", marginTop:"7px", fontWeight:"320"}}>{'Due Date: '+task.due_date}</span>
                                 </div>
                                 }
                             </a>

@@ -141,7 +141,7 @@ class TargetDetail extends React.Component{
                             <div className="card-header" role="button" data-toggle="tooltip" data-placement="bottom" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
                                 <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
-                                    <span class="badge badge-dark">{this.parseTime(modules.due_date)}</span>
+                                    <span class="badge badge-dark">{'Due Date: '+ this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
@@ -167,9 +167,9 @@ class TargetDetail extends React.Component{
         <div>
             <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
             <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
-                <div className="box-green" title="Done">Done</div>
-                <div className="box-yellow" title="In progress">In progress</div>
-                <div className="box-red" title="Have not started">Have not started</div>
+                <div className="box-green" title="Done"></div>
+                <div className="box-yellow" title="In progress"></div>
+                <div className="box-red" title="Have not started"></div>
             </div>
             <PreLoader display="none" ref="loader" size=""></PreLoader>
 
@@ -183,7 +183,7 @@ class TargetDetail extends React.Component{
                             <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
                                 <a onClick={(e) => this.toModule(e, modules.url)}>
                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
-                                    <span class="badge badge-dark">{this.parseTime(modules.due_date)}</span>
+                                    <span class="badge badge-dark"> {'Due Date: '+this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>

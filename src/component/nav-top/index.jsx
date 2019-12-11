@@ -25,7 +25,7 @@ class NavTop extends React.Component{
             <div className="navbar navbar-default top-navbar" style={{backgroundColor:"#00276C", borderRadius:"0px", padding:"0px"}}>
                
                 <ul className="nav navbar-top-links navbar-left">
-                    <img src="/src/resources/logo.png" style={{  padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
+                   <a href ="/"><img src="/src/resources/logo.png" style={{  padding: "15px", display:"block", width:"66%"}}></img></a>
                 </ul>
                
                 <ul className="nav navbar-top-links navbar-right">

@@ -157,7 +157,6 @@ class ProficientPage extends React.Component{
     
         return (
             <div id="page-wrapper">
-               
                 <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Proficiency Overview</h1>
                {renderer}
               
