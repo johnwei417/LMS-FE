@@ -79,7 +79,7 @@ class Home extends React.Component{
                             { 
                                 this.state.list.map((classrooms, index) => {
                                     return (
-                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
+                                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
                                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                                 <p className="text-white" style={{fontWeight:"bold", fontSize:"30px", marginBottom: "5px"}}>{classrooms.subject + ' - ' + classrooms.grade + ' Grade'}</p>
                                                 <span class="badge badge-dark">{classrooms.room}</span>

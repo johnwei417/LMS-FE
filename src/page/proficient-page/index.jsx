@@ -116,7 +116,7 @@ class ProficientPage extends React.Component{
                     <div className="card-body" style={{backgroundColor:"#01CF85"}}>
                          <PreLoader display="none" ref="loader" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count1">{this.state.p_count}</p>
-                         <p className="text-white">Students</p>
+                         <p className="text-white" style={{fontSize: "25px"}}>Students</p>
                          <a href={`/classroom/${this.state.classID}/p`} className="btn btn-primary" style={{backgroundColor:"#02B385", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
@@ -129,7 +129,7 @@ class ProficientPage extends React.Component{
                     <div className="card-body" style={{backgroundColor:"#FFD800"}}>
                          <PreLoader display="none" ref="loader1" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count2">{this.state.ap_count}</p>
-                         <p className="text-white">Students</p>
+                         <p className="text-white" style={{fontSize: "25px"}}>Students</p>
                          <a href={`/classroom/${this.state.classID}/ap`} className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
@@ -142,7 +142,7 @@ class ProficientPage extends React.Component{
                     <div className="card-body" style={{backgroundColor:"#f57242"}}>
                          <PreLoader display="none" ref="loader2" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count3">{this.state.np_count}</p>
-                         <p className="text-white">Students</p>
+                         <p className="text-white" style={{fontSize: "25px"}}>Students</p>
                          <a href={`/classroom/${this.state.classID}/np`} className="btn btn-primary" style={{backgroundColor:"#e82727", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
