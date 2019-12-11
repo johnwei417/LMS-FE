@@ -26,7 +26,8 @@ class TargetDetail extends React.Component{
             role:           _mm.getStorage('userInfo').role,
             selected:       [],
             taskID:          0,
-            taskList:       []
+            taskList:       [],
+            studentInfo:    ''
         };
         this.today = new Date();
         this.currentTime = this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds();
@@ -90,11 +91,19 @@ class TargetDetail extends React.Component{
 
     parseTime(due_date) {
         let splitDateTime = due_date.split(' ');
-        console.log(splitDateTime);
         let date = splitDateTime[0].split('-');
         let currentDate = new Date(date[0], date[1] - 1, date[2]);
 
         return (currentDate.getMonth() + 1) + ' / ' + currentDate.getDate() + ' / ' + currentDate.getFullYear()
+    }
+
+    getTaskTitle (studentName) {
+        if (studentName != null && studentName != '') {
+            let splitName = studentName.split(' ');
+
+            return splitName[0] + '\'s Tasks' 
+        } 
+
     }
 
     loadStudentListInTarget(){
@@ -103,7 +112,7 @@ class TargetDetail extends React.Component{
         UserInfo.userID = this.state.userID;
 
         _class.getStudentsInTaskPage(UserInfo).then(res => {
-            this.setState({list : res.tasks.details});
+            this.setState({list : res.tasks.details, studentInfo: res.tasks.userInfo});
             this.refs.loader.hide();
         }, errMsg =>{
             this.setState({
@@ -120,7 +129,7 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
-        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
+       <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
         <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
             <div className="box-green" title="Done"></div>
             <div className="box-yellow" title="In progress"></div>

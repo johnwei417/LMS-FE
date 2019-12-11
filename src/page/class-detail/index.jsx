@@ -57,7 +57,8 @@ class ClassDetail extends React.Component{
         _class.getClassDetails(classInfo).then((res)=>{
             this.setState({
                 grade:  ' - ' + res.classroom.details.grade + ' Grade',
-                subject: res.classroom.details.subject
+                subject: res.classroom.details.subject,
+                classID: res.classroom.details.class_id
             })
         }, (errMsg) => {
             _mm.errorTips(errMsg);
@@ -114,6 +115,9 @@ class ClassDetail extends React.Component{
     }
 
     loadTaskAssigned(){
+        if (this.state.role == 1) {
+            return
+        }
         let UserInfo = {};
         UserInfo.api_token = this.state.api_token;
         UserInfo.userID = this.state.userID;
@@ -150,14 +154,14 @@ class ClassDetail extends React.Component{
                     </Link>
                 </div>
                 <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
-                    <Link to={`/tasks`} className="text-muted" style={{textDecoration:"none"}}>
+                    <Link to={this.state.classID == 2 ? {} : `/tasks`} className="text-muted" style={{textDecoration:"none"}}>
                         <div className="card-header" style={{backgroundColor:"#EF9B0F"}}>
                             <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Tasks</span>
                         </div>
                         <div className="card-body" style={{backgroundColor:"#FFD800"}}>
                             <PreLoader display="none" ref="loader1" size=""></PreLoader>
 
-                            <a href={`/tasks`} className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
+                            <a href={this.state.classID == 2 ? {} : `/tasks`} className="btn btn-primary" style={{backgroundColor:"#EF9B0F", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
                         </div>
                     </Link>
                 </div>
