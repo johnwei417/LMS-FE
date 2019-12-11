@@ -171,13 +171,14 @@ class TargetDetail extends React.Component{
         <div className="row">
 
             {
-                this.state.list.map((modules, index) => {
+                this.state.list.sort((a, b) => Date.parse(a.due_date) - Date.parse(b.due_date)).map((modules, index) => {
                     return (
 
-                        <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px"}}>
+                        <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px"}}>
                             <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
                                 <a onClick={(e) => this.toModule(e, modules.url)}>
                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                    <span class="badge badge-dark">{this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
