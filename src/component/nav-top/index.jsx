@@ -23,11 +23,13 @@ class NavTop extends React.Component{
     render(){
         return (
             <div className="navbar navbar-default top-navbar" style={{backgroundColor:"#00276C", borderRadius:"0px", padding:"0px"}}>
-                <div className="navbar-header">
-                    <Link className="navbar-brand" style={{backgroundColor:"#00276C", borderRadius:"0px", fontSize:"24px", width:"350px", marginLeft:"20px", paddingTop:"13px"}} to="/"><b className="text-capitalize" style={{color:"white"}}>{'Interventive Learning'}</b> </Link>
-                </div>
-
+               
+                <ul className="nav navbar-top-links navbar-left">
+                    <img src="/src/resources/logo.png" style={{  padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
+                </ul>
+               
                 <ul className="nav navbar-top-links navbar-right">
+
                     <li className="dropdown">
                         <a className="dropdown-toggle" href="javascript:;">
                             <i className="fa fa-user fa-fw" style={{color: "white"}}></i>
@@ -48,6 +50,8 @@ class NavTop extends React.Component{
                             </li>
                         </ul>
                     </li>
+
+                   
                 </ul>
             </div>
         );

@@ -136,14 +136,14 @@ class ProficientPage extends React.Component{
             </div>
             <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
                 <Link to={`/classroom/${this.state.classID}/np`} className="text-muted" style={{textDecoration:"none"}}>
-                    <div className="card-header" style={{backgroundColor:"#BC0000"}}>
+                    <div className="card-header" style={{backgroundColor:"#e82727"}}>
                         <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Non-Proficient</span>
                     </div>
-                    <div className="card-body" style={{backgroundColor:"#FE4C4C"}}>
+                    <div className="card-body" style={{backgroundColor:"#f57242"}}>
                          <PreLoader display="none" ref="loader2" size=""></PreLoader>
                          <p className="display-1 text-white" style={{marginBottom:"0px", fontWeight:"bold"}} ref="count3">{this.state.np_count}</p>
                          <p className="text-white">Students</p>
-                         <a href={`/classroom/${this.state.classID}/np`} className="btn btn-primary" style={{backgroundColor:"#BC0000", border:"none", borderRadius:"25px"}}>More Details</a>
+                         <a href={`/classroom/${this.state.classID}/np`} className="btn btn-primary" style={{backgroundColor:"#e82727", border:"none", borderRadius:"25px"}}>More Details</a>
                     </div>
                 </Link>
             </div>
@@ -158,7 +158,7 @@ class ProficientPage extends React.Component{
         return (
             <div id="page-wrapper">
                
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Students Performance</h1>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Proficiency Overview</h1>
                {renderer}
               
             </div>
