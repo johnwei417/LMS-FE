@@ -35,6 +35,13 @@ class Home extends React.Component{
         }
     }
 
+    formatTime (startTime, endTime){
+        let start = startTime.split(':');
+        let end = endTime.split(':');
+
+        return start[0] + ':' + start[1] + ' - ' + end[0] + ':' + end[1]
+    }
+
     loadClassList(){
         this.refs.loader.black();
         let UserInfo = {};
@@ -74,7 +81,9 @@ class Home extends React.Component{
                                     return (
                                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"40px"}}>
                                             <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                                            <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>{classrooms.subject + ' - ' + classrooms.grade}</span>
+                                                <p className="text-white" style={{fontWeight:"bold", fontSize:"30px", marginBottom: "5px"}}>{classrooms.subject + ' - ' + classrooms.grade}</p>
+                                                <span class="badge badge-dark">{classrooms.room}</span>
+                                                <span class="badge badge-dark" style={{marginLeft:"6px"}}>{this.formatTime(classrooms.starts_at, classrooms.ends_at)}</span>
                                             </div>
                                             <Link to={`/classroom/${classrooms.class_id}`} className="text-muted" style={{textDecoration:"none"}}>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
