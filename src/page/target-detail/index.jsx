@@ -33,11 +33,13 @@ class TargetDetail extends React.Component{
         };
         this.handleChange = this.handleChange.bind(this);
         this.selected = [];
+        this.currentTaskIndex = 0;
     }
     componentDidMount(){
         this.checkLogin();
         this.loadStudentListInTarget();
         this.refs.assignBtn.disabled = true;
+        this.refs.reviewBtn.disabled = true;
     }
 
     checkLogin(){
@@ -48,12 +50,25 @@ class TargetDetail extends React.Component{
 
     handleChange(event) {
         this.setState({taskID: event.target.value});
-        console.log(this.state.date)
+        console.log(this.state.taskList);
+        for(var i = 0; i < this.state.taskList.length; i += 1) {
+            if(this.state.taskList[i]['id'] == event.target.value) {
+                this.currentTaskIndex = i;
+            }
+        }
+ 
         if (event.target.value > 0 && this.selected.length > 0) {
             this.refs.assignBtn.disabled = false;
         } else {
             this.refs.assignBtn.disabled = true;
         }
+        
+        if (event.target.value > 0) {
+            this.refs.reviewBtn.disabled = false;
+        } else {
+            this.refs.reviewBtn.disabled = true;
+        }
+
     }
 
     loadTaskList(){
@@ -172,9 +187,7 @@ class TargetDetail extends React.Component{
     }
 
     dateChange (currentDate) {
-        console.log(currentDate);
         this.setState({date : currentDate});
-        console.log(this.state.date);
     }
 
     loadStudentListInTarget(){
@@ -217,6 +230,7 @@ class TargetDetail extends React.Component{
                                 }
                             </select> 
                             <button className="btn btn-primary" style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} ref="assignBtn" data-toggle="modal" data-target="#calendarModal">Assign Module</button>
+                            <button className="btn btn-primary" style={{marginLeft:"20px", padding:"0px", paddingLeft:"35px", paddingRight:"35px"}} ref="reviewBtn" data-toggle="modal" data-target="#moduleDetails">Review Module</button>
                             <div ref="calendarModal" className="modal fade" id="calendarModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
@@ -240,7 +254,28 @@ class TargetDetail extends React.Component{
                                     </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div ref="moduleDetails" className="modal fade" id="moduleDetails" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                                <div className="modal-dialog" role="document">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="modalLabel">Review Module</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <div style={{marginLeft:"auto", marginRight:"auto"}}>
+                                            <p>{this.state.taskList.length > 0 ? this.state.taskList[this.currentTaskIndex].name : ''}</p>
+                                            <p>{'<Module Details Here>'}</p>
+                                        </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <a href={this.state.taskList.length > 0 ? this.state.taskList[this.currentTaskIndex].url : {}} target="_blank"><button type="button" class="btn btn-primary">Click here for preview</button></a>
+                                    </div>
+                                    </div>
                                 </div>
+                            </div>
 
                         </p>
 
@@ -253,14 +288,15 @@ class TargetDetail extends React.Component{
                                                 <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                                     <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>
                                                         {student.users.name}
-                                                        <input type="checkbox" 
+                                                        <input type="checkbox"
                                                             name="selected"
+                                                            className="big-checkBox"
                                                             value={student.user_id}
                                                             placeholder="checkbox" 
                                                             ref={'student'+student.user_id}
                                                             onKeyUp={e => this.onInputKeyUp(e)}
                                                             onChange={e => this.onInputChange(e)}
-                                                            style={{backgroundColor:"#4BDEFF", border:"none", color:"black", marginLeft:"15px"}}/>
+                                                            style={{border:"none", color:"black", float:"right"}}/>
                                                     </span>
                                                 </div>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
