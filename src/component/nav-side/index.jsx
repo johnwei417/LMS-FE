@@ -79,9 +79,9 @@ class NavSide extends React.Component{
                         </li>
                         <li className="list-group-item list-group-item-action" style={{backgroundColor:"#043874"}}>
                             <Link to="/">
-                                <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
+                                <i style={{color:"white", fontWeight:"600"}} className="fa fa-bell"></i>
                                 <span style={{color:"white", fontWeight:"600"}}>Classes</span>
-                                <span className="fa arrow"></span>
+                                
                             </Link>
                             <ul className="nav list-group list-group-flush" style={{marginTop:"15px"}}>
                             {
@@ -104,7 +104,7 @@ class NavSide extends React.Component{
                             <Link to={this.state.role == 1 ? "/tasks" : `/tasks/${this.state.userID}`}>
                                 <i style={{color:"white", fontWeight:"600"}} className="fa fa-check-square-o"></i>
                                 <span style={{color:"white", fontWeight:"600"}}>Tasks</span>
-                                <span className="fa arrow"></span>
+                               
                             </Link>
                             <ul className="nav list-group list-group-flush" style={{marginTop:"15px"}}>
                             {

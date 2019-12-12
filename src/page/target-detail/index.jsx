@@ -28,7 +28,8 @@ class TargetDetail extends React.Component{
             taskList:       [],
             date:           new Date(),
             targetName:       null,
-            targetDetail:     null
+            targetDetail:     null,
+            counter:          0
 
         };
         this.handleChange = this.handleChange.bind(this);
