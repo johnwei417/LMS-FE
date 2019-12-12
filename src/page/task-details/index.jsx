@@ -181,9 +181,10 @@ class TargetDetail extends React.Component{
                     return (
 
                         <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px"}}>
-                            <div className="card-header" style={modules.status == 2 ? {backgroundColor:"#02B385"} : (modules.status == 1 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )}>
+                            <div className="card-header" style={{backgroundColor:"#C8C8C8"}}>
                                 <a onClick={(e) => this.toModule(e, modules.url)}>
-                                    <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                    <p className="text-black" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
+                                    <i class="fa fa-circle fa-stack-2x" style={modules.status == 2 ? {left:"100px",color:"#02B385"} : (modules.status == 1 ? {left:"100px",color:"#EF9B0F"} : {left:"100px",color:"#BC0000"})}></i>
                                     <span class="badge badge-dark"> {'Due Date: '+this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>

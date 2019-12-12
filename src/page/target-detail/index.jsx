@@ -222,6 +222,20 @@ class TargetDetail extends React.Component{
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
+                    <div style={{float:"right"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div> 
+                            <span className="text-bold">{'Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Almost Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Non-Proficient'}</span>
+                        </p>
+                    </div>
                     <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"20px"}}>Target {this.state.targetName}</h1>
                     <h1 className="display-5" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.targetDetail}</h1>
                         <p>
@@ -301,11 +315,11 @@ class TargetDetail extends React.Component{
                                                     </span>
                                                 </div>
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
-                                                    <div className="content-left col-md-6 display-inline" style={student.standardized_score ? (student.standardized_score > 75 ? {backgroundColor:"#02B385"} : (student.standardized_score > 40 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )) : {}} >
+                                                    <div className="content-left col-md-6 display-inline" style={student.standardized_score ? (student.standardized_score > 75 ? {backgroundColor:"#02B385"} : (student.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#BC0000"} )) : {}} >
                                                         <p className="text-center text-white text-25" >{student.standardized_score ? student.standardized_score : '-'}</p>
                                                         <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Orginal Score</p>
                                                     </div>
-                                                    <div className="col-md-6 display-inline" style={student.score ? (student.score > 75 ? {backgroundColor:"#02B385"} : (student.score > 40 ? {backgroundColor:"#EF9B0F"} : {backgroundColor:"#BC0000"} )) : {}}>
+                                                    <div className="col-md-6 display-inline" style={student.score ? (student.score > 75 ? {backgroundColor:"#02B385"} : (student.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#BC0000"} )) : {}}>
                                                         <p className="text-center text-white text-25" >{student.score == 0 ? '-' : student.score}</p> 
                                                         <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Current Score</p>
                                                     </div>

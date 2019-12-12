@@ -146,6 +146,7 @@ class ClassDetail extends React.Component{
 
         if(checkRole == '1'){
             renderer =   (<div className="row" style={{marginTop:"45px"}}>
+                                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
                 <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
                     <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
                         <div className="card-header" style={{backgroundColor:"#019DF4"}}>
@@ -178,6 +179,17 @@ class ClassDetail extends React.Component{
 
                 renderer =
                 <div>
+                    <div style={{float:"right"}}>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'In progress'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Not started'}</span>
+                        </p>
+                    </div>
+                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
                 {
                     this.state.list.map((task, index)=>{
                         return (
@@ -228,7 +240,6 @@ class ClassDetail extends React.Component{
 
         return (
             <div id="page-wrapper">
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
                 {renderer}
             </div>
         );
