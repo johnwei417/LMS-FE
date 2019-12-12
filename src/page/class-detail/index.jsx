@@ -145,32 +145,34 @@ class ClassDetail extends React.Component{
         let renderer;
 
         if(checkRole == '1'){
-            renderer =   (<div className="row" style={{marginTop:"45px"}}>
-                                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
-                <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
-                    <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
-                        <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                            <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficiency</span>
-                        </div>
-                        <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                            <PreLoader display="none" ref="loader" size=""></PreLoader>
+            renderer =   (<div >
+            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
+                <div className="row" style={{marginTop:"45px"}}>  
+                    <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
+                        <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
+                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficiency</span>
+                            </div>
+                            <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                <PreLoader display="none" ref="loader" size=""></PreLoader>
 
-                            <a href={`/classroom/${this.state.classID}/p-page`} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px",  width:"100%"}}>More Details</a>
-                        </div>
-                    </Link>
-                </div>
-                <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
-                    <Link to={this.state.classID == 1 ? `/tasks` : {}} className="text-muted" style={{textDecoration:"none"}}>
-                        <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                            <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Tasks</span>
-                        </div>
-                        <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
-                            <PreLoader display="none" ref="loader1" size=""></PreLoader>
+                                <a href={`/classroom/${this.state.classID}/p-page`} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px",  width:"100%"}}>More Details</a>
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px", minWidth:"26%"}}>
+                        <Link to={this.state.classID == 1 ? `/tasks` : {}} className="text-muted" style={{textDecoration:"none"}}>
+                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
+                                <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Tasks</span>
+                            </div>
+                            <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                <PreLoader display="none" ref="loader1" size=""></PreLoader>
 
-                            <a href={this.state.classID == 1 ? `/tasks` : {}} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
-                        </div>
-                    </Link>
-                </div>
+                                <a href={this.state.classID == 1 ? `/tasks` : {}} className="btn btn-primary" style={{backgroundColor:"#019DF4", border:"none", borderRadius:"25px", width:"100%"}}>More Details</a>
+                            </div>
+                        </Link>
+                    </div>
+                </div> 
         </div>
         );
 
