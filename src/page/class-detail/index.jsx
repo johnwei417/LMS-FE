@@ -243,6 +243,9 @@ class ClassDetail extends React.Component{
         return (
             <div id="page-wrapper">
                 {renderer}
+                <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "100px", backgroundColor:"#02D0FF"}}>
+                     <span onClick={() => this.props.history.goBack()}>Back</span>
+                </button>
             </div>
         );
 

@@ -23,7 +23,11 @@ class Record extends React.Component{
         return(
         <div id="page-wrapper" style={styles}>
         <Component></Component>
+        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "20px", backgroundColor:"#02D0FF", marginLeft: "30px"}}>
+             <span onClick={() => this.props.history.goBack()}>Back</span>
+        </button>
         </div>
+        
         )
     }
 }
