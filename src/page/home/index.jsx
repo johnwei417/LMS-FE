@@ -124,11 +124,7 @@ class Home extends React.Component{
                                     );
                                 })
                             }
-                        </div>     
-                        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "20px", backgroundColor:"#02D0FF"}}>
-             <span onClick={() => this.props.history.goBack()}>Back</span>
-        </button>
-                        
+                        </div>
                     </div>
         
                 );

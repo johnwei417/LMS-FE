@@ -76,13 +76,14 @@ class TargetDetail extends React.Component{
         // check due date
         if (Date.parse(dueDate) < Date.parse(this.today)) {
             if (target != null) {
-                target.className = 'card col-md-3 task-due';
+                target.className = 'card col-md-3';
             }
         }
     }
 
-    checkDueDate(dueDate) {
-        if (Date.parse(dueDate) < Date.parse(this.today)) {
+
+    checkDueDate(dueDate, score) {
+        if (Date.parse(dueDate) < Date.parse(this.today) && score == 0) {
             return true
         } else {
             return false
@@ -125,6 +126,9 @@ class TargetDetail extends React.Component{
 
     render(){
         let renderer;
+        let renderer2;
+
+
 
        if(this.state.role == '1'){
         renderer =
@@ -151,32 +155,35 @@ class TargetDetail extends React.Component{
             {
                 this.state.list.sort((a, b) => Date.parse(a.due_date) - Date.parse(b.due_date)).map((modules, index) => {
                     return (
-                        <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px"}}>
-                            <div className="card-header" role="button" data-toggle="tooltip" data-placement="bottom" style={{backgroundColor:"#C8C8C8"}}>
+                        <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px", position:"relative"}}>
+                            <div className="card-header" role="button" data-toggle="tooltip" data-placement="bottom" style={{backgroundColor:"#F0F0F0"}}>
                                 <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
+                                <i class="fa fa-circle signal-dot" style={modules.status == 2 ? {fontSize: "35px", color:"#04E49B"} : (modules.status == 1 ? {fontSize: "35px", color:"#FFD800"} : {fontSize: "35px", color:"#FE4C4C"} )}></i>
                                     <p className="text-black" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
-                                    <i class="fa fa-circle fa-stack-2x" style={modules.status == 2 ? {left:"100px",color:"#02B385"} : (modules.status == 1 ? {left:"100px",color:"#EF9B0F"} : {left:"100px",color:"#BC0000"})}></i>
                                     <span class="badge badge-dark">{'Due Date: '+ this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
-                                <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
+                                <div className="card-body" style={{padding: "0px"}}>
                                     <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
-                                        <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
+                                        <div className="content-left col-md-6 display-inline" style={{backgroundColor:"#01CF85"}} >
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Original Score</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Current Score</p>
                                         </div>
                                     </a>
                                 </div>
+                                <div style={this.checkDueDate(modules.due_date, modules.scoreInfo.score) ? {position:"absolute", bottom: "-33px", right: "0px", backgroundColor:"#FE4C4C", display:"show"} : {display:"none"}}>
+                                    <p className="text-white" style={{fontWeight:"700" ,float:"right", marginTop: "4px", marginBottom: "4px", paddingLeft:"15px", paddingRight:"15px"}}>Past Due</p>
+                                </div>
                         </div>
+
                     );
                 })
             }
         </div>
-        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "50px", backgroundColor:"#02D0FF"}}>
-             <span onClick={() => this.props.history.goBack()}>Back</span>
-        </button>
         </div>;
 
        }else{
@@ -207,20 +214,22 @@ class TargetDetail extends React.Component{
                     return (
 
                         <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px"}}>
-                            <div className="card-header" style={{backgroundColor:"#C8C8C8"}}>
+                            <div className="card-header" style={{backgroundColor:"#F0F0F0"}}>
                                 <a onClick={(e) => this.toModule(e, modules.url)}>
                                     <p className="text-black" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
-                                    <i class="fa fa-circle fa-stack-2x" style={modules.status == 2 ? {left:"100px",color:"#02B385"} : (modules.status == 1 ? {left:"100px",color:"#EF9B0F"} : {left:"100px",color:"#BC0000"})}></i>
+                                    <i class="fa fa-circle fa-stack-2x" style={modules.status == 2 ? {left:"100px", color:"#02B385"} : (modules.status == 1 ? {left:"100px", color:"#EF9B0F"} : {left:"100px",color:"#BC0000"} )}></i>
                                     <span class="badge badge-dark"> {'Due Date: '+this.parseTime(modules.due_date)}</span>
                                 </a>
                             </div>
-                                <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
+                                <div className="card-body" style={{padding: "0"}}>
                                     <a onClick={(e) => this.toModule(e, modules.url)}>
-                                        <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
+                                        <div className="content-left col-md-6 display-inline" style={{backgroundColor:"#01CF85"}} >
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Original Score</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Current Score</p>
                                         </div>
                                     </a>
                                 </div>
@@ -231,14 +240,9 @@ class TargetDetail extends React.Component{
 
                     );
                 })
-
             }
 
-
         </div>
-        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "100px", backgroundColor:"#02D0FF"}}>
-             <span onClick={() => this.props.history.goBack()}>Back</span>
-        </button>
         </div>;
        }
 
