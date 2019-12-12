@@ -162,9 +162,7 @@ class Benchmark extends React.Component{
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    {'<More details about target here>'}
-                                    <br/>
-                                    {'<Examples about target here>'}
+                                    {target.details}
                                 </div>
                                 </div>
                             </div>

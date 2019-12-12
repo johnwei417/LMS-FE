@@ -268,7 +268,7 @@ class TargetDetail extends React.Component{
                                     <div className="modal-body">
                                         <div style={{marginLeft:"auto", marginRight:"auto"}}>
                                             <p>{this.state.taskList.length > 0 ? this.state.taskList[this.currentTaskIndex].name : ''}</p>
-                                            <p>{'<Module Details Here>'}</p>
+                                            <p>{this.state.taskList.length > 0 ? this.state.taskList[this.currentTaskIndex].details : ''}</p>
                                         </div>
                                     </div>
                                     <div className="modal-footer">
