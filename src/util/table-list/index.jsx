@@ -21,7 +21,7 @@ class TableList extends React.Component{
                 if(typeof tableHead === 'object'){
                     return <th key={index} width={tableHead.width} style={tableHead.name == 'Proficient' ? {backgroundColor:"#02B385"} : (tableHead.name == 'Almost Proficient' ? {backgroundColor:"#EF9B0F"} : (tableHead.name == 'Non Proficient' ? {backgroundColor:"#BC0000"} : {})) }>{tableHead.name}</th>
                 }else if(typeof tableHead === 'string'){
-                    return <th key={index} style={tableHead == 'Proficient' ? {backgroundColor:"#02B385"} : (tableHead == 'Almost Proficient' ? {backgroundColor:"#EF9B0F"} : (tableHead == 'Non Proficient' ? {backgroundColor:"#BC0000"} : {})) }>{tableHead}</th>
+                    return <th key={index} style={tableHead == 'Proficient' ? {backgroundColor:"#02B385"} : (tableHead == 'Almost Proficient' ? {backgroundColor:"#EF9B0F"} : (tableHead == 'Non Proficient' ? {backgroundColor:"#BC0000"} : (tableHead == 'Missing Score' ? {backgroundColor:"#E0E0E0"}:{}))) }>{tableHead}</th>
                 }
             }
         );

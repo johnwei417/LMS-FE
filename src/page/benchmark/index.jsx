@@ -173,6 +173,7 @@ class Benchmark extends React.Component{
                     <td className="text-center" style={target.proficient != 0 ? {backgroundColor:"#01CF85"} : {}}>{target.proficient}</td>
                     <td className="text-center" style={target.almost_proficient != 0 ? {backgroundColor:"#FFD800"} : {}}>{target.almost_proficient}</td>
                     <td className="text-center" style={target.non_proficient != 0 ? {backgroundColor:"#FE4C4C"} : {}}>{target.non_proficient}</td>
+                    <td className="text-center" >{target.no_scores}</td>
                 </tr>
             );
         });
@@ -203,7 +204,7 @@ class Benchmark extends React.Component{
 
     if(this.state.role == '1'){
         renderer =
-    <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient']}>
+    <TableList tableHeads={['Targets', 'Description', 'Proficient', 'Almost Proficient', 'Non Proficient', 'Missing Score']}>
         <PreLoader display="none" ref="loader" size=""></PreLoader>
         {listBody}
     </TableList>;

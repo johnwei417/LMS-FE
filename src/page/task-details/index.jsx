@@ -169,7 +169,9 @@ class TargetDetail extends React.Component{
                                     </a>
                                     
                                 </div>
-                    <i className= "" ref={c => this.checkDue2(modules.due_date, c)} style={{fontSize:"20px", color:"red", marginTop:"10px", padding: "20px"}}>{this.checkDueDate(modules.due_date) == true? ' Past Due': ''}</i>
+                            
+                            <i className= "" ref={c => this.checkDue2(modules.due_date, c)} style={{fontSize:"20px", color:"red", marginTop:"10px", padding: "20px"}}>{this.checkDueDate(modules.due_date) == true? ' Past Due': ''}</i>
+                        
                         </div>
                         
                     );
