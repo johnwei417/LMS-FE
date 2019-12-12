@@ -133,7 +133,22 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
+            <div style={{float:"right"}}>
+                <p>
+                    <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div>
+                    <span className="text-bold">{'Done'}</span>
+                </p>
+                <p>
+                    <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                    <span className="text-bold">{'In progress'}</span>
+                </p>
+                <p>
+                    <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                    <span className="text-bold">{'Not Started'}</span>
+                </p>
+            </div>
        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
+
 
         <PreLoader display="none" ref="loader" size=""></PreLoader>
 
@@ -144,7 +159,7 @@ class TargetDetail extends React.Component{
                         <div className="card col-md-3" key={index} ref={c => this.checkDue(modules.due_date, c)} style={{padding:"0px", marginLeft:"20px", position:"relative"}}>
                             <div className="card-header" role="button" data-toggle="tooltip" data-placement="bottom" style={{backgroundColor:"#F0F0F0"}}>
                                 <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
-                                <i class="fa fa-circle signal-dot" style={modules.status == 2 ? {fontSize: "35px", color:"#04E49B"} : (modules.status == 1 ? {fontSize: "35px", color:"#FFD800"} : {fontSize: "35px", color:"#FE4C4C"} )}></i>
+                                    <i class="fa fa-circle signal-dot" style={modules.status == 2 ? {fontSize: "35px", color:"#04E49B"} : (modules.status == 1 ? {fontSize: "35px", color:"#FFD800"} : {fontSize: "35px", color:"#FE4C4C"} )}></i>
                                     <p className="text-black" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{modules.name}</p>
                                     <span class="badge badge-dark">{'Due Date: '+ this.parseTime(modules.due_date)}</span>
                                 </a>

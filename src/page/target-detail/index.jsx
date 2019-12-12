@@ -222,6 +222,20 @@ class TargetDetail extends React.Component{
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
+                    <div style={{float:"right"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div> 
+                            <span className="text-bold">{'Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Almost Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Non-Proficient'}</span>
+                        </p>
+                    </div>
                     <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"20px"}}>Target {this.state.targetName}</h1>
                     <h1 className="display-5" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.targetDetail}</h1>
                         <p>
