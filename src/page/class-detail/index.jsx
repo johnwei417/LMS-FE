@@ -74,7 +74,7 @@ class ClassDetail extends React.Component{
 
     toModule(e, link) {
         e.preventDefault();
-        window.location.href = '/'+link;
+        window.location.href = link;
     }
 
     checkProficiencyLevel(){
@@ -112,6 +112,11 @@ class ClassDetail extends React.Component{
 
 
         }
+    }
+
+    formatDate (date) {
+        let splitDate = date.split('-');
+        return splitDate[1] + ' / ' + splitDate[2] + ' / ' + splitDate[0];
     }
 
     loadTaskAssigned(){
@@ -178,9 +183,9 @@ class ClassDetail extends React.Component{
                         return (
                             <a onClick={(e) => this.toModule(e, task.url)} href="javascript:void(0)">
                                 {task.status == '2'? '':
-                                <div key ={index} className= {`p-2 mb-2 col-md-7 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px", marginLeft:"25px"}}>
+                                <div key ={index} className={`p-2 mb-2 col-md-7 ${task.status == '0'? 'alert': (task.status == '1' ? 'warning' : 'success')} text-white`} style={{borderRadius:"7px", maxWidth:"53.9%", fontWeight:"700"}}>
                                     {task.name}
-                                    <span class="badge badge-pill badge-dark lead" style={{marginLeft:"10px", marginTop:"7px", fontWeight:"320"}}>{'Due Date: '+task.due_date}</span>
+                                    <span class="badge badge-pill badge-dark lead" style={{marginLeft:"10px", marginTop:"7px", fontWeight:"320"}}>{'Due: '+this.formatDate(task.due_date)}</span>
                                 </div>
                                 }
                             </a>
@@ -189,7 +194,7 @@ class ClassDetail extends React.Component{
                     })
                 }
                <div className="row" style={{marginTop:"20px"}}>
-                        <div className="card col-md-3" style={{padding:"0px", marginLeft:"40px"}}>
+                        <div className="card col-md-3" style={{padding:"0px", marginLeft:"16px"}}>
                             <Link to={`/classroom/${this.state.classID}/${this.state.proficientLevel}`} className="text-muted" style={{textDecoration:"none"}}>
                                 <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                     <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Proficiency</span>
@@ -202,7 +207,7 @@ class ClassDetail extends React.Component{
                                 </div>
                             </Link>
                         </div>
-                        <div className="card col-md-3" style={{padding:"0px", marginLeft:"70px", minWidth:"26%"}}>
+                        <div className="card col-md-3" style={{padding:"0px", marginLeft:"20px", minWidth:"26%"}}>
                             <Link to={`/tasks/${this.state.userID}`} className="text-muted" style={{textDecoration:"none"}}>
                                 <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                     <span className="text-white" style={{fontWeight:"bold", fontSize:"30px"}}>Tasks</span>

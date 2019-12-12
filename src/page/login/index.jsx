@@ -69,13 +69,13 @@ class Login extends React.Component{
         return (
             <div className="navbar navbar-default top-navbar" style={{backgroundColor:"#00276C", borderRadius:"0px", padding:"0px"}}>
             <ul className="nav navbar-top-links navbar-left">
-            <img src="/src/resources/logo.png" style={{  padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
+            <img src="/src/resources/logo.png" style={{padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
             </ul>
         
             <body className="login-body container-fluid" style={{backgroundColor: "#02D0FF"}}>
                 
 
-            <div className="col-md-4 col-md-offset-4" style={{marginLeft: "auto", marginRight:"auto", paddingTop:"20px"}}>
+            <div className="col-md-4 col-md-offset-4" style={{marginLeft: "auto", marginRight:"auto"}}>
                 <div className="panel center" style={{backgroundColor: "#02D0FF"}}>
                     <div className="panel-heading"><h1 className="text-center" style={{color:"white", fontSize:"65px", fontWeight:"bolder"}}>Welcome!</h1></div>
                     <div className="panel-body">

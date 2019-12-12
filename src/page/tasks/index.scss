@@ -49,3 +49,40 @@
         color: white;
     }
 }
+.dot-green {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    margin-top: 3px;
+    margin-right: 8px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #04E49B;
+    display: block;
+}
+.dot-yellow {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    margin-top: 3px;
+    margin-right: 8px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #FFD800;
+    display: block;
+}
+.dot-red {
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    margin-top: 3px;
+    margin-right: 8px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: #FE4C4C;
+    display: block;
+}
+.text-bold {
+    font-weight: 800;
+    color: #AFB0B2;
+}
