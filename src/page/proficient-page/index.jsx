@@ -147,6 +147,7 @@ class ProficientPage extends React.Component{
                     </div>
                 </Link>
             </div>
+           
             
         </div>
         );
@@ -159,6 +160,9 @@ class ProficientPage extends React.Component{
             <div id="page-wrapper">
                 <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Proficiency Overview</h1>
                {renderer}
+               <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "100px", backgroundColor:"#02D0FF"}}>
+                    <span onClick={() => this.props.history.goBack()}>Back</span>
+                </button>
               
             </div>
         );
