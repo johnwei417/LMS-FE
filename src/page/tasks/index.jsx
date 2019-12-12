@@ -84,11 +84,23 @@ class TargetDetail extends React.Component{
                                 this.state.list.map((student, index) => {
                                     return (
                                         <div className="card col-md-3" key={index} style={{padding:"0px", marginLeft:"20px", marginBottom:"20px"}}>
-                                            <div className="card-header" style={{backgroundColor:"#019DF4"}}>
-                                            </div>
-                                            <Link to={`/tasks/${student.user_id}`} className="text-muted" style={{textDecoration:"none"}}>
-                                                <div className="card-body" style={{backgroundColor:"#02D0FF"}}>
+                                            <Link to={`/tasks/${student.user_id}`} className="text-muted" style={{textDecoration:"none"}}>    
+                                                <div className="card-header" style={{backgroundColor:"#019DF4"}}>
                                                     <p className="text-white" style={{marginBottom:"0px", fontWeight:"bold", fontSize:"30px"}}>{student.user_details.name}</p> 
+                                                </div>
+                                                <div className="card-body" style={{backgroundColor:"#E6E7E9"}}>
+                                                    <p>
+                                                        <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div> 
+                                                        <span className="text-bold">{student.user_details.summary.completed + ' Completed'}</span>
+                                                    </p>
+                                                    <p>
+                                                        <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                                                        <span className="text-bold">{student.user_details.summary.inProgress + ' In progress'}</span>
+                                                    </p>
+                                                    <p>
+                                                        <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                                                        <span className="text-bold">{student.user_details.summary.notCompleted + ' Not Started'}</span>
+                                                    </p>
                                                 </div>
                                             </Link>
                                         </div>
