@@ -149,9 +149,11 @@ class TargetDetail extends React.Component{
                                     <a onClick={modules.status == 2 ? (e) => this.toRecord(e, modules.scoreInfo.score_id) : (e) => this.openModal(e)}>
                                         <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Original Score</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p> 
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Current Score</p>
                                         </div>
                                     </a>
                                 </div>
@@ -195,9 +197,11 @@ class TargetDetail extends React.Component{
                                     <a onClick={(e) => this.toModule(e, modules.url)}>
                                         <div className="content-left col-md-6 display-inline" style={modules.scoreInfo.standardized_score ? (modules.scoreInfo.standardized_score> 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}} >
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Original Score</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p> 
+                                            <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Current Score</p>
                                         </div>
                                     </a>
                                 </div>

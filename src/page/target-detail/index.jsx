@@ -317,7 +317,7 @@ class TargetDetail extends React.Component{
                                                 <div className="card-body" style={{backgroundColor:"#02D0FF", padding: "0"}}>
                                                     <div className="content-left col-md-6 display-inline" style={student.standardized_score ? (student.standardized_score > 75 ? {backgroundColor:"#02B385"} : (student.standardized_score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#BC0000"} )) : {}} >
                                                         <p className="text-center text-white text-25" >{student.standardized_score ? student.standardized_score : '-'}</p>
-                                                        <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Orginal Score</p>
+                                                        <p className="text-white" style={{fontSize: "15px", marginLeft: "15px"}}>Original Score</p>
                                                     </div>
                                                     <div className="col-md-6 display-inline" style={student.score ? (student.score > 75 ? {backgroundColor:"#02B385"} : (student.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#BC0000"} )) : {}}>
                                                         <p className="text-center text-white text-25" >{student.score == 0 ? '-' : student.score}</p> 
