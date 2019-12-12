@@ -77,8 +77,8 @@ class TargetDetail extends React.Component{
         if (Date.parse(dueDate) < Date.parse(this.today)) {
             if (target != null) {
                 target.className = 'card col-md-3 task-due';
-            } 
-        } 
+            }
+        }
     }
 
     checkDueDate(dueDate) {
@@ -101,8 +101,8 @@ class TargetDetail extends React.Component{
         if (studentName != null && studentName != '') {
             let splitName = studentName.split(' ');
 
-            return splitName[0] + '\'s Tasks' 
-        } 
+            return splitName[0] + '\'s Tasks'
+        }
 
     }
 
@@ -129,8 +129,22 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
+                                <div style={{float:"right"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Completed'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'In Progress'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Not started'}</span>
+                        </p>
+                    </div>
        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
-      
+
         <PreLoader display="none" ref="loader" size=""></PreLoader>
 
         <div className="row">
@@ -151,7 +165,7 @@ class TargetDetail extends React.Component{
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
-                                            <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p> 
+                                            <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p>
                                         </div>
                                     </a>
                                 </div>
@@ -169,12 +183,21 @@ class TargetDetail extends React.Component{
 
         renderer =
         <div>
+                    <div style={{float:"right"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Completed'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'In Progress'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Not started'}</span>
+                        </p>
+                    </div>
             <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
-            <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
-                <div className="box-green" title="Done"></div>
-                <div className="box-yellow" title="In progress"></div>
-                <div className="box-red" title="Have not started"></div>
-            </div>
             <PreLoader display="none" ref="loader" size=""></PreLoader>
 
         <div className="row">
@@ -197,18 +220,20 @@ class TargetDetail extends React.Component{
                                             <p className="text-center text-white text-25" >{modules.scoreInfo.standardized_score ? modules.scoreInfo.standardized_score : '-'}</p>
                                         </div>
                                         <div className="col-md-6 display-inline" style={modules.scoreInfo.score ? (modules.scoreInfo.score  > 75 ? {backgroundColor:"#01CF85"} : (modules.scoreInfo.score > 40 ? {backgroundColor:"#FFD800"} : {backgroundColor:"#FE4C4C"} )) : {}}>
-                                            <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p> 
+                                            <p className="text-center text-white text-25" >{modules.scoreInfo.score  == 0 ? '-' : modules.scoreInfo.score }</p>
                                         </div>
                                     </a>
                                 </div>
-                               
+                                <div style={this.checkDueDate(modules.due_date, modules.scoreInfo.score) ? {position:"absolute", bottom: "-33px", right: "0px", backgroundColor:"#FE4C4C", display:"show"} : {display:"none"}}>
+                                    <p className="text-white" style={{fontWeight:"700" ,float:"right", marginTop: "4px", marginBottom: "4px", paddingLeft:"15px", paddingRight:"15px"}}>Past Due</p>
+                                </div>
                         </div>
 
                     );
                 })
-                
+
             }
-            
+
 
         </div>
         <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "100px", backgroundColor:"#02D0FF"}}>
