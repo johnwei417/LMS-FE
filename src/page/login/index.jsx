@@ -69,7 +69,7 @@ class Login extends React.Component{
         return (
             <div className="navbar navbar-default top-navbar" style={{backgroundColor:"#00276C", borderRadius:"0px", padding:"0px"}}>
             <ul className="nav navbar-top-links navbar-left">
-            <img src="/src/resources/logo.png" style={{padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
+            <img src="https://firebasestorage.googleapis.com/v0/b/web-learning-system.appspot.com/o/logo.png?alt=media&token=85f38e7c-5478-41c9-bfc0-1b1804a588f2" style={{padding: "15px", display:"block", width:"66%", height:"66%"}}></img>
             </ul>
         
             <body className="login-body container-fluid" style={{backgroundColor: "#02D0FF"}}>
