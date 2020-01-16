@@ -2,7 +2,7 @@
 
 # How to deploy on local environment
 
-##Run on MacOS 
+## Run on MacOS 
 1. Install Homebrew in the terminal(/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" )
 2. Install node via brew, type "brew install node" in the terminal
 3. Install yarn via 'brew install yarn'
