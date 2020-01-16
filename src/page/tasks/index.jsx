@@ -77,8 +77,8 @@ class TargetDetail extends React.Component{
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
                         
-                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Assigned Tasks</h1>
-                        <PreLoader display="none" ref="loader" size=""></PreLoader>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px",marginTop:"70px"}}>Assigned Tasks</h1>
+                        <PreLoader display="none" ref="loader" size="" ></PreLoader>
                         
                         <div className="row">
                             { 

@@ -11,7 +11,8 @@ class Media extends React.Component{
     render() {
         const Component = VueInReact(Module)
         let styles = {
-          padding: '0px'
+          paddingTop: '60px',
+          mariginTop: '50px'
         }
 
         return(

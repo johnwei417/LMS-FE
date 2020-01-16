@@ -222,7 +222,7 @@ class TargetDetail extends React.Component{
        
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                    <div style={{float:"right"}}>
+                    <div style={{float:"right",marginTop:"70px"}}>
                         <p>
                             <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div> 
                             <span className="text-bold">{'Proficient'}</span>
@@ -236,7 +236,7 @@ class TargetDetail extends React.Component{
                             <span className="text-bold">{'Non-Proficient'}</span>
                         </p>
                     </div>
-                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"20px"}}>Target {this.state.targetName}</h1>
+                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"20px",marginTop:"70px"}}>Target {this.state.targetName}</h1>
                     <h1 className="display-5" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.targetDetail}</h1>
                         <p>
                             <select value={this.state.taskID} onChange={this.handleChange}><option>Select Module Here</option>
@@ -330,7 +330,7 @@ class TargetDetail extends React.Component{
                                 })
                             }
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "50px", backgroundColor:"#02D0FF"}}>
+                        <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "0px", backgroundColor:"#02D0FF"}}>
              <span onClick={() => this.props.history.goBack()}>Back</span>
         </button>
                     </div>

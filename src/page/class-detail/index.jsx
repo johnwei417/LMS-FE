@@ -146,7 +146,7 @@ class ClassDetail extends React.Component{
 
         if(checkRole == '1'){
             renderer =   (<div >
-            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
+            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px",marginTop:"70px"}}>{this.state.subject + this.state.grade}</h1>
                 <div className="row" style={{marginTop:"45px"}}>  
                     <div className="card col-md-3" style={{padding:"0px", marginLeft:"18px"}}>
                         <Link to={`/classroom/${this.state.classID}/p-page`} className="text-muted" style={{textDecoration:"none"}}>
@@ -191,7 +191,7 @@ class ClassDetail extends React.Component{
                             <span className="text-bold">{'Not started'}</span>
                         </p>
                     </div>
-                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px"}}>{this.state.subject + this.state.grade}</h1>
+                    <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"35px",marginTop:"70px"}}>{this.state.subject + this.state.grade}</h1>
                 {
                     this.state.list.map((task, index)=>{
                         return (

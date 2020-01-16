@@ -130,10 +130,10 @@ class TargetDetail extends React.Component{
         renderer =
         <div>
                 
-       <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
+       <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px",marginTop:"70px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
      
         <PreLoader display="none" ref="loader" size=""></PreLoader>
-        <div style={{float:"left"}}>
+        <div style={{float:"left", marginRight:"40px"}}>
                         <p>
                             <div className="dot-green" title="Done" style={{borderRadius:"70%", border:"none"}}></div> 
                             <span className="text-bold">{'Completed '}</span>    
@@ -151,7 +151,7 @@ class TargetDetail extends React.Component{
                         
         </div>
         
-        <div style={{margin:"20px 20px 40px 20px"}}>
+        <div style={{marginLeft:"150px"}}>
         <p>
                     <div className="dot-green" title="Done" ></div> 
                             <span className="text-bold">{'Proficient'}</span>
@@ -213,7 +213,7 @@ class TargetDetail extends React.Component{
 
         renderer =
         <div>
-            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
+            <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px",marginTop:"70px"}}>Tasks Assigned</h1>
             
             <PreLoader display="none" ref="loader" size=""></PreLoader>
             <div style={{float:"left"}}>
@@ -234,7 +234,7 @@ class TargetDetail extends React.Component{
                         
         </div>
         
-        <div >
+        <div style={{marginLeft:"150px"}}>
         <p>
                     <div className="dot-green" title="Done" ></div> 
                             <span className="text-bold">{'Proficient'}</span>

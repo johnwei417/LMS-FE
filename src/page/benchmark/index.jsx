@@ -218,7 +218,7 @@ class Benchmark extends React.Component{
 
         return (
             <div id="page-wrapper">
-                <div style={{float:"right"}}>
+                <div style={{float:"right",marginTop:"70px"}}>
                     <p>
                         <div className="dot-green" title="Done" style={{borderRadius:"100%", border:"none"}}></div> 
                         <span className="text-bold">{'Proficient'}</span>
@@ -232,7 +232,7 @@ class Benchmark extends React.Component{
                         <span className="text-bold">{'Non-Proficient'}</span>
                     </p>
                 </div>
-                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Non Proficient'}</h1>
+                <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px",marginTop:"70px"}}>{this.state.pLevel == 'p'?'Proficient': this.state.pLevel == 'ap'?'Almost Proficient':'Non Proficient'}</h1>
                 {renderer}
                 <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "50px", backgroundColor:"#02D0FF"}}>
              <span onClick={() => this.props.history.goBack()}>Back</span>

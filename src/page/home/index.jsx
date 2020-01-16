@@ -73,7 +73,7 @@ class Home extends React.Component{
         if (checkRole == 1) {
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Your Classes</h1>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px",marginTop:"70px"}}>Your Classes</h1>
                         <PreLoader display="none" ref="loader" size=""></PreLoader>
                         <div className="row">
                             { 
@@ -103,7 +103,7 @@ class Home extends React.Component{
         } else {
                 return (
                     <div id="page-wrapper" style={{marginTop:"0px"}}>
-                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>Your Classes</h1>
+                        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px",marginTop:"70px"}}>Your Classes</h1>
                         <PreLoader display="block" ref="loader" size=""></PreLoader>
                         <div className="row">
                             { 
