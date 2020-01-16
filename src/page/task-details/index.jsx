@@ -129,11 +129,50 @@ class TargetDetail extends React.Component{
        if(this.state.role == '1'){
         renderer =
         <div>
+                
        <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"50px"}}>{this.getTaskTitle(this.state.studentInfo.name)}</h1>
-      
+     
         <PreLoader display="none" ref="loader" size=""></PreLoader>
+        <div style={{float:"left"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"70%", border:"none"}}></div> 
+                            <span className="text-bold">{'Completed '}</span>    
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'In Progress '}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Not Started '}</span>
+                        </p>
+
+                       
+                        
+        </div>
+        
+        <div style={{margin:"20px 20px 40px 20px"}}>
+        <p>
+                    <div className="dot-green" title="Done" ></div> 
+                            <span className="text-bold">{'Proficient'}</span>
+                        </p>
+
+                        <p>
+                            <div className="dot-yellow" title="Done" ></div> 
+                            <span className="text-bold">{'Almost Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Done"></div> 
+                            <span className="text-bold">{'Not Proficient'}</span>
+                        </p>
+        </div>
+
+
+        
 
         <div className="row">
+            
+            
             {
                 this.state.list.sort((a, b) => Date.parse(a.due_date) - Date.parse(b.due_date)).map((modules, index) => {
                     return (
@@ -161,7 +200,10 @@ class TargetDetail extends React.Component{
                     );
                 })
             }
+            
+        
         </div>
+       
         <button type="button" class="btn btn-primary btn-lg" style={{marginTop: "50px", backgroundColor:"#02D0FF"}}>
              <span onClick={() => this.props.history.goBack()}>Back</span>
         </button>
@@ -172,12 +214,41 @@ class TargetDetail extends React.Component{
         renderer =
         <div>
             <h1 className="display-3" style={{fontWeight:"bold", color:"grey", opacity:"0.3", marginBottom:"15px"}}>Tasks Assigned</h1>
-            <div className="col-md-12" style={{display:"block", height:"30px", marginBottom:"25px"}}>
-                <div className="box-green" title="Done"></div>
-                <div className="box-yellow" title="In progress"></div>
-                <div className="box-red" title="Have not started"></div>
-            </div>
+            
             <PreLoader display="none" ref="loader" size=""></PreLoader>
+            <div style={{float:"left"}}>
+                        <p>
+                            <div className="dot-green" title="Done" style={{borderRadius:"70%", border:"none"}}></div> 
+                            <span className="text-bold">{'Completed '}</span>    
+                        </p>
+                        <p>
+                            <div className="dot-yellow" title="In progress" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'In Progress '}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Have not started" style={{borderRadius:"100%", border:"none"}}></div>
+                            <span className="text-bold">{'Not Started '}</span>
+                        </p>
+
+                       
+                        
+        </div>
+        
+        <div >
+        <p>
+                    <div className="dot-green" title="Done" ></div> 
+                            <span className="text-bold">{'Proficient'}</span>
+                        </p>
+
+                        <p>
+                            <div className="dot-yellow" title="Done" ></div> 
+                            <span className="text-bold">{'Almost Proficient'}</span>
+                        </p>
+                        <p>
+                            <div className="dot-red" title="Done"></div> 
+                            <span className="text-bold">{'Not Proficient'}</span>
+                        </p>
+        </div>
 
         <div className="row">
 
