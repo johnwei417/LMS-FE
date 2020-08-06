@@ -17,7 +17,7 @@ Authors: Chee Kong Wong, Hong Lin Wei
 
 'yarn run dev' will automatically open your default browser and run project on local machine
 
-Backend API instructions: https://laravel-lsm.herokuapp.com/docs/1.0/overview
+Backend API instructions: https://laravel-lsm.herokuapp.com/docs/1.0/overview (removed)
 
 Documentation:
 docs/
